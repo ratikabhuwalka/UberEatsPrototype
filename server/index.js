@@ -1,28 +1,53 @@
 const express = require("express");
+const app = express();
+const mysql = require("mysql");
 const cors = require("cors");
 
-const app = express();
+app.use(cors());
+app.use(express.json()); 
 
-var corsOption = {
-    origin: "http://localhost:3000"
-};
-
-app.use(cors(corsOption));
-
-app.use(express.json());
-
-//app.use(express.urlencoded({ extended: true}));
-
-app.get("/", (req, res) => {
-    res.json({ message: "Sending json from uber eats welcome page"});
+const db = mysql.createConnection({
+    user: 'admin',
+    host: 'uber-eats.cr6pm56ji8yd.us-east-2.rds.amazonaws.com',
+    password: 'admin123',
+    database: 'uber_eats_db'
 });
 
-const port = process.env.PORT || 3000;
+// create new restaurant
+app.post('/restaurant', (req, res) => {
+    const restName = req.body.restName;
+    const restEmail = req.body.restEmail;
+    const restPass = req.body.restPass;
+    const restPhone = req.body.restPhone;
+    const restCity = req.body.restCity;
+    const restCountry = req.body.restCountry;
+    const startTime = req.body.startTime;
+    const endTime = req.body.endTime;
+    const restType = req.body.restType;
+    const cuisineType = req.body.cuisineType;
 
-app.listen(port, () => {
-    console.log(`Server is running on ${port}`);
+    db.query(
+        "INSERT INTO Restaurant (RestName, RestEmail, RestPass, RestPhone, RestCity, RestCountry, StartTime, EndTime, RestType, CuisineType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [restName, restEmail, restPass, restPhone, restCity, restCountry, startTime, endTime, restType, cuisineType],
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                console.log(err);
+                res.send("SQL error, Check log for more details");
+            } else {
+                res.status(200);
+                res.send("Restaurant added successfully");
+            }
+        }
+    );
 });
 
-const mysql = require("mysql");
 
 
+
+
+
+
+app.listen(3000, ()=> {
+    console.log("App running on 3000");
+});
