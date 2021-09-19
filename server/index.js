@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
+const e = require("express");
 
 app.use(cors());
 app.use(express.json()); 
@@ -24,11 +25,10 @@ app.post('/restaurant', (req, res) => {
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
     const restType = req.body.restType;
-    const cuisineType = req.body.cuisineType;
 
     db.query(
-        "INSERT INTO Restaurant (RestName, RestEmail, RestPass, RestPhone, RestCity, RestCountry, StartTime, EndTime, RestType, CuisineType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        [restName, restEmail, restPass, restPhone, restCity, restCountry, startTime, endTime, restType, cuisineType],
+        "INSERT INTO Restaurant (RestName, RestEmail, RestPass, RestPhone, RestCity, RestCountry, StartTime, EndTime, RestType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [restName, restEmail, restPass, restPhone, restCity, restCountry, startTime, endTime, restType],
         (err, result) => {
             if (err) {
                 res.status(500);
@@ -42,12 +42,33 @@ app.post('/restaurant', (req, res) => {
     );
 });
 
+// create new restaurant
+app.get('/restaurant', (req, res) => {
+    const restEmail = req.query.restEmail;
+    const restPass = req.query.restPass;
+
+    db.query(
+        "SELECT * FROM Restaurant WHERE RestEmail = ? AND RestPass = ?",
+        [ restEmail, restPass],
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                console.log({err : err});
+                res.send("SQL error, Check log for more details");
+            } else {
+                if(result){
+                    res.send(result);
+                }else{
+                    res.send("Wrong Email Id or Password!")
+                }
+            }
+        }
+    );
+});
 
 
 
 
-
-
-app.listen(3000, ()=> {
-    console.log("App running on 3000");
+app.listen(3001, ()=> {
+    console.log("App running on 3001");
 });
