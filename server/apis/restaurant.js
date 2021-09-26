@@ -33,10 +33,47 @@ router.post('/', (req, res) => {
             }
         }
     );
+
 });
 
-
-
+//Restaurant search
+router.get('/getRestaurants/:search_string?', (req, res) => {
+    if(!req.query.search_string){
+        var sql_query = "SELECT DISTINCT \
+        r.RestId, r.RestName,d.DishName, d.DishId \
+        FROM Restaurant r \
+        LEFT OUTER JOIN Dish d \
+        ON d.RestId = r.RestId \
+       ;"    
+    }
+    else{
+        const search_string = '%' + req.query.search_string + '%'
+        var sql_query = `SELECT DISTINCT \
+        r.RestId, r.RestName,d.DishName, d.DishId \
+        FROM Restaurant r \
+        LEFT OUTER JOIN Dish d \
+        ON d.RestId = r.RestId \
+        WHERE (d.DishName LIKE '${search_string}' \
+        OR d.Description LIKE '${search_string}' \
+        OR r.RestName LIKE '${search_string}' \
+        OR r.RestCity LIKE '${search_string}' );`
+    }
+    
+    
+    db.query(sql_query, 
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                console.log(err);
+                res.send("SQL error, Check log for more details");
+            } else {
+                res.send(result)
+                res.status(200);
+                
+            }
+        }
+    );
+});
 
 
 // get restaurant
