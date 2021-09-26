@@ -36,12 +36,19 @@ router.post('/', (req, res) => {
 });
 
 
+
+
+
 // get restaurant
 router.get('/', (req, res) => {
+    console.log(req.query);
+    console.log("Request Reached! GEt")
     const restEmail = req.query.restEmail;
     const restPass = req.query.restPass;
+    const isOwner = req.query.isOwner;
 
-
+    if(isOwner)
+{
     db.query(
         "SELECT * FROM Restaurant WHERE RestEmail = ?",
         [ restEmail],
@@ -52,14 +59,16 @@ router.get('/', (req, res) => {
                 res.send("SQL error, Check log for more details");
             } else {
                 if(result){
-                    if (passwordHash.verify(restPass, result[0][0].RestPass)){
-                    res.send(result);}
+                    console.log(result);
+                    if (passwordHash.verify(restPass, result[0].RestPass)){
+                    res.send(result[0]);}
                 }else{
                     res.send("Wrong Email Id or Password!")
                 }
             }
         }
     );
+    }
 });
 
 module.exports = router;

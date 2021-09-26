@@ -5,6 +5,7 @@ import Header from "./Components/Header";
 import LandingMain from "./Components/LandingPage/LandingMain";
 import SignUp from "./Components/LoginPage/SignUp.js"
 import Login from "./Components/LoginPage/Login.js"
+import RestaurantProfile from './Components/ProfilePage/RestaurantProfile';
 import { Container } from 'react-bootstrap'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route exact path ="/signup" component ={ SignUp } />
             <Route exact path ="/header" component ={ Header } /> 
             <Route exact path ="/login" component ={ Login } /> 
+            <Route exact path ='/profile/restaurant' component = {RestaurantProfile} />
           </Switch>
         </Router>
       </Container>

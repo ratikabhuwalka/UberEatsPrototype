@@ -6,8 +6,9 @@ import Footer from './Footer';
 
 const LandingMain = () => {
     return (
-        <div>
-           <Header/>            
+        <div className="Landing">
+           <Header/>
+           <Panel/>            
        </div>
     )
 }
