@@ -59,7 +59,6 @@ router.get('/getRestaurants/:search_string?', (req, res) => {
         OR r.RestCity LIKE '${search_string}' );`
     }
     
-    
     db.query(sql_query, 
         (err, result) => {
             if (err) {

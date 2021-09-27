@@ -92,37 +92,28 @@ class Login extends Component {
             <div>
                 {redirectVar}
                 <div>
-                    <Row>
-                        <Col>
-                            {/* <img src={grubhubLoginImage} style={{ height: 'fit-content' }} alt='GrubHub' /> */}
-                        </Col>
-                        <Col>
-                            <div>
-                                <div class="login-form">
-                                    <div class="main-div">
-                                        <div class="panel">
-                                            <h2>Signin with your Grubhub account</h2>
-                                        </div><br/>
-                                        <form onSubmit={this.onSubmit}>
-                                            <div style={{ color: "#ff0000" }}>{message}</div><br />
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" onChange={this.onChange} name="email_id" placeholder="Email Id" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$'%&*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])$" title="Please enter valid email address" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" onChange={this.onChange} name="password" placeholder="Password" required />
-                                            </div>
-                                            <div class = "checkbox">
-                                                <input type = "checkbox" name = "owner"  onChange={ this.handleChecked }/> 
-                                                <label for ="owner"> Is Owner? </label>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary" onClick = {this.onSubmit}>Login</button><br /><br />
-                                            <div><center><Link to="/signup">Create new account</Link></center></div>
-                                        </form>
-                                    </div>
-                                </div>
+                    <div class="login-form">
+                        <div class="main-div">
+                            <div >
+                                <h2>Login</h2>
                             </div>
-                        </Col>
-                    </Row>
+                            <form onSubmit={this.onSubmit}>
+                                <div style={{ color: "#ff0000" }}>{message}</div><br />
+                                <div class="form-group">
+                                    <input type="email" class="form-control" onChange={this.onChange} name="email_id" placeholder="Email Id" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$'%&*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])$" title="Please enter valid email address" required />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" onChange={this.onChange} name="password" placeholder="Password" required />
+                                </div>
+                                <div class = "form-check">
+                                    <input type = "checkbox" class="form-check-input" id = "owner"  onChange={ this.handleChecked }/> 
+                                    <label class="form-check-label" for ="owner"> Is Owner? </label>
+                                </div>
+                                <button type="submit" class="btn btn-primary" onClick = {this.onSubmit}>Login</button><br /><br />
+                                <div><center><Link to="/signup">Create new account</Link></center></div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

@@ -22,3 +22,14 @@
     padding: 10px;
 }
 
+.panel{
+    margin-top: 250px;
+    margin-left: 100px;
+}
+.panel_search {
+    margin-top: 20px;
+    display : flex;
+    align-items: center;
+    width: fit-content;
+
+}

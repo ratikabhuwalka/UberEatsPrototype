@@ -1,4 +1,4 @@
-//import SearchIcon from '@material-ui/icons/'
+import SearchIcon from '@material-ui/icons/Search'
 
 
 const Panel = () => {
@@ -9,7 +9,7 @@ const Panel = () => {
             </p>
             <div className='panel_search'>
                 <input type="text" />
-                {/* <SearchIcon />             */}
+                <SearchIcon />         
             </div>
 
             {/* <div class="form-group">
