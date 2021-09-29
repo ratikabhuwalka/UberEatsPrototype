@@ -4,7 +4,7 @@ const app = require('./app');
 
 
 const restaurant = require("./apis/restaurant");
-// const signup = require("./routes/signup");
+const customer = require("./apis/customer");
 // const profile = require("./routes/profile");
 // const restaurant = require("./routes/restaurant");
 // const images = require("./routes/images");
@@ -15,7 +15,7 @@ const restaurant = require("./apis/restaurant");
 // const orders = require("./routes/orders");
 
 app.use('/restaurant', restaurant);
-// app.use("/grubhub/signup", signup);
+app.use('/customer', customer);
 // app.use("/grubhub/profile", profile);
 // app.use("/grubhub/restaurant", restaurant);
 // app.use("/grubhub/images", images);

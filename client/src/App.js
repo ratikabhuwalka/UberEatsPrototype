@@ -7,11 +7,15 @@ import SignUp from "./Components/LoginPage/SignUp.js"
 import RestaurantSignUp from "./Components/LoginPage/RestaurantSignUp.js"
 import Login from "./Components/LoginPage/Login.js"
 import RestaurantProfile from './Components/ProfilePage/RestaurantProfile';
+import Restaurant from './Components/HomePage/Restaurant';
 import CustomerHome from './Components/HomePage/CustomerHome';
 import { Container } from 'react-bootstrap'
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
+    <Provider store = {store}>
     <React.Fragment>
       <Container>
         <Router>
@@ -20,7 +24,7 @@ function App() {
             <Route exact path ="/signup" component ={ SignUp } />
             <Route exact path ="/restaurantSignUp" component ={ RestaurantSignUp } />
             <Route exact path ="/customerHome" component ={ CustomerHome } />
-
+            <Route path="/restaurant" component={Restaurant} />
             <Route exact path ="/header" component ={ Header } /> 
             <Route exact path ="/login" component ={ Login } /> 
             <Route exact path ='/profile/restaurant' component = {RestaurantProfile} />
@@ -28,6 +32,7 @@ function App() {
         </Router>
       </Container>
       </React.Fragment>
+      </Provider>
   );
 }
 

@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
-import Axios from 'axios'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { userLogin } from '../../actions/loginAction'
 
-// import Checkbox from '@material-ui/core/Checkbox';
-// import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-// import CheckBoxIcon from '@material-ui/icons/CheckBox';
-// import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-// import { userLogin } from '../../actions/loginAction'
-//import grubhubLoginImage from '../images/GrubhubLoginImage.png';
-import { Row, Col } from 'react-bootstrap';
 
 class Login extends Component {
     //call the constructor method
@@ -23,7 +17,7 @@ class Login extends Component {
     }
 
     handleChecked () {
-        this.setState({isOwner: this.state.isOwner});
+        this.setState({isOwner: true});
       }
 
     onChange = (e) => {
@@ -32,53 +26,42 @@ class Login extends Component {
         })
     }
 
-
-
-    //submit Login handler to send a request to the node backend
-    // onSubmit = (e) => {
-    //     e.preventDefault();
-    //     const data = {
-    //         email_id: this.state.email_id,
-    //         password: this.state.password
-    //     }
-
-    //     this.props.userLogin(data);
-
-    //     this.setState({
-    //         loginFlag: 1
-    //     });
-    // }
-
-
-        onSubmit = (e) => {
+    onSubmit = (e) => {
         e.preventDefault();
-        console.log("on submit");
-
-        Axios.get('http://localhost:3001/restaurant',{
-            restEmail : this.state.email_id,
-            restPass : this.state.password,
-            isOwner: this.state.isOwner
-        }).then((response)=>{
-            console.log(response);
-        });
-
-        //this.props.userLogin(data);
+        const data = {
+            email_id: this.state.email_id,
+            password: this.state.password,
+            is_owner: this.state.isOwner
+        }
+        console.log(data);
+        this.props.userLogin(data);
+        console.log(`logging props from login component ${this.props}`);
 
         this.setState({
             loginFlag: 1
         });
     }
 
+
+
     render() {
-        console.log(this.props);
+        console.log(this.props.user);
         let redirectVar = null;
         let message = ""
-        if(this.props.user && this.props.user.user_id){
-            localStorage.setItem("email_id", this.props.user.email_id);
-            localStorage.setItem("is_owner", this.props.user.is_owner);
-            localStorage.setItem("user_id", this.props.user.user_id);
-            localStorage.setItem("name", this.props.user.name);
-            redirectVar = <Redirect to="/home" />
+        if(this.props.user && this.props.user.RestId){
+            localStorage.setItem("email_id", this.props.user.RestEmail);
+            localStorage.setItem("is_owner", true);
+            localStorage.setItem("user_id", this.props.user.RestId);
+            localStorage.setItem("name", this.props.user.RestName);
+            redirectVar = <Redirect to="/customerHome" />
+        }
+        else if(this.props.user && this.props.user.CustId) { 
+            localStorage.setItem("email_id", this.props.user.CustEmail);
+            localStorage.setItem("is_owner", true);
+            localStorage.setItem("user_id", this.props.user.CustId);
+            localStorage.setItem("name", this.props.user.CustName);
+            redirectVar = <Redirect to="/customerHome" />
+
         }
         else if(this.props.user === "NO_USER" && this.state.loginFlag){
             message = "No user with this email id";
@@ -87,7 +70,6 @@ class Login extends Component {
             message = "Incorrect Password";
         }
   
-        console.log(this.props);
         return (
             <div>
                 {redirectVar}
@@ -106,7 +88,10 @@ class Login extends Component {
                                     <input type="password" class="form-control" onChange={this.onChange} name="password" placeholder="Password" required />
                                 </div>
                                 <div class = "form-check">
-                                    <input type = "checkbox" class="form-check-input" id = "owner"  onChange={ this.handleChecked }/> 
+                                    <input type = "checkbox" class="form-check-input" id = "owner"  
+                                        checked={this.state.active}
+                                        onClick={this.handleClick}
+                                        onChange={ this.handleChecked }/> 
                                     <label class="form-check-label" for ="owner"> Is Owner? </label>
                                 </div>
                                 <button type="submit" class="btn btn-primary" onClick = {this.onSubmit}>Login</button><br /><br />
@@ -125,11 +110,11 @@ class Login extends Component {
 //     user: PropTypes.object.isRequired
 // }
 
-// const mapStateToProps = state => { 
-//     return ({
-//     user: state.login.user
-// })};
+const mapStateToProps = state => { 
+    return ({
+    user: state.login.user
+})};
 
-// export default connect(mapStateToProps, { userLogin })(Login);
+export default connect(mapStateToProps, { userLogin })(Login);
 
-export default Login
+//export default Login

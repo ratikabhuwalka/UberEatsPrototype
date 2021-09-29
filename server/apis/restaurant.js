@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
 router.get('/getRestaurants/:search_string?', (req, res) => {
     if(!req.query.search_string){
         var sql_query = "SELECT DISTINCT \
-        r.RestId, r.RestName,d.DishName, d.DishId \
+        r.RestId, r.RestName, r.RestEmail, r.RestCity, r.RestPhone, r.StartTime, r.EndTime\
         FROM Restaurant r \
         LEFT OUTER JOIN Dish d \
         ON d.RestId = r.RestId \
@@ -49,7 +49,7 @@ router.get('/getRestaurants/:search_string?', (req, res) => {
     else{
         const search_string = '%' + req.query.search_string + '%'
         var sql_query = `SELECT DISTINCT \
-        r.RestId, r.RestName,d.DishName, d.DishId \
+        r.RestId, r.RestName, r.RestEmail, r.RestCity, r.RestPhone, r.StartTime, r.EndTime\        
         FROM Restaurant r \
         LEFT OUTER JOIN Dish d \
         ON d.RestId = r.RestId \
@@ -77,11 +77,9 @@ router.get('/getRestaurants/:search_string?', (req, res) => {
 
 // get restaurant
 router.get('/', (req, res) => {
-    console.log(req.query);
-    console.log("Request Reached! GEt")
-    const restEmail = req.query.restEmail;
-    const restPass = req.query.restPass;
-    const isOwner = req.query.isOwner;
+    const restEmail = req.query.email_id;
+    const restPass = req.query.password;
+    const isOwner = req.query.is_owner;
 
     if(isOwner)
 {
@@ -106,6 +104,29 @@ router.get('/', (req, res) => {
     );
     }
 });
+
+
+router.get('/getItems/:rest_id?', (req, res) => {
+
+    var sql_query = `SELECT * \
+    FROM Dish  \
+    Where RestId = ${req.query.rest_id}\
+    ;`    
+    db.query(sql_query, 
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                console.log(err);
+                res.send("SQL error, Check log for more details");
+            } else {
+                res.send(result)
+                res.status(200);
+                
+            }
+        }
+    );
+});
+
 
 module.exports = router;
 

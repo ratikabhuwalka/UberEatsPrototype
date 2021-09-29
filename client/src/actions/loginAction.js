@@ -1,10 +1,16 @@
 import { USER_LOGIN, USER_LOGOUT } from "./types";
-import backendServer from "../webConfig"
 import axios from "axios";
 
 export const userLogin = (loginData) => dispatch => {
     axios.defaults.withCredentials = true;
-    axios.post(`${backendServer}/grubhub/login`, loginData)
+    let url=""
+    if(loginData.is_owner){
+        url = `http://localhost:3001/restaurant`
+    }
+    else{
+        url = `http://localhost:3001/customer`
+    }
+    axios.get(url,{params: loginData})
         .then(response => dispatch({
             type: USER_LOGIN,
             payload: response.data

@@ -86,8 +86,7 @@ export default class CustomerHome extends React.Component {
         // }
     
         render() {
-            var cuisineDropdown = null,
-                restaurantCards = null,
+            var restaurantCards = null,
                 noRecordMessage = null;
             // if (this.state && this.state.cuisineList) {
             //     cuisineDropdown = this.state.cuisineList.map(cuisine => {
@@ -104,7 +103,7 @@ export default class CustomerHome extends React.Component {
                 restaurantCards = arr.map(restaurant => {
                     return (
                         <Col sm={3}>
-                             <Card src = {'https://1000logos.net/wp-content/uploads/2021/04/Uber-Eats-logo-500x281.png'} title={restaurant.RestName} description={restaurant.RestId} price={restaurant.DishName} />
+                             <Card res = { { restaurant } }  />
                         </Col>
                     );
                 });
