@@ -4,6 +4,8 @@ import axios from 'axios';
 import RestaurantCard from "./RestaurantCard";
 import Header from '../LandingPage/Header';
 import Card from "./Card"
+import Axios from 'axios'
+
 import { InputGroup, FormControl, Button, DropdownButton, Dropdown, Alert, Col, Row } from 'react-bootstrap';
 
 //import Banner
@@ -58,8 +60,35 @@ export default class CustomerHome extends React.Component {
             }) 
         }
 
+
+        get_cust_fav(cust_id) {
+            var url = `http://localhost:3001/restaurant/getFav?cust_id=${cust_id}`
+            axios.get(url)
+                 .then(response => {
+                    if (response.data) {
+                        var res = JSON.stringify(response.data)
+                        console.log(typeof(res))
+    
+                        if (response.data[0].search_result === 'NO_RECORD') {
+                           console.log("no favs")
+                        }
+                        else {
+                            localStorage.setItem('favourites', res)
+                        }
+                    }
+                })
+                .catch(error => {
+                    if (error.response && error.response.data) {
+                        console.log(error.response.data);
+                    }
+                }) 
+            }
+
         componentDidMount() {
             this.get_rest_call();
+            if(localStorage.getItem('user_id')){
+                this.get_cust_fav(localStorage.getItem('user_id'));
+            }
            
         }
     

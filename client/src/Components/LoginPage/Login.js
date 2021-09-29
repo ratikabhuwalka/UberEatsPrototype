@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { userLogin } from '../../actions/loginAction'
 
@@ -57,7 +57,7 @@ class Login extends Component {
         }
         else if(this.props.user && this.props.user.CustId) { 
             localStorage.setItem("email_id", this.props.user.CustEmail);
-            localStorage.setItem("is_owner", true);
+            localStorage.setItem("is_owner", false);
             localStorage.setItem("user_id", this.props.user.CustId);
             localStorage.setItem("name", this.props.user.CustName);
             redirectVar = <Redirect to="/customerHome" />

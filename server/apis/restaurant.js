@@ -128,6 +128,52 @@ router.get('/getItems/:rest_id?', (req, res) => {
 });
 
 
+router.post('/addFav', (req, res) => {
+    const cust_id = req.body.cust_id;
+    const rest_id = req.body.rest_id;
+
+    var sql_query = "INSERT INTO Favourites (RestId, CustId) VALUES (?, ?)"
+    db.query(sql_query, [rest_id, cust_id],
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                console.log(err);
+                res.send("SQL error, Check log for more details");
+            } else {
+                res.status(200);
+                res.send("Favourite added successfully");
+            }
+        }
+    );
+
+});
+
+router.get('/getFav/:cust_id?', (req, res) => {
+
+    var sql_query = `SELECT r.RestId , r.RestName, r.RestPhone, r.StartTime, r.EndTime  \
+    FROM Favourites f  \
+    INNER JOIN Restaurant r\
+    ON f.RestId = r.RestId
+    Where CustId = ${req.query.cust_id}\
+    ;`    
+    db.query(sql_query, 
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                console.log(err);
+                res.send("SQL error, Check log for more details");
+            } else {
+                res.send(result)
+                res.status(200);
+                
+            }
+        }
+    );
+});
+
+
+
+
 module.exports = router;
 
 
