@@ -1,9 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import Header from "./Components/Header";
 import LandingMain from "./Components/LandingPage/LandingMain";
-import SignUp from "./Components/LoginPage/SignUp.js"
+import CustomerSignUp from './Components/LoginPage/CustomerSignUp';
 import RestaurantSignUp from "./Components/LoginPage/RestaurantSignUp.js"
 import Login from "./Components/LoginPage/Login.js"
 import RestaurantProfile from './Components/ProfilePage/RestaurantProfile';
@@ -21,11 +20,10 @@ function App() {
         <Router>
           <Switch>
             <Route exact path ="/" component ={ LandingMain } /> 
-            <Route exact path ="/signup" component ={ SignUp } />
+            <Route exact path ="/customerSignup" component ={ CustomerSignUp } />
             <Route exact path ="/restaurantSignUp" component ={ RestaurantSignUp } />
             <Route exact path ="/customerHome" component ={ CustomerHome } />
             <Route path="/restaurant" component={Restaurant} />
-            <Route exact path ="/header" component ={ Header } /> 
             <Route exact path ="/login" component ={ Login } /> 
             <Route exact path ='/profile/restaurant' component = {RestaurantProfile} />
           </Switch>

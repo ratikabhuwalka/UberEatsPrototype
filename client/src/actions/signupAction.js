@@ -1,10 +1,10 @@
-import { CUSTOMER_SIGNUP, OWNER_SIGNUP } from "./types";
-import backendServer from "../webConfig"
+import { CUSTOMER_SIGNUP, RESTAURANT_SIGNUP } from "./types";
+import backendServer from "../webConfig.js"
 import axios from "axios";
 
 export const customerSignup = (customerData) => dispatch => {
     axios.defaults.withCredentials = true;
-    axios.post(`${backendServer}/grubhub/signup/customer`, customerData)
+    axios.post(`${backendServer}/customer`, customerData)
         .then(response => dispatch({
             type: CUSTOMER_SIGNUP,
             payload: response.data
@@ -20,17 +20,17 @@ export const customerSignup = (customerData) => dispatch => {
         });
 }
 
-export const ownerSignup = (ownerData) => dispatch => {
+export const restaurantSignup = (restData) => dispatch => {
     axios.defaults.withCredentials = true;
-    axios.post(`${backendServer}/grubhub/signup/restaurant`, ownerData)
+    axios.post(`${backendServer}/restaurant`, restData)
         .then(response => dispatch({
-            type: OWNER_SIGNUP,
+            type: RESTAURANT_SIGNUP,
             payload: response.data
         }))
         .catch(error => {
             if (error.response && error.response.data) {
                 return dispatch({
-                    type: OWNER_SIGNUP,
+                    type: RESTAURANT_SIGNUP,
                     payload: error.response.data
                 });
             }
