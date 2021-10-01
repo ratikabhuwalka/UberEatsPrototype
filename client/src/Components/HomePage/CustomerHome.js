@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 //import backendServer from "../../webConfig";
 import RestaurantCard from "./RestaurantCard";
+import Navigationbar from "../NavigationBar"
 import Header from '../LandingPage/Header';
 import Card from "./Card"
 import Axios from 'axios'
@@ -158,7 +159,7 @@ export default class CustomerHome extends React.Component {
     
             return (
                 <div>
-                    <Header/>
+                    <Navigationbar />
                     <center><br /><br />
          
                         <form onSubmit={this.onSearch}>

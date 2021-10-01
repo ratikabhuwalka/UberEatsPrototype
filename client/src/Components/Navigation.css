@@ -1,0 +1,35 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+.header_icon {
+    object-fit: contain;
+    height: 80px;
+
+}
+.header_right {
+    display: flex;
+    align-items: center;
+}
+
+.header_right a{
+    text-decoration: None;
+    appearance: button;
+    padding: 10px;
+}
+
+.panel{
+    margin-top: 250px;
+    margin-left: 100px;
+}
+.panel_search {
+    margin-top: 20px;
+    display : flex;
+    align-items: center;
+    width: fit-content;
+
+}
+

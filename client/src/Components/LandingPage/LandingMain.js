@@ -1,14 +1,15 @@
 import Header from './Header'
 import Panel from './Panel';
-import Footer from './Footer';
+import './Header.css'
+import NavigationBar from '../NavigationBar';
 
 
 
 const LandingMain = () => {
     return (
-        <div className="Landing">
-           <Header/>
-           <Panel/>            
+        <div className="Landing" >
+            <NavigationBar/>
+           <Panel />            
        </div>
     )
 }

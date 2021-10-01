@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { userLogin } from '../../actions/loginAction'
-
+import NavigationBar from '../NavigationBar';
 
 class Login extends Component {
     //call the constructor method
@@ -74,6 +74,7 @@ class Login extends Component {
             <div>
                 {redirectVar}
                 <div>
+                    <NavigationBar/>
                     <div class="login-form">
                         <div class="main-div">
                             <div >

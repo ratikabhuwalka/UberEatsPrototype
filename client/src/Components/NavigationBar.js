@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import grubhubLogo from "../images/grubhubLogo.png";
 import cartIcon from "../images/cart.png";
 import menuIcon from "../images/menu.png";
 import historyIcon from "../images/history.jpeg";
@@ -29,13 +28,13 @@ class Navigationbar extends Component {
   render() {
     let navUser = null;
     let pendingOrders = null;
-    let nameMsg = null;
+    let common = null;
 
-    if (localStorage.getItem("is_owner") === "0") {
+    if (localStorage.getItem("is_owner") === "true") {
       pendingOrders = (<Dropdown.Item><Link to="/orders" class="nav-link"><img src={futureIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;&nbsp;Pending Orders</Link></Dropdown.Item>);
     }
 
-    nameMsg = (
+    common = (
       <Dropdown>
         <Dropdown.Toggle variant="link" id="dropdown-basic">
           Hi, {this.state.name}!
@@ -50,12 +49,13 @@ class Navigationbar extends Component {
     );
 
     if (localStorage.getItem("user_id")) {
-      if (localStorage.getItem("is_owner") === "1") {
+      console.log(localStorage.getItem("user_id"))
+      if (localStorage.getItem("is_owner")==="true") {
         navUser = (
           <div class="collapse navbar-collapse navbar-right" id="navbarNav">
             <Nav className="mr-auto">
             </Nav>
-            <Nav.Link>{nameMsg}</Nav.Link>
+            <Nav.Link>{common}</Nav.Link>
             <Nav.Link>
               <Link to="/menu/view" class="nav-link" href="#">
                 <img src={menuIcon} width="35" height="auto" class="d-inline-block align-top" alt="Menu" />
@@ -69,7 +69,7 @@ class Navigationbar extends Component {
           <div class="collapse navbar-collapse navbar-right" id="navbarNav">
             <Nav className="mr-auto">
             </Nav>
-            <Nav.Link>{nameMsg}</Nav.Link>
+            <Nav.Link>{common}</Nav.Link>
             <Nav.Link>
               <Link to="/cart" class="nav-link" href="#">
                 <img src={cartIcon} width="35" height="auto" class="d-inline-block align-top" alt="Cart" />
@@ -86,6 +86,7 @@ class Navigationbar extends Component {
           <Nav className="mr-auto">
           </Nav>
           <Nav.Link><Link to="/login" class="nav-link"><img src={userIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;Login</Link></Nav.Link>
+          <Nav.Link><Link to="/customerSignup" class="nav-link"><img src={userIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;SignUp</Link></Nav.Link>
         </div>
 
       );
@@ -93,10 +94,12 @@ class Navigationbar extends Component {
 
     return (
       <div>
-        <Navbar bg="light" variant="light">
+        <Navbar>
           <Navbar.Brand>
             <Link to='/' class="nav-link" href="#">
-              <img src={grubhubLogo} width="100" height="auto" class="d-inline-block align-top" alt="Grubhub" />
+            <img className = 'header_icon'
+                src="https://1000logos.net/wp-content/uploads/2021/04/Uber-Eats-logo-500x281.png"
+                alt="Uber Eats Icon" />            
             </Link>
           </Navbar.Brand>
           {navUser}

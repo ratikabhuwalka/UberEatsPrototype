@@ -32,7 +32,7 @@ function Header() {
 
             <div className = 'header_right'>
                 <a href='/login'>Login</a>
-                <a href='/signup'>Signup</a>
+                <a href='/customerSignup'>Signup</a>
             </div>
         </div>
     
