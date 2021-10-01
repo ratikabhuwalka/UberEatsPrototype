@@ -57,7 +57,7 @@ router.post('/', (req, res) => {
                 res.send("SQL error, Check log for more details");
             } else {
                 res.status(200);
-                res.send("Customer added successfully");
+                res.send("CUSTOMER ADDED");
             }
         }
     );

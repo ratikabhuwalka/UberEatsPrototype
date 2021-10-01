@@ -1,4 +1,5 @@
-import { CUSTOMER_SIGNUP, OWNER_SIGNUP } from '../actions/types';
+/* eslint-disable import/no-anonymous-default-export */
+import { CUSTOMER_SIGNUP, RESTAURANT_SIGNUP } from '../actions/types';
 
 const initialState = {
     user: {}
@@ -11,7 +12,7 @@ export default function (state = initialState, action) {
                 ...state,
                 user: action.payload
             };
-        case OWNER_SIGNUP:
+        case RESTAURANT_SIGNUP:
             return {
                 ...state,
                 user: action.payload

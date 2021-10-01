@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
                 res.send("SQL error, Check log for more details");
             } else {
                 res.status(200);
-                res.send("Restaurant added successfully");
+                res.send("RESTAURANT ADDED");
             }
         }
     );
