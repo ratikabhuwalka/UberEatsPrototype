@@ -6,6 +6,7 @@ import CustomerSignUp from './Components/LoginPage/CustomerSignUp';
 import RestaurantSignUp from "./Components/LoginPage/RestaurantSignUp.js"
 import Login from "./Components/LoginPage/Login.js"
 import RestaurantProfile from './Components/ProfilePage/RestaurantProfile';
+import CustomerProfile from './Components/ProfilePage/CustomerProfile';
 import Restaurant from './Components/HomePage/Restaurant';
 import CustomerHome from './Components/HomePage/CustomerHome';
 import { Container } from 'react-bootstrap'
@@ -25,7 +26,9 @@ function App() {
             <Route exact path ="/customerHome" component ={ CustomerHome } />
             <Route path="/restaurant" component={Restaurant} />
             <Route exact path ="/login" component ={ Login } /> 
-            <Route exact path ='/profile/restaurant' component = {RestaurantProfile} />
+            <Route exact path ='/restaurantProfile' component = {RestaurantProfile} />
+            <Route exact path ='/customerProfile' component = {CustomerProfile} />
+
           </Switch>
         </Router>
       </Container>

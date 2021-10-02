@@ -96,7 +96,7 @@ class Login extends Component {
                                     <label class="form-check-label" for ="owner"> Is Owner? </label>
                                 </div>
                                 <button type="submit" class="btn btn-primary" onClick = {this.onSubmit}>Login</button><br /><br />
-                                <div><center><Link to="/signup">Create new account</Link></center></div>
+                                <a href="/customerSignup">Create new account</a>
                             </form>
                         </div>
                     </div>

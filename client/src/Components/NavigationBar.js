@@ -29,9 +29,18 @@ class Navigationbar extends Component {
     let navUser = null;
     let pendingOrders = null;
     let common = null;
+    let profile = "/customerProfile";
+    let home ='/'
+
 
     if (localStorage.getItem("is_owner") === "true") {
       pendingOrders = (<Dropdown.Item><Link to="/orders" class="nav-link"><img src={futureIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;&nbsp;Pending Orders</Link></Dropdown.Item>);
+      profile = "/restaurantProfile"
+      home = '/restaurantHome'
+    }
+    if (localStorage.getItem("is_owner") === "false") {
+      home = '/customerHome'
+
     }
 
     common = (
@@ -40,7 +49,7 @@ class Navigationbar extends Component {
           Hi, {this.state.name}!
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item><Link to="/profile" class="nav-link"><img src={userIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;&nbsp;Profile</Link></Dropdown.Item>
+          <Dropdown.Item><Link to = {profile} class="nav-link"><img src={userIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;&nbsp;Profile</Link></Dropdown.Item>
           <Dropdown.Item><Link to="/orders/history" class="nav-link"><img src={historyIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;&nbsp;Past Orders</Link></Dropdown.Item>
           {pendingOrders}
           <Dropdown.Item><Link to="/" class="nav-link" onClick={this.handleLogout}><img src={logoutIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;&nbsp;Logout</Link></Dropdown.Item>
@@ -53,7 +62,7 @@ class Navigationbar extends Component {
       if (localStorage.getItem("is_owner")==="true") {
         navUser = (
           <div class="collapse navbar-collapse navbar-right" id="navbarNav">
-            <Nav className="mr-auto">
+            <Nav className="ml-auto">
             </Nav>
             <Nav.Link>{common}</Nav.Link>
             <Nav.Link>
@@ -67,7 +76,7 @@ class Navigationbar extends Component {
       else {
         navUser = (
           <div class="collapse navbar-collapse navbar-right" id="navbarNav">
-            <Nav className="mr-auto">
+            <Nav className="ml-auto">
             </Nav>
             <Nav.Link>{common}</Nav.Link>
             <Nav.Link>
@@ -83,10 +92,10 @@ class Navigationbar extends Component {
     else {
       navUser = (
         <div class="collapse navbar-collapse navbar-right" id="navbarNav">
-          <Nav className="mr-auto">
+          <Nav className="ml-auto">
           </Nav>
-          <Nav.Link><Link to="/login" class="nav-link"><img src={userIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;Login</Link></Nav.Link>
-          <Nav.Link><Link to="/customerSignup" class="nav-link"><img src={userIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;SignUp</Link></Nav.Link>
+          <Nav.Link><Link to="/login" class="nav-link">&nbsp;Login</Link></Nav.Link>
+          <Nav.Link><Link to="/customerSignup" class="nav-link">&nbsp;SignUp</Link></Nav.Link>
         </div>
 
       );
@@ -96,7 +105,7 @@ class Navigationbar extends Component {
       <div>
         <Navbar>
           <Navbar.Brand>
-            <Link to='/' class="nav-link" href="#">
+            <Link to={home} class="nav-link" href="#">
             <img className = 'header_icon'
                 src="https://1000logos.net/wp-content/uploads/2021/04/Uber-Eats-logo-500x281.png"
                 alt="Uber Eats Icon" />            

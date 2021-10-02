@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, useMemo  } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { customerSignup } from '../../actions/signupAction'
 import { Redirect } from 'react-router';
+import NavigationBar from '../NavigationBar';
+import Countries  from 'react-select-country';
+
 
 //export class SignUp extends React.Component {
 
@@ -43,6 +46,7 @@ class CustomerSignUp extends Component{
     render(){
         let redirectVar = null;
         let message = "";
+
         console.log(this.props.user)
         if (localStorage.getItem("user_id")) {
             redirectVar = <Redirect to="/customerHome" />
@@ -51,46 +55,49 @@ class CustomerSignUp extends Component{
             alert("You have registered successfully");
             redirectVar = <Redirect to="/Login" />
         }
-        else if(this.props.user === "USER_EXISTS" && this.state.signupFlag){
+        else if(this.props.user === "CUSTOMER EXISTS" && this.state.signupFlag){
             message = "Email id is already registered"
         }
         
     return (
        <div>
            {redirectVar}
+            <NavigationBar/>
             <div className = 'base-container'>
-            <h1> Sign Up </h1>
-            <form onSubmit={this.onSubmit} className = "sign-up-form">   
+            <div> <h1> Customer Sign Up </h1> </div>          
+              <form onSubmit={this.onSubmit} className = "sign-up-form">   
+                <div style={{ color: "#ff0000" }}>{message}</div><br />
                 <div class="form-group">
-                    <input type = "text" name="custName" placeholder="Customer Name"
+                    <input type = "text" name="custName" class="form-control" placeholder="Customer Name"
                         onChange = {this.onChange}/> <br/>
                 </div>
                 <div class="form-group">
-                    <input type = "password" name="custPass" placeholder="Customer Password"
+                    <input type = "password" name="custPass" class="form-control" placeholder="Customer Password"
                         onChange = {this.onChange}/> <br/>
                 </div>
                 <div class="form-group">
-                    <input type = "email" name="custEmail" placeholder="Customer Email"
+                    <input type = "email" name="custEmail" class="form-control" placeholder="Customer Email"
                         onChange = {this.onChange} /> <br/>
                 </div>   
                 <div class="form-group">
-                    <input type = "number" name="custPhone" placeholder="Customer Phone"
+                    <input type = "number" name="custPhone" class="form-control" placeholder="Customer Phone"
                         onChange = {this.onChange} /> <br/>  
                 </div>
                 <div class="form-group">
-                    <input type = "text" name="custCity" placeholder="Customer City"
+                    <input type = "text" name="custCity" class="form-control" placeholder="Customer City"
                         onChange = {this.onChange} /> <br/>
                 </div>
                 <div class="form-group">
-                    <input type = "text" name="custCountry" placeholder="Customer Country"
-                        onChange = {this.onChange} /> <br/>
+                    <Countries ref="country" class="form-control"name="restCountry" empty=" -- Select country --" flags = {true } onChange={this.onChange} /><br/>
                 </div>
+                <select class="selectpicker countrypicker"></select>
                 <div class="form-group">
-                    <input type = "text" name="dob" placeholder="DOB(DD/MM/YYYY)"
+                    <input type = "text" name="dob" class="form-control" placeholder="DOB(DD/MM/YYYY)"
                         onChange = {this.onChange} /> <br/>
                 </div>
                 <div> {message} </div>
-                <button type = "submit" > Submit </button>     
+                <button type = "submit" class="btn btn-primary" > Submit </button>  
+                <a href= '/restaurantSignUp'> Register as an Owner! </a>   
         </form>
  
         </div>

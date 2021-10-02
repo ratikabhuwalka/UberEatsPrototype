@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { restaurantSignup } from '../../actions/signupAction'
 import { Redirect } from 'react-router';
+import NavigationBar from '../NavigationBar';
+import Countries  from 'react-select-country';
+
+
 
 //export class SignUp extends React.Component {
 
@@ -13,7 +17,7 @@ class RestaurantSignUp extends Component{
         super(props);
         this.state = {};
     }
-
+    
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -33,7 +37,8 @@ class RestaurantSignUp extends Component{
             endTime : this.state.endTime,
             restType : this.state.restType
         }
-
+    
+    
 
         this.props.restaurantSignup(data);
 
@@ -42,6 +47,7 @@ class RestaurantSignUp extends Component{
         });
     }
 
+
     render(){
         let redirectVar = null;
         let message = "";
@@ -49,58 +55,61 @@ class RestaurantSignUp extends Component{
         if (localStorage.getItem("user_id")) {
             redirectVar = <Redirect to="/customerHome" />
         }
-        else if (this.props.user === "RESTAURANT_ADDED" && this.state.signupFlag) {
+        else if (this.props.user === "RESTAURANT ADDED" && this.state.signupFlag) {
             alert("You have registered successfully");
             redirectVar = <Redirect to="/Login" />
         }
-        else if(this.props.user === "USER_EXISTS" && this.state.signupFlag){
+        else if(this.props.user === "USER EXISTS" && this.state.signupFlag){
             message = "Email id is already registered"
         }
         
     return (
        <div>
            {redirectVar}
-            <div className = 'base-container'>
-            <h1> Sign Up </h1>
-            <form onSubmit={this.onSubmit} className = "sign-up-form">   
+           <NavigationBar/>
+            <div className = "form-row">
+            <div> <h1> Restaurant Sign Up </h1> </div>
+            <form onSubmit={this.onSubmit} className = "sign-up-form">  
+            <div style={{ color: "#ff0000" }}>{message}</div><br /> 
                 <div class="form-group">
-                    <input type = "text" name="restName" placeholder="Restaurant Name"
+                    <input type = "text" class="form-control" name="restName" placeholder="Restaurant Name"
                         onChange = {this.onChange}/> <br/>
                 </div>
                 <div class="form-group">
-                    <input type = "password" name="restPass" placeholder="Restaurant Password"
+                    <input type = "password" class="form-control" name="restPass" placeholder="Restaurant Password"
                         onChange = {this.onChange}/> <br/>
                 </div>
                 <div class="form-group">
-                    <input type = "email" name="restEmail" placeholder="Restaurant Email"
+                    <input type = "email" class="form-control" name="restEmail" placeholder="Restaurant Email"
                         onChange = {this.onChange} /> <br/>
                 </div>   
                 <div class="form-group">
-                    <input type = "number" name="restPhone" placeholder="Restaurant Phone"
+                    <input type = "number" class="form-control" name="restPhone" placeholder="Restaurant Phone"
                         onChange = {this.onChange} /> <br/>  
                 </div>
                 <div class="form-group">
-                    <input type = "text" name="restCity" placeholder="Restaurant City"
+                    <input type = "text" class="form-control" name="restCity" placeholder="Restaurant City"
                         onChange = {this.onChange} /> <br/>
                 </div>
                 <div class="form-group">
-                    <input type = "text" name="restCountry" placeholder="Restaurant Country"
+                    <Countries ref="country" class="form-control"name="restCountry" empty=" -- Select country --" flags = {true } onChange={this.onChange} /><br/>
+
+                </div>
+
+                <div class="form-group">
+                    <input type = "text" class="form-control" name="restType" placeholder="Restaurant Type"
+                        onChange = {this.onChange}/> <br/> 
+                </div>
+                <div class="form-group">
+                    <input type = "text" name="startTime" class="form-control" placeholder="Start Time"
                         onChange = {this.onChange}/> <br/>
                 </div>
                 <div class="form-group">
-                    <input type = "text" name="restType" placeholder="Restaurant Type"
-                        onChange = {this.onChange}/> <br/>
-                </div>
-                <div class="form-group">
-                    <input type = "text" name="startTime" placeholder="Start Time"
-                        onChange = {this.onChange}/> <br/>
-                </div>
-                <div class="form-group">
-                    <input type = "text" name="endTime" placeholder="End Time"
+                    <input type = "text" name="endTime" class="form-control" placeholder="End Time"
                         onChange = {this.onChange}/> <br/>
                 </div>
                 <div> {message} </div>
-                <button type = "submit" > Submit </button>     
+                <button type = "submit" class="btn btn-primary" > Submit </button>     
         </form>
  
         </div>
@@ -112,10 +121,6 @@ class RestaurantSignUp extends Component{
     }
 }
 
-// RestaurantSignUp.propTypes = {
-//     restaurantSignup: PropTypes.func.isRequired,
-//     user: PropTypes.object.isRequired
-// };
 
 const mapStateToProps = state => ({ 
     user: state.signup.user,
