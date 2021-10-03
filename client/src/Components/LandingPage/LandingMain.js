@@ -9,7 +9,7 @@ const LandingMain = () => {
     return (
         <div className="Landing" >
             <NavigationBar/>
-           <Panel />            
+           <Panel />                   
        </div>
     )
 }

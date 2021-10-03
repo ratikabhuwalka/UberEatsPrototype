@@ -272,10 +272,6 @@ class CustomerProfile extends Component {
 }
 
 
-const mapStateToProps = state => ({
-    user: state.ownerProfile.user
-});
-
 export default CustomerProfile
 //export default connect(mapStateToProps, { getOwner, updateOwner })(RestaurantProfile);
 

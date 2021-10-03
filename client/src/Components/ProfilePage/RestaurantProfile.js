@@ -278,10 +278,6 @@ RestaurantProfile.propTypes = {
 }
 
 
-const mapStateToProps = state => ({
-    user: state.ownerProfile.user
-});
-
 export default RestaurantProfile
 //export default connect(mapStateToProps, { getOwner, updateOwner })(RestaurantProfile);
 
