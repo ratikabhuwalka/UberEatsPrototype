@@ -128,8 +128,7 @@ export default class CustomerHome extends React.Component {
     
             if (this.state && this.state.displayRestaurants) {
                 var arr = JSON.parse(this.state.displayRestaurants);
-                console.log(arr);
-                console.log(this.state.displayRestaurants, typeof(this.state.displayRestaurants));
+                
                 restaurantCards = arr.map(restaurant => {
                     return (
                         <Col sm={3}>

@@ -4,7 +4,7 @@ import axios from 'axios';
 import ItemCard from "./ItemCard"
 import { Button, Card, Container, Col, Row } from 'react-bootstrap';
 import Header from '../LandingPage/Header';
-//import Navigationbar from '../Navigationbar';
+import NavigationBar from '../NavigationBar'
 //import backendServer from "../../webConfig";
 
 class Restaurant extends Component {
@@ -22,7 +22,12 @@ class Restaurant extends Component {
     componentWillMount() {
         if (this.props.location.state) {
             console.log(this.props.location.state)
-            //document.title = this.props.location.state.RestName;
+            document.title = this.props.location.state.RestName;
+            let res = {
+                "RestName": this.props.location.state.RestName,
+                "RestId":this.props.location.state.RestId
+            }
+            localStorage.setItem("active_res",JSON.stringify(res) );
         }
     }
 
@@ -161,8 +166,7 @@ class Restaurant extends Component {
     //     }
         return (
             <div>
-
-                <Header/>
+                <NavigationBar/>
                 <div>
                     <h1> Restaurant header, picture, description to go here</h1>
                 </div>

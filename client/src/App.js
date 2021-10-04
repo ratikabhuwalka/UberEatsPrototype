@@ -9,6 +9,7 @@ import RestaurantProfile from './Components/ProfilePage/RestaurantProfile';
 import CustomerProfile from './Components/ProfilePage/CustomerProfile';
 import Restaurant from './Components/HomePage/Restaurant';
 import CustomerHome from './Components/HomePage/CustomerHome';
+import Cart from './Components/Cart/Cart';
 import { Container } from 'react-bootstrap'
 import { Provider } from 'react-redux';
 import store from './store';
@@ -25,6 +26,7 @@ function App() {
             <Route exact path ="/restaurantSignUp" component ={ RestaurantSignUp } />
             <Route exact path ="/customerHome" component ={ CustomerHome } />
             <Route path="/restaurant" component={Restaurant} />
+            <Route path="/cart" component={Cart} />
             <Route exact path ="/login" component ={ Login } /> 
             <Route exact path ='/restaurantProfile' component = {RestaurantProfile} />
             <Route exact path ='/customerProfile' component = {CustomerProfile} />
