@@ -11,7 +11,7 @@ class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cart_items: []
+            cart: []
         };
         this.emptyCart = this.emptyCart.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
@@ -24,7 +24,7 @@ class Cart extends Component {
             console.log(localStorage.getItem("cart"))
             cart.push(...JSON.parse(localStorage.getItem("cart")));
             this.setState({
-                cart_items: cart
+                cart: cart
             });
         }
     };
@@ -52,31 +52,31 @@ class Cart extends Component {
     onQuantityChange = (e) => {
         let item_id = parseInt(e.target.name);
         let newQuantity = parseInt(e.target.value);
-        let cart_items = this.state.cart_items;
-        let index = cart_items.findIndex((cart_item => cart_item.item_id === item_id));
-        cart_items[index].item_quantity = newQuantity;
+        let cart = this.state.cart;
+        let index = cart.findIndex((cart_item => cart_item.item_id === item_id));
+        cart[index].item_quantity = newQuantity;
         this.setState({
-            cart_items: cart_items
+            cart: cart
         });
-        localStorage.setItem("cart_items", JSON.stringify(cart_items));
+        localStorage.setItem("cart", JSON.stringify(cart));
     };
 
     deleteItem = (e) => {
         let item_id = parseInt(e.target.name);
-        let cart_items = this.state.cart_items;
-        let index = cart_items.findIndex((cart_item => cart_item.item_id === item_id));
-        cart_items.splice(index, 1);
+        let cart = this.state.cart;
+        let index = cart.findIndex((cart_item => cart_item.item_id === item_id));
+        cart.splice(index, 1);
         this.setState({
-            cart_items: cart_items
+            cart: cart
         });
-        localStorage.setItem("cart_items", JSON.stringify(cart_items));
+        localStorage.setItem("cart", JSON.stringify(cart));
     }
 
     calculateSubTotal = () => {
-        let cart_items = this.state.cart;
+        let cart = this.state.cart;
         let subTotal = 0;
-        for (var i = 0; i < cart_items.length; i++) {
-            subTotal += (cart_items[i].DishQuantity * cart_items[i].DishPrice);
+        for (var i = 0; i < cart.length; i++) {
+            subTotal += (cart[i].DishQuantity * cart[i].DishPrice);
          
         }
         subTotal = subTotal.toFixed(2);
@@ -84,9 +84,9 @@ class Cart extends Component {
     };
 
     emptyCart = () => {
-        localStorage.deleteItem("cart_items");
+        localStorage.deleteItem("cart");
         this.setState({
-            cart_items: []
+            cart: []
         });
     };
 
@@ -111,7 +111,7 @@ class Cart extends Component {
         //     resZIP = this.state.restaurant.res_zip_code;
         // }
 
-        if (this.state && this.state.cart_items.length === 0) {
+        if (this.state && this.state.cart.length === 0) {
             message =
                 [<center><Alert variant="warning">You haven't added any items to your cart. Please add your favorite items.</Alert><br />
                     <Button href="/customerHome">Home</Button></center>
@@ -130,9 +130,9 @@ class Cart extends Component {
                     </ListGroup>
                 </Card>
             );
-            let cart_items = this.state.cart_items;
-            console.log(cart_items);
-            var subTotal = this.calculateSubTotal(cart_items);
+            let cart = this.state.cart;
+            console.log(cart);
+            var subTotal = this.calculateSubTotal(cart);
             if (subTotal < 100) {
                 discount = 0;
                 deliveryAmount = (
@@ -151,25 +151,25 @@ class Cart extends Component {
                 </tr>);
             }
             var total = ((subTotal * (100 + tax - discount) / 100) + delivery).toFixed(2);
-            for (var i = 0; i < cart_items.length; i++) {
+            for (var i = 0; i < cart.length; i++) {
                 let item = (
                     <tr>
-                        <td align="center">{cart_items[i].DishName}</td>
-                        <td align="center">$ {cart_items[i].DishPrice}</td>
+                        <td align="center">{cart[i].DishName}</td>
+                        <td align="center">$ {cart[i].DishPrice}</td>
                         <td align="center">
-                            <input type="number" name={cart_items[i].DishId} min="1" max="10" width="10%" onChange={this.onQuantityChange} defaultValue={cart_items[i].DishQuantity}></input>
+                            <input type="number" name={cart[i].DishId} min="1" max="10" width="10%" onChange={this.onQuantityChange} defaultValue={cart[i].DishQuantity}></input>
                         </td>
                         <td align="center">
-                            <Button variant="link" name={cart_items[i].item_id}>
-                                <img src={deleteIcon} width="15" name={cart_items[i].DishId} onClick={this.deleteItem} alt="" />
+                            <Button variant="link" name={cart[i].item_id}>
+                                <img src={deleteIcon} width="15" name={cart[i].DishId} onClick={this.deleteItem} alt="" />
                             </Button>
                         </td>
-                        <td align="center">$ {cart_items[i].DishPrice * cart_items[i].DishQuantity}</td>
+                        <td align="center">$ {cart[i].DishPrice * cart[i].DishQuantity}</td>
                     </tr>
                 );
                 itemsRender.push(item);
             }
-            var confirmDetails = {restaurant: this.state.restaurant, subTotal: subTotal, delivery: delivery, discount: discount, tax: tax, total: total, cart_items: this.state.cart_items};
+            var confirmDetails = {restaurant: this.state.restaurant, subTotal: subTotal, delivery: delivery, discount: discount, tax: tax, total: total, cart: this.state.cart};
             var cartTable = (
                 <div>
                     <Table style={{ width: "90%" }}>

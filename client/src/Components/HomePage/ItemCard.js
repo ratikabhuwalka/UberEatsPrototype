@@ -38,6 +38,7 @@ function ItemCard({ res}) {
 
       }, []);
 
+
     const addToCart = () => {
         //let item_id = this.props.menu_item.item_id;
         let cart = [];
@@ -45,10 +46,13 @@ function ItemCard({ res}) {
 
         if (localStorage.getItem("cart")){
             cart.push(...JSON.parse(localStorage.getItem("cart")));
-            if( cart[0].RestId !== localStorage.getItem('active_res').RestId){
-                console.log("Items already in cart from different restaurant")
+            if( cart.length !== 0){
+            if( cart[0].RestId !== JSON.parse(localStorage.getItem('active_res')).RestId){
+                alert("Items already in cart from different restaurant. Removing items")
+                localStorage.removeItem("cart")
+                cart = []
             } 
-           
+        }
         }
     
         else  {
