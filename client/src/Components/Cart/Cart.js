@@ -13,41 +13,50 @@ class Cart extends Component {
         this.state = {
             cart: []
         };
+        
         this.emptyCart = this.emptyCart.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
-        //this.getRestaurantDetails();
+   
+   
+   
     }
 
     componentDidMount() {
-        let cart = [];
+        let cart = []
         if (localStorage.getItem("cart")) {
-            console.log(localStorage.getItem("cart"))
             cart.push(...JSON.parse(localStorage.getItem("cart")));
             this.setState({
                 cart: cart
             });
+        this.getRestaurantDetails();
+
+        }
+        }
+
+    getRestaurantDetails = () => {
+        let rest_id;
+        let temp_cart = [];
+
+        if(localStorage.getItem("cart") )
+        {   temp_cart = JSON.parse(localStorage.getItem("cart"))
+            if(temp_cart.len!==0)
+            {            
+                rest_id = temp_cart[0].RestId
+                axios.get(`${backendServer}/restaurant/getRestaurant?rest_id=${rest_id}`)
+                    .then(response => {
+                        if (response.data) {
+                            this.setState({
+                                restaurant: response.data[0]
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        if (error.response && error.response.data) {
+                        }
+                    })
+            }
         }
     };
-
-    // getRestaurantDetails = () => {
-    //     let res_id;
-    //     if (localStorage.getItem("cart_res_id")) {
-    //         res_id = localStorage.getItem("cart_res_id");
-    //         axios.get(`${backendServer}/grubhub/restaurant/${res_id}`)
-    //             .then(response => {
-    //                 if (response.data) {
-    //                     this.setState({
-    //                         restaurant: response.data,
-    //                     });
-    //                 }
-    //             })
-    //             .catch(error => {
-    //                 if (error.response && error.response.data) {
-    //                     console.log(error.response.data);
-    //                 }
-    //             })
-    //     }
-    // };
 
     onQuantityChange = (e) => {
         let item_id = parseInt(e.target.name);
@@ -94,14 +103,23 @@ class Cart extends Component {
         let redirectVar = null,
             itemsRender = [],
             message = null,
-            //resName, resAddress, resZIP
+            restName, restCity,restCountry,
             restaurantDetails = null, discountAmount = null, deliveryAmount = null;
+
+        if(this.state && this.state.restaurant){
+            restName = this.state.restaurant.RestName;
+            restCity = this.state.restaurant.RestCity;
+            restCountry = this.state.restaurant.RestCountry;
+
+            console.log("rest data:", this.state.restaurant)
+
+        }
 
         let discount = 20,
             delivery = 6,
             tax = 9.25;
 
-        if (!localStorage.getItem("user_id") || localStorage.getItem("is_owner") === "1") {
+        if (!localStorage.getItem("user_id") || localStorage.getItem("is_owner") === "true") {
             redirectVar = <Redirect to="/" />
         }
 
@@ -118,20 +136,17 @@ class Cart extends Component {
                 ]
         }
         else {
-            let resName = "dummy res";
-            let resAddress = "dummy address";
-            let resZIP = "dummy ZIP";
+            
             message = <Alert variant="info">Make a purchase of worth $100 or more and get a discount of {discount}% and free delivery!</Alert>;
             restaurantDetails = (
                 <Card style={{ width: "60rem", margin: "2%" }}>
                     <ListGroup className="list-group-flush">
-                        <ListGroupItem><h3>{resName}</h3></ListGroupItem>
-                        <ListGroupItem>{resAddress} | {resZIP}</ListGroupItem>
+                        <ListGroupItem><h3>{restName}</h3></ListGroupItem>
+                        <ListGroupItem>{restCity} | {restCountry}</ListGroupItem>
                     </ListGroup>
                 </Card>
             );
             let cart = this.state.cart;
-            console.log(cart);
             var subTotal = this.calculateSubTotal(cart);
             if (subTotal < 100) {
                 discount = 0;
@@ -169,7 +184,7 @@ class Cart extends Component {
                 );
                 itemsRender.push(item);
             }
-            var confirmDetails = {restaurant: this.state.restaurant, subTotal: subTotal, delivery: delivery, discount: discount, tax: tax, total: total, cart: this.state.cart};
+            var orderDetails = {restaurant: this.state.restaurant, subTotal: subTotal, delivery: delivery, discount: discount, tax: tax, total: total, cart: this.state.cart};
             var cartTable = (
                 <div>
                     <Table style={{ width: "90%" }}>
@@ -201,7 +216,7 @@ class Cart extends Component {
                     </Table>
                     <Button variant="warning" onClick={this.emptyCart}>Clear Cart</Button> &nbsp; &nbsp;
                     <Button variant="primary" href="/customerHome">Save for Later</Button> &nbsp; &nbsp;
-                    <Link to={{pathname: "/order/confirm", state: confirmDetails}}>
+                    <Link to={{pathname: "/checkout", state: orderDetails}}>
                         <Button variant="success">Proceed to Checkout</Button>
                     </Link>
                 </div>
@@ -226,4 +241,5 @@ class Cart extends Component {
         )
     }
 }
+
 export default Cart;

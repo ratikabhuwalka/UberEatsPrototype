@@ -63,13 +63,16 @@ function ItemCard({ res}) {
         
         let index = cart.findIndex((dish => dish.DishId === res.DishId))
         if (index === -1){
+            console.log(res, item)
             item = {
                     'DishId': res.DishId,
                     'DishName': res.DishName,
                     'DishQuantity': quantity,
-                    'DishPrice': res.DishPrice,
+                    'DishPrice': res.Price,
                     'RestId': res.RestId
                     }
+                console.log("Response and cart item:", res, item)
+
                 cart.push(item);
                 cart_quant = parseInt(quantity);
             }   

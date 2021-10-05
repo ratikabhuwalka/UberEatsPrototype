@@ -36,6 +36,31 @@ router.post('/', (req, res) => {
 
 });
 
+
+
+//Restaurant by id
+router.get('/getRestaurant/:rest_id?', (req, res) => {
+    let rest_id = req.query.rest_id
+    var sql_query = `SELECT * \
+        FROM Restaurant r \
+        WHERE RestId = ${rest_id}\
+       ;`   
+    
+    db.query(sql_query, 
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                console.log(err);
+                res.send("SQL error, Check log for more details");
+            } else {
+                res.send(result);
+                res.status(200);
+            }
+        }
+    );
+});
+
+
 //Restaurant search
 router.get('/getRestaurants/:search_string?', (req, res) => {
     if(!req.query.search_string){
