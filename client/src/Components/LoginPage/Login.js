@@ -48,12 +48,14 @@ class Login extends Component {
         console.log(this.props.user);
         let redirectVar = null;
         let message = ""
+        let res =""
         if(this.props.user && this.props.user.RestId){
             localStorage.setItem("email_id", this.props.user.RestEmail);
             localStorage.setItem("is_owner", true);
             localStorage.setItem("user_id", this.props.user.RestId);
             localStorage.setItem("name", this.props.user.RestName);
-            redirectVar = <Redirect to="/customerHome" />
+            res = this.props.user;
+            redirectVar = <Redirect to={{pathname: '/restaurant', state : res }} />
         }
         else if(this.props.user && this.props.user.CustId) { 
             localStorage.setItem("email_id", this.props.user.CustEmail);

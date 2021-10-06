@@ -87,7 +87,33 @@ function ItemCard({ res}) {
         
     }
 
-    
+    function footer ()
+    {
+        if(localStorage.getItem('is_owner') === "false")
+        {
+            return (<>
+                <input type="number"  name = "quantity"  value = { quantity} defaultValue= {cart_quant} min="0" max="20" step="1" pattern="[0-9]*"  onChange = {e => setQuantity(e.target.value)} />
+            
+                <Button variant="primary" onClick={addToCart}>
+                Add to cart
+                </Button>
+            </>);
+        }
+        else{
+            return (<>
+            
+                <Button variant="primary" onClick={addToCart}>
+                Edit
+                </Button>
+
+                <Button variant="secondary" onClick={addToCart}>
+                Delete
+                </Button>
+            </>);
+        }
+
+    };
+ 
 
     return (<>
         <div className='card'>
@@ -105,11 +131,7 @@ function ItemCard({ res}) {
         </Modal.Header>
         <Modal.Body><img src={img} alt="" /></Modal.Body>
         <Modal.Footer>
-        <input type="number"  name = "quantity"  value = { quantity} defaultValue= {cart_quant} min="0" max="20" step="1" pattern="[0-9]*"  onChange = {e => setQuantity(e.target.value)} />
-          
-          <Button variant="primary" onClick={addToCart}>
-            Add to cart
-          </Button>
+        {footer()}
         </Modal.Footer>
       </Modal>
      
