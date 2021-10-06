@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import backendServer from "../../webConfig";
-import { Button, Alert, Container, Table, Card } from "react-bootstrap";
+import { Button, Alert, Container, Table } from "react-bootstrap";
 import Navigationbar from '../NavigationBar.js';
 import axios from 'axios';
 
 class Checkout extends Component {
     constructor(props) {
         super(props);
-
         // this.getUserProfile();
-        // this.placeOrder = this.placeOrder.bind(this);
+        this.placeOrder = this.placeOrder.bind(this);
     }
 
     componentWillMount() {
@@ -18,7 +17,7 @@ class Checkout extends Component {
         if (this.props.location.state) {
             this.setState({
                 restaurant: this.props.location.state.restaurant,
-                cart_items: this.props.location.state.cart_items,
+                cart_items: this.props.location.state.cart,
                 discount: this.props.location.state.discount,
                 delivery: this.props.location.state.delivery,
                 tax: this.props.location.state.tax,
@@ -27,6 +26,8 @@ class Checkout extends Component {
             });
         }
     };
+
+    
 
     // getUserProfile = () => {
     //     axios.get(`${backendServer}/grubhub/profile/customer/${localStorage.getItem("user_id")}`)
@@ -43,108 +44,150 @@ class Checkout extends Component {
     //     })
     // };
 
-    // placeOrder = (e) => {
+    placeOrder = (e) => {
+        let order_data = {
+            custId: localStorage.getItem("user_id"),
+            restId: this.state.restaurant.RestId,
+            status: 'ORDER PLACED',
+            total: this.state.sub_total,
+            discount: (this.state.discount * this.state.sub_total / 100).toFixed(2),
+            delivery: this.state.delivery,
+            tax: (this.state.tax * this.state.sub_total / 100).toFixed(2),
+            final: this.state.total,
+            cart_items : JSON.stringify(this.state.cart_items)
+        }
 
-    //     let data = {
-    //         user_id: localStorage.getItem("user_id"),
-    //         res_id: this.state.restaurant.RestId,
-    //         order_status: 'ORDER_PLACED',
-    //         sub_total: this.state.sub_total,
-    //         discount: (this.state.discount * this.state.sub_total / 100).toFixed(2),
-    //         delivery: this.state.delivery,
-    //         tax: (this.state.tax * this.state.sub_total / 100).toFixed(2),
-    //         total: this.state.total,
-    //         cart_items: this.state.cart_items
-    //     }
+        axios.post(`${backendServer}/order/placeorder`, order_data)
+            .then(response => {
+                console.log(response);
+                if (response.data === "ORDER PLACED") {
+                    localStorage.removeItem("cart");
+                    this.setState({
+                        message: response.data
+                    });
+                    alert("ORDER PLACED!")
+                }
 
-    //     axios.post(`${backendServer}/grubhub/cart/placeorder`, data)
-    //         .then(response => {
-    //             if (response.data.status === "ORDER_PLACED") {
-    //                 localStorage.removeItem("cart_items");
-    //                 localStorage.removeItem("cart_res_id");
-    //                 this.setState({
-    //                     message: response.data.status
-    //                 });
-    //             }
-    //         })
-    //         .catch(error => {
-    //             this.setState({
-    //                 message: "ORDER_ERROR"
-    //             });
-    //         });
-    // };
+            })
+            .catch(error => {
+                this.setState({
+                    message: "ORDER ERROR"
+                });
+            });
+    };
 
     render() {
         let redirectVar = null,
             order = null,
+            restaurant = null,
             message = null;
+            console.log(this.state.restaurant);
+
 
         if (!localStorage.getItem("user_id") || localStorage.getItem("is_owner") === "true") {
             redirectVar = <Redirect to="/" />
         }
-        if (this.state.message === "ORDER_PLACED") {
+        if (this.state.message === "ORDER PLACED") {
             redirectVar = <Redirect to="/orders" />
         }
-        else if (this.state.message === "ORDER_ERROR") {
+        else if (this.state.message === "ORDER ERROR") {
             message = <Alert variant="warning">There was some error processing your order!</Alert>
         }
-        else if (!localStorage.getItem("cart_items") || localStorage.getItem("cart_items").length === 0) {
+        else if (!localStorage.getItem("cart") || localStorage.getItem("cart").length === 0) {
             redirectVar = <Redirect to="/cart" />
         }
 
         if (this.state) {
-            order = (
-                <div>
-                    <Card style={{width: "40rem", height: "35rem"}}>
-                        <Card.Title>
+            restaurant = (
+                <div class="col-md-12 col-lg-6 pe-md-4 ">
+
+                    <div style={{width: "40rem", height: "40rem", flex:"1"}}>
+                    
+                        <div>
+
                             <br />
                             <h3>{this.state.restaurant.RestName}</h3>
                             {this.state.restaurant.RestCity} | {this.state.restaurant.RestCountry}
-                        </Card.Title>
-                        <Card.Body>
-                            <Table style={{ width: "90%" }}>
-                                <tbody>
-                                    <tr>
-                                        <td colSpan="4">Your purchase</td>
-                                        <td align="center">$ {this.state.sub_total}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colSpan="4">Tax ({this.state.tax}%)</td>
-                                        <td align="center">$ {(this.state.sub_total * this.state.tax / 100).toFixed(2)}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colSpan="4">Discounts ({this.state.discount}%)</td>
-                                        <td align="center">$ {(this.state.sub_total * this.state.discount / 100).toFixed(2)}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colSpan="4">Delivery Charges</td>
-                                        <td align="center">$ {this.state.delivery.toFixed(2)}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colSpan="4"><b>Total</b></td>
-                                        <td align="center"><b>$ {this.state.total}</b></td>
-                                    </tr>
-                                    <br/>
-                                    <tr>
-                                        <td colSpan="4">Delivery Address</td>
-                                        <td align="center">{this.state.address}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colSpan="4">Contact Number</td>
-                                        <td align="center">{this.state.phone_number}</td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-                            <center>
-                                <Button variant="success" onClick={this.placeOrder}>Confirm Order</Button>&nbsp; &nbsp;
-                                <Button variant="secondary" href="/home">Cancel</Button>
+                        </div>
+                        
+                        <div>
+                       
+                                Contact : {this.state.restaurant.RestPhone} ||
+                                Timing : {this.state.restaurant.StartTime} - {this.state.restaurant.EndTime}
+                        
+                        <center>
+                             <img src= "https://india-mahdavi.com/wp-content/uploads/2019/02/india_mahdavi_the-gallery-at-sketch_2014_restaurant_bar_architecture_design_interior-scaled-2000x1334.jpg"
+ class="img-fluid" alt = "Restaurant"/>
+
                             </center>
-                            <br />
-                        </Card.Body>
-                    </Card>
-                    <br />
-                    <Button variant="info" href="/cart">Back to Cart</Button>
+                        </div>
+                        <br/>
+                        <Button variant="info" href="/cart">Back to Cart</Button>
+                    </div>
+                   
                 </div>
+            );
+
+
+
+            order = (
+
+                <div class="col-md-12 col-lg-6 ps-md-4"> 
+                
+                <div style={{width: "40rem", height: "35rem", flex:"1"}}>
+                    <div>
+                        <br />
+                        <center> <h3>Final Receipt</h3></center>
+                        <br/> <br/>
+                    </div>
+                    <div>
+                        <Table style={{ width: "90%" }}>
+                            <tbody>
+                                <tr>
+                                    <td colSpan="4">Your purchase</td>
+                                    <td align="center">$ {this.state.sub_total}</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="4">Tax ({this.state.tax}%)</td>
+                                    <td align="center">$ {(this.state.sub_total * this.state.tax / 100).toFixed(2)}</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="4">Discounts ({this.state.discount}%)</td>
+                                    <td align="center">$ {(this.state.sub_total * this.state.discount / 100).toFixed(2)}</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="4">Delivery Charges</td>
+                                    <td align="center">$ {this.state.delivery.toFixed(2)}</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="4"><b>Total</b></td>
+                                    <td align="center"><b>$ {this.state.total}</b></td>
+                                </tr>
+                                <br/>
+                                <tr>
+                                    <td colSpan="4">Delivery Address</td>
+                                    <td align="center">{this.state.address}</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="4">Contact Number</td>
+                                    <td align="center">{this.state.phone_number}</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                        <div>
+                        <center>
+                            <br/> <br/> <br/> <br/>
+                            <Button variant="success" onClick={this.placeOrder}>Confirm Order</Button>&nbsp; &nbsp;
+                            <Button variant="secondary" href="/home">Cancel</Button>
+                        </center>
+                        
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+
             );
         }
 
@@ -153,12 +196,12 @@ class Checkout extends Component {
                 {redirectVar}
                 <Navigationbar /> <br />
                 <Container>
-                    <h3>Confirm your Order </h3>
-                    <center>
-                        {message}
-                        {order}
-                        <br /><br />
-                    </center>
+                    <div>
+                    <center><h1>Confirm your Order </h1></center> </div>
+                        <div style={{display: 'flex', flexDirection: 'row'}} class="row padding">
+                            {restaurant}
+                            {order}
+                        </div>
                 </Container>
             </div >
         )

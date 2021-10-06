@@ -50,7 +50,7 @@ class Navigationbar extends Component {
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item><Link to = {profile} class="nav-link"><img src={userIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;&nbsp;Profile</Link></Dropdown.Item>
-          <Dropdown.Item><Link to="/orders/history" class="nav-link"><img src={historyIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;&nbsp;Past Orders</Link></Dropdown.Item>
+          <Dropdown.Item><Link to="/orders" class="nav-link"><img src={historyIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;&nbsp;Past Orders</Link></Dropdown.Item>
           {pendingOrders}
           <Dropdown.Item><Link to="/" class="nav-link" onClick={this.handleLogout}><img src={logoutIcon} width="20" height="auto" class="d-inline-block align-top" alt="" />&nbsp;&nbsp;Logout</Link></Dropdown.Item>
         </Dropdown.Menu>

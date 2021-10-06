@@ -68,7 +68,6 @@ export default class CustomerHome extends React.Component {
                  .then(response => {
                     if (response.data) {
                         var res = JSON.stringify(response.data)
-                        console.log(typeof(res))
     
                         if (response.data[0].search_result === 'NO_RECORD') {
                            console.log("no favs")
