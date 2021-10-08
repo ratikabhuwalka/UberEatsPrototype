@@ -17,7 +17,6 @@ router.post('/addnew', (req, res) => {
         (err, result) => {
             if (err) {
                 res.status(500);
-                console.log(err);
                 res.send("SQL error, Check log for more details");
             } else {
                 res.status(200);

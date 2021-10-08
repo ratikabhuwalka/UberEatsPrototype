@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 import ItemCard from "./ItemCard"
+import { Link } from "react-router-dom";
 import { Button, Card, Container, Col, Row } from 'react-bootstrap';
 import Header from '../LandingPage/Header';
 import NavigationBar from '../NavigationBar'
@@ -54,10 +55,20 @@ class Restaurant extends Component {
     // };
 
     getMenuItems = () => {
-        if (this.props.location.state) {
+        if (this.props.location.state || localStorage.getItem("is_owner")=== 'true') {
+            let rest_id;
+            if(localStorage.getItem('is_owner')==='true'){
+                rest_id = localStorage.getItem('user_id');
+            }
+            else{
+                rest_id = this.props.location.state.RestId;
+            }
+            this.setState({
+                rest_id: rest_id
+            });
             console.log(this.props.location.state)
             var url = 'http://localhost:3001/restaurant/getItems'
-            url = url +'?rest_id='+this.props.location.state.RestId
+            url = url +'?rest_id='+rest_id
             console.log(url)
 
             axios.get(url)
@@ -169,6 +180,12 @@ class Restaurant extends Component {
                 <NavigationBar/>
                 <div>
                     <h1> Restaurant header, picture, description to go here</h1>
+                </div>
+                <div>
+                <Link to={{pathname: "/itempage", props:{type:'ADD'
+                                                        }}}>
+                        <Button variant="success">Add new Item</Button>
+                </Link>
                 </div>
                 <div>
                     <Row>{itemCards}</Row>
