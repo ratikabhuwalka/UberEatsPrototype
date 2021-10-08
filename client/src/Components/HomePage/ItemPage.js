@@ -9,7 +9,6 @@ import { Container, Col, Row, Form, Button, ButtonGroup, Card } from 'react-boot
 
 
 class ItemPage extends Component{
-    
     constructor(props) {
         super(props);
         this.state = {
@@ -18,9 +17,10 @@ class ItemPage extends Component{
         };
         this.onChange = this.onChange.bind(this);
         this.onUserImageChange = this.onUserImageChange.bind(this);
-        //this.onUpdate = this.onUpdate.bind(this);
+        this.updateItem = this.updateItem.bind(this);
         this.onUserUpload = this.onUserUpload.bind(this);
         this.addItem = this.addItem.bind(this);
+        
 
     }
 
@@ -30,22 +30,54 @@ class ItemPage extends Component{
 
     componentWillMount() 
     {
-        if (this.props.location.props && this.props.location.props.dish)
+        if (this.props.location.props && this.props.location.props.dish_id)
         {
-            var { dish } = this.props;
+            var dish = ''
+            const params = {
+                dish_id : this.props.location.props.dish_id
+            }
+            axios.get(`${backendServer}/dish/getdish`, { params })
+            .then(response => {
+                if (response.data) {
+                    dish = response.data[0];
 
-            var dishData = {
-                dish_id: dish.dish_id || this.state.dish_id,
-                dish_name: dish.name || this.state.dish_name,
-                description: dish.description || this.state.description,
-                category: dish.category || this.state.category,
-                price: dish.price || this.state.price,
-                meal_type: dish.meal_type || this.state.meal_type,
-                user_image: dish.user_image || this.state.user_image,
-            };
+                    var dishData = {
+                        dish_id: dish.DishId || this.state.dish_id,
+                        dish_name: dish.DishName || this.state.dish_name,
+                        description: dish.Description || this.state.description,
+                        ingredients: dish.Ingredients || this.state.ingredients,
+                        category: dish.Category || this.state.category,
+                        price: dish.Price || this.state.price,
+                        meal_type: dish.MealType || this.state.meal_type,
+                        user_image: dish.DishImage || this.state.user_image,
+                    };
+                    this.setState(dishData);
+                }
+            })
+            .catch(error => {
+                if (error.response && error.response.data) {
+                }
+            })
 
-            this.setState(dishData);
+           
+
+            // var dishData = {
+            //     dish_id: dish.DishId || this.state.dish_id,
+            //     dish_name: dish.DishName || this.state.dish_name,
+            //     description: dish.Description || this.state.description,
+            //     category: dish.Category || this.state.category,
+            //     price: dish.Price || this.state.price,
+            //     meal_type: dish.MealType || this.state.meal_type,
+            //     user_image: dish.DishImage || this.state.user_image,
+            // };
+            // console.log('dish', dishData);
+
+            // this.setState(dishData);
+
+
         }
+
+
 
     }
 
@@ -62,16 +94,38 @@ class ItemPage extends Component{
         });
     }
 
-    // onUpdate = (e) => {
-    //     //prevent page from refresh
-    //     e.preventDefault();
+    updateItem = (e) =>
+    {
+        let item_data = {
+            "dishId": this.state.dish_id,
+            "price": this.state.price,
+            "dishName": this.state.dish_name,
+            "ingredients": this.state.ingredients,
+            "description": this.state.description,
+            "category": this.state.category,
+            "mealType": this.state.meal_type
+        }
 
-    //     let dishData = Object.assign({}, this.state);
-    //     this.props.updateOwner(dishData);
-    // };
+        axios.post(`${backendServer}/dish/updatedish`, item_data)
+            .then(response => {
+                console.log(response);
+                if (response.data === "DISH UPDATED") {
+                    
+                    this.setState({
+                        message: response.data
+                    });
+                    alert("Dish Updated!")
+                }
+
+            })
+            .catch(error => {
+                this.setState({
+                    message: "ERROR"
+                });
+            });
+    }
 
     addItem = (e) => {
-        console.log(this.state.meal_type, this.state.category);
         let item_data = {
             "restId": localStorage.getItem("user_id"),
             "price": this.state.price,
@@ -81,10 +135,9 @@ class ItemPage extends Component{
             "category": this.state.category,
             "mealType": this.state.meal_type
         }
-        console.log(item_data);
-        axios.post(`${backendServer}/dish/addnew`, item_data)
+        axios.post(`${backendServer}/dish/adddish`, item_data)
             .then(response => {
-                console.log(response);
+                
                 if (response.data === "DISH ADDED") {
                     
                     this.setState({
@@ -150,12 +203,12 @@ class ItemPage extends Component{
                                             <Card.Title><h3>{title}</h3></Card.Title>
                                         </Card.Body>
                                     </Card>
-                                    <form onSubmit={this.onUserUpload}><br /><br /><br />
+                                    <form><br /><br /><br />
                                         <div class="custom-file" style={{ width: "80%" }}>
                                             <input type="file" class="custom-file-input" name="user_file" accept="image/*" onChange={this.onUserImageChange} required/>
                                             <label class="custom-file-label" for="user-file">{userFileText}</label>
                                         </div><br /><br />
-                                        <Button type="submit" variant="primary">Upload</Button>
+                                        <Button type="submit" variant="primary" onClick={this.onUserUpload}>Upload</Button>
                                     </form>
                                 </center>
                                 
@@ -236,7 +289,7 @@ class ItemPage extends Component{
                                 {"  "}
 
                                 <ButtonGroup aria-label="Third group">
-                                    <Button type="submit" variant="primary">Update</Button>
+                                    <Button type="submit" variant="primary" onClick = {this.updateItem}>Update</Button>
                                 </ButtonGroup>
                                 {"  "}
                                 <ButtonGroup aria-label="Fourth group">

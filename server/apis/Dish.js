@@ -3,7 +3,7 @@ const router = express.Router();
 const passwordHash = require('password-hash');
 const db = require('../db_config.js');
 
-router.post('/addnew', (req, res) => {
+router.post('/adddish', (req, res) => {
     console.log("Add new Dish Request reached!");
     const dishName = req.body.dishName;
     const ingredients = req.body.ingredients;
@@ -27,5 +27,58 @@ router.post('/addnew', (req, res) => {
 
 });
 
+router.get('/getdish', (req, res) =>
+{
+    let dish_id = '';
+    if(req.query.dish_id){
+        dish_id=req.query.dish_id;
+        
+        let dishsql = `select * from Dish \
+        where DishId = ${dish_id};`
+
+        db.query(dishsql, (err, result) =>
+        {
+            if(err){
+                res.status(500);
+                res.send("Cant Fetch");
+            } 
+            else{
+                console.log(res);
+                res.status(200);
+                res.send(result)
+            }   
+        }
+        );
+
+    }
+    else{
+    }
+});
+
+router.post('/updatedish', (req, res) => {1
+
+    console.log("update Dish Request reached!");
+    const dishId = req.body.dishId;
+    const dishName = req.body.dishName;
+    const ingredients = req.body.ingredients;
+    const price = req.body.price;
+    const description = req.body.description;
+    const category = req.body.category;
+    const mealType = req.body.mealType;
+
+    db.query("UPDATE Dish SET DishName = ?,category = ?,description =?,price=?,MealType=?, Ingredients =? WHERE DishId = ?",
+    [dishName,category,description,price,mealType,ingredients, dishId],
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                res.send("SQL error, Check log for more details");
+            } else {
+                res.status(200);
+                res.send("DISH UPDATED");
+            }
+        }
+    );
+
+});
 
 module.exports = router;

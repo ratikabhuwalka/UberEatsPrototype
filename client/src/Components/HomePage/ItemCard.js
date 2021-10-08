@@ -9,6 +9,7 @@ function ItemCard({ res}) {
     console.log(res)
     res=res.item
     res.img = img
+    var dish_id = res.DishId
     var title=res.DishName
     var description=res.Price 
     var price=res.Description
@@ -100,12 +101,13 @@ function ItemCard({ res}) {
             </>);
         }
         else{
+            console.log("In else for owner");
             return (<>
-            
+                <Link to={{pathname: "/itempage", props:{type:'EDIT', dish_id : dish_id  }}}>
                 <Button variant="primary" onClick={addToCart}>
                 Edit
                 </Button>
-
+                </Link>
                 <Button variant="secondary" onClick={addToCart}>
                 Delete
                 </Button>
