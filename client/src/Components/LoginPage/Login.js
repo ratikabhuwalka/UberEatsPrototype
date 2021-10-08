@@ -33,9 +33,7 @@ class Login extends Component {
             password: this.state.password,
             is_owner: this.state.isOwner
         }
-        console.log(data);
         this.props.userLogin(data);
-        console.log(`logging props from login component ${this.props}`);
 
         this.setState({
             loginFlag: 1
@@ -45,7 +43,6 @@ class Login extends Component {
 
 
     render() {
-        console.log(this.props.user);
         let redirectVar = null;
         let message = ""
         let res =""
@@ -54,6 +51,7 @@ class Login extends Component {
             localStorage.setItem("is_owner", true);
             localStorage.setItem("user_id", this.props.user.RestId);
             localStorage.setItem("name", this.props.user.RestName);
+            localStorage.setItem("rest_type", this.props.user.RestType);
             res = this.props.user;
             redirectVar = <Redirect to={{pathname: '/restaurant', state : res }} />
         }
@@ -68,7 +66,7 @@ class Login extends Component {
         else if(this.props.user === "NO_USER" && this.state.loginFlag){
             message = "No user with this email id";
         }
-        else if(this.props.user === "INCORRECT_PASSWORD" && this.state.loginFlag){
+        else if(this.props.user === "INCORRECT PASSWORD" && this.state.loginFlag){
             message = "Incorrect Password";
         }
   

@@ -31,14 +31,14 @@ router.post('/', (req, res) => {
           res.writeHead(401, {
             'Content-Type': 'text/plain'
           });
-          res.end("INCORRECT_PASSWORD");
+          res.end("INCORRECT PASSWORD");
         }
       }
       else {
         res.writeHead(401, {
           'Content-Type': 'text/plain'
         })
-        res.end("NO_USER");
+        res.end("NO USER");
       }
     });
   });

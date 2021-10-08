@@ -85,7 +85,6 @@ router.get('/getcustorders', (req, res) =>
 router.get('/getorderreceipt', (req, res) =>
 {
     let order_id = ''
-    console.log(req.query.order_id);
     if(req.query.order_id){
         order_id=req.query.order_id;
         
@@ -114,6 +113,56 @@ router.get('/getorderreceipt', (req, res) =>
     else{
     }
 });
+
+
+router.get('/getrestorders', (req, res) =>
+{
+    let rest_id = ''
+    if(req.query.rest_id){
+        rest_id=req.query.rest_id;
+        
+        let ordersql = `select * from Orders \
+        Inner Join Customer \
+        on Orders.CustId= Customer.CustId \
+        where RestId = ${rest_id};`
+
+        db.query(ordersql, (err, result) =>
+        {
+            if(err){
+                res.status(500);
+                res.send("Cant Fetch");
+            } 
+            else{
+                console.log(res);
+                res.status(200);
+                res.send(result)
+            }   
+        }
+        );
+
+    }
+    else{
+    }
+});
+
+router.put('/updateorderstatus', (req, res)=>{
+    console.log("Update Order Request reached!", req.body);
+    db.query("UPDATE Orders SET Status = ? WHERE OrderId = ?;",
+    [ req.body.status, req.body.order_id],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+                res.status(500);
+                res.send("SQL error, Check log for more details");
+            } else {
+                res.status(200);
+                res.send("DISH UPDATED");
+            }
+        }
+    );
+
+});
+
 
 
 

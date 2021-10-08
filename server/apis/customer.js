@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
                     if (passwordHash.verify(custPass, result[0].CustPass)){
                     res.send(result[0]);}
                     else{
-                        res.send("Wrong Password!")
+                        res.send("INCORRECT PASSWORD")
                     }
                 }else{
                     res.send("User not found")

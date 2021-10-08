@@ -30,6 +30,7 @@ class Restaurant extends Component {
             }
             localStorage.setItem("active_res",JSON.stringify(res) );
         }
+
     }
 
     // getSections = () => {
@@ -131,6 +132,7 @@ class Restaurant extends Component {
             });
         }
 
+
         // if (this.state && this.state.noRecord && this.state.search_input === "") {
         //     noRecordMessage = (
         //         <Alert variant="warning">
@@ -175,18 +177,29 @@ class Restaurant extends Component {
     //             renderOutput.push(section);
     //         }
     //     }
-        return (
+
+
+    let addButton = null;
+    if(localStorage.getItem("is_owner")==="true")
+    {
+        console.log("inside if")
+        addButton = (
+                <>
+                <Link to={{pathname: "/itempage", props:{type:'ADD'}}}>
+                <Button variant="success" >Add new Item</Button>
+                </Link>
+                </>);
+            
+       } 
+       
+       
+       return (
             <div>
                 <NavigationBar/>
                 <div>
                     <h1> Restaurant header, picture, description to go here</h1>
                 </div>
-                <div>
-                <Link to={{pathname: "/itempage", props:{type:'ADD'
-                                                        }}}>
-                        <Button variant="success">Add new Item</Button>
-                </Link>
-                </div>
+                {addButton}
                 <div>
                     <Row>{itemCards}</Row>
                 </div>

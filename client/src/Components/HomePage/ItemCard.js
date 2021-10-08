@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import './Card.css'
 import { Modal, Button, Input } from 'react-bootstrap';
-import ItemModal from './ItemModal'
+import axios from 'axios';
+import backendServer from "../../webConfig";
+
 
 function ItemCard({ res}) {
     var img= 'https://1000logos.net/wp-content/uploads/2021/04/Uber-Eats-logo-500x281.png'
@@ -11,8 +13,8 @@ function ItemCard({ res}) {
     res.img = img
     var dish_id = res.DishId
     var title=res.DishName
-    var description=res.Price 
-    var price=res.Description
+    var description=res.Description 
+    var price=res.Price
 
 
     const [show, setShow] = useState(false);
@@ -38,6 +40,24 @@ function ItemCard({ res}) {
 
 
       }, []);
+
+
+    const deleteItem = () =>
+    {
+        axios.delete(`${backendServer}/dish/deletedish`, { data: { dish_id: dish_id } })
+        .then(response => {
+            console.log(response);
+            if(response.data==='DISH DELETED'){
+                alert("Item Deleted");
+                handleClose();
+
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    };
+
 
 
     const addToCart = () => {
@@ -84,7 +104,7 @@ function ItemCard({ res}) {
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
-
+        alert("Item added to the cart!")
         
     }
 
@@ -93,24 +113,28 @@ function ItemCard({ res}) {
         if(localStorage.getItem('is_owner') === "false")
         {
             return (<>
+                <center>
                 <input type="number"  name = "quantity"  value = { quantity} defaultValue= {cart_quant} min="0" max="20" step="1" pattern="[0-9]*"  onChange = {e => setQuantity(e.target.value)} />
             
                 <Button variant="primary" onClick={addToCart}>
                 Add to cart
                 </Button>
+                </center>
             </>);
         }
         else{
             console.log("In else for owner");
             return (<>
+                <center>
                 <Link to={{pathname: "/itempage", props:{type:'EDIT', dish_id : dish_id  }}}>
                 <Button variant="primary" onClick={addToCart}>
                 Edit
                 </Button>
                 </Link>
-                <Button variant="secondary" onClick={addToCart}>
+                <Button variant="secondary" onClick={deleteItem}>
                 Delete
                 </Button>
+                </center>
             </>);
         }
 
@@ -123,10 +147,9 @@ function ItemCard({ res}) {
             <div className="card__info">
                 <h2>{title}</h2>
                 <h4>{description}</h4>
-                <h3>{price}</h3>
+                <h3>${price}</h3>
             </div>
         </div>
-        <ItemModal props = {res} />
         <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>

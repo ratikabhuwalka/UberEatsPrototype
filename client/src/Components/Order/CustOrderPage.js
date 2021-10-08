@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import backendServer from "../webConfig";
+import backendServer from "../../webConfig";
 import {Modal, Button, Alert, Container, Table } from "react-bootstrap";
-import Navigationbar from './NavigationBar.js';
+import Navigationbar from '../NavigationBar.js';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -33,8 +33,8 @@ class Order extends Component {
     componentDidMount() {
         console.log("order page mounted");
         document.title = "Order History";
-       
         this.getCustomerOrders();
+        
        
     };
 
@@ -63,11 +63,7 @@ class Order extends Component {
         axios.get(`${backendServer}/order/getorderreceipt`, {params})
         .then(response => {
             if(response.data[0]){
-                
-                this.setState({ 
-                    receipts: response.data
-                });
-                console.log(this.state.receipts);
+                sessionStorage.setItem("receipt",JSON.stringify(response.data));
                 this.showModal();
 
             }
@@ -83,15 +79,54 @@ class Order extends Component {
     let orders = [];
     let orderRows = null;
     let receipt_modal = null;
-    let receipt_items = null;
-    if (this.state && this.state.receipts) {
-        var arr = JSON.parse(this.state.receipts);
-        
-        receipt_items = arr.map(receipt => {
-            return (
-                  receipt
-            );
-        });
+    let receipt_items = []
+    if (sessionStorage.getItem("receipt")) {
+        var arr = JSON.parse(sessionStorage.getItem("receipt"));
+        console.log(arr);
+        for(var receipt of arr){
+            let item = (
+          
+                    <tr>
+                        <td align="center">{receipt.DishName}</td>
+                        <td align="center">$ {receipt.Price}</td>
+                        <td align="center">{receipt.Quantity} </td><td></td>
+                        <td align="center">$ {receipt.Price * receipt.Quantity}</td>
+                    </tr>
+                    )
+
+            receipt_items.push(item);
+            }
+
+        var receipt_table= (
+            <Table style={{ width: "90%" }}>
+                <thead align="center">
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th></th>
+                    <th>Total Price</th>
+                </thead>
+                <tbody>
+                    {receipt_items}
+                    <br /><br /><br /><br />
+                    {/* <tr>
+                        <td colSpan="4"><b>Sub Total</b></td>
+                        <td align="center"><b>$ {subTotal}</b></td>
+                    </tr>
+                    <tr>
+                        <td colSpan="4">Tax ({tax}%)</td>
+                        <td align="center">$ {(subTotal * tax / 100).toFixed(2)}</td>
+                    </tr>
+                    {discountAmount}
+                    {deliveryAmount}
+                    <tr>
+                        <td colSpan="4"><b>Total</b></td>
+                        <td align="center"><b>$ {total}</b></td>
+                    </tr> */}
+                </tbody>
+            </Table>
+        )
+
     }
 
     receipt_modal = (
@@ -100,7 +135,7 @@ class Order extends Component {
           <Modal.Title>Receipt</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            {receipt_items}
+            {receipt_table}
         </Modal.Body>
         <Modal.Footer>
         {/* <input type="number"  name = "quantity"  value = { quantity} defaultValue= {cart_quant} min="0" max="20" step="1" pattern="[0-9]*"  onChange = {e => setQuantity(e.target.value)} />
@@ -110,7 +145,6 @@ class Order extends Component {
           </Button> */}
         </Modal.Footer>
       </Modal>);
-    
     
 
     if (this.state && this.state.orders) {
@@ -146,7 +180,6 @@ class Order extends Component {
             <Navigationbar/>
             <Container className="justify-content">
                 <h3>Your past orders</h3>
-                {this.receipt_modal}
                 {message}
                 <br/>
                 <div>
@@ -157,7 +190,7 @@ class Order extends Component {
                 </Table>
                 </div>
                 <center>
-                    <Button href="/home">Home</Button>
+                    <Button href="/customerHome">Home</Button>
                 </center>
 
             </Container>

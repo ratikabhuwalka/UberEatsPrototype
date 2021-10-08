@@ -11,7 +11,8 @@ import Restaurant from './Components/HomePage/Restaurant';
 import CustomerHome from './Components/HomePage/CustomerHome';
 import Cart from './Components/Cart/Cart';
 import Checkout from './Components/Cart/Checkout';
-import Order from './Components/OrderPage';
+import Order from './Components/Order/CustOrderPage';
+import RestOrder from './Components/Order/RestOrderPage';
 import ItemPage from './Components/HomePage/ItemPage';
 import { Container } from 'react-bootstrap'
 import { Provider } from 'react-redux';
@@ -34,7 +35,8 @@ function App() {
             <Route exact path ='/restaurantProfile' component = {RestaurantProfile} />
             <Route exact path ='/customerProfile' component = {CustomerProfile} />
             <Route exact path ='/checkout' component = {Checkout} />
-            <Route exact path ='/orders' component = {Order} />
+            <Route exact path ='/customerOrder' component = {Order} />
+            <Route exact path ='/restaurantOrder' component = {RestOrder} />
             <Route exact path ='/itempage' component = {ItemPage} />
 
 

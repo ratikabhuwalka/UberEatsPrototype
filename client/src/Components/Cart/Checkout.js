@@ -88,7 +88,7 @@ class Checkout extends Component {
             redirectVar = <Redirect to="/" />
         }
         if (this.state.message === "ORDER PLACED") {
-            redirectVar = <Redirect to="/orders" />
+            redirectVar = <Redirect to="/customerOrder" />
         }
         else if (this.state.message === "ORDER ERROR") {
             message = <Alert variant="warning">There was some error processing your order!</Alert>

@@ -55,7 +55,7 @@ router.get('/getdish', (req, res) =>
     }
 });
 
-router.post('/updatedish', (req, res) => {1
+router.post('/updatedish', (req, res) => {
 
     console.log("update Dish Request reached!");
     const dishId = req.body.dishId;
@@ -73,8 +73,30 @@ router.post('/updatedish', (req, res) => {1
                 res.status(500);
                 res.send("SQL error, Check log for more details");
             } else {
+                console.log("entered else sending response")
                 res.status(200);
                 res.send("DISH UPDATED");
+            }
+        }
+    );
+
+});
+
+
+router.delete('/deletedish', (req, res) => {
+
+    console.log("Delete Dish Request reached!", req.body.dish_id);
+    db.query("DELETE FROM Dish WHERE DishId = ?",
+    [req.body.dish_id],
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                console.log(err);
+                res.send("SQL error, Check log for more details");
+            } else {
+                console.log("entered else sending response")
+                res.status(200);
+                res.send("DISH DELETED");
             }
         }
     );
