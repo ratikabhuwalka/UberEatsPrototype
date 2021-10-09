@@ -154,9 +154,9 @@ router.get('/getItems/:rest_id?', (req, res) => {
 
 
 router.post('/addFav', (req, res) => {
-    const cust_id = req.body.cust_id;
+    
     const rest_id = req.body.rest_id;
-
+    const cust_id = req.body.cust_id;
     var sql_query = "INSERT INTO Favourites (RestId, CustId) VALUES (?, ?)"
     db.query(sql_query, [rest_id, cust_id],
         (err, result) => {
@@ -197,7 +197,34 @@ router.get('/getFav/:cust_id?', (req, res) => {
 });
 
 
+router.post('/updaterest', (req, res) => {
 
+
+    const rest_id     = req.body.rest_id;
+    const rest_country= req.body.rest_country;
+    const rest_name   = req.body.rest_name;
+    const rest_phone  = req.body.rest_phone;
+    const rest_email  = req.body.rest_email;
+    const rest_city   = req.body.rest_city;
+    const start_time  = req.body.start_time;
+    const end_time    = req.body.end_time;
+    const rest_type   = req.body.rest_type;
+
+
+    db.query("UPDATE Restaurant SET RestName = ?, RestCountry = ?, RestPhone =?, RestEmail=?, RestCity=?, StartTime =?, EndTime =?, RestType=? WHERE RestId = ?",
+    [rest_name,rest_country,rest_phone,rest_email,rest_city,start_time, end_time, rest_type, rest_id],
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                res.send("SQL error, Check log for more details");
+            } else {
+                res.status(200);
+                res.send("RESTAURANT UPDATED");
+            }
+        }
+    );
+
+});
 
 module.exports = router;
 
