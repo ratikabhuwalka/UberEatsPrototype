@@ -37,6 +37,33 @@ router.get('/', (req, res) => {
     }
 );
 
+
+router.get('/customerdetail', (req, res) => {
+    const cust_id = req.query.cust_id;
+
+    db.query(
+        "SELECT * FROM Customer WHERE CustId = ?",
+        [ cust_id],
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                console.log({err : err});
+                res.send("SQL error, Check log for more details");
+            } else {
+                if(result){
+                    console.log(result);
+                    res.status(200);
+                    res.send(result);
+                }else{
+                    res.send("User not found")
+                }
+            }
+        }
+    );
+    }
+);
+
+
 // create new Customer
 router.post('/', (req, res) => {
     console.log("Request reached!");
@@ -153,6 +180,35 @@ router.get('/getItems/:Cust_id?', (req, res) => {
             }
         }
     );
+});
+
+
+router.post('/updatecust', (req, res) => {
+
+    console.log("update Dish Request reached!");
+
+    const cust_id     = req.body.cust_id;
+    const cust_country= req.body.cust_country;
+    const cust_name   = req.body.cust_name;
+    const cust_phone  = req.body.cust_phone;
+    const cust_email  = req.body.cust_email;
+    const cust_city   = req.body.cust_city;
+    const dob         = req.body.dob;
+
+    db.query("UPDATE Customer SET CustName = ?, CustCountry = ?, CustPhone =?, CustEmail=?, CustCity=?, DOB =? WHERE CustId = ?",
+    [cust_name,cust_country,cust_phone,cust_email,cust_city,dob, cust_id],
+        (err, result) => {
+            if (err) {
+                res.status(500);
+                res.send("SQL error, Check log for more details");
+            } else {
+                console.log("entered else sending response")
+                res.status(200);
+                res.send("CUSTOMER UPDATED");
+            }
+        }
+    );
+
 });
 
 
