@@ -12,7 +12,7 @@ class Order extends Component {
         // this.getUserProfile();
         this.getCustomerOrders = this.getCustomerOrders.bind(this);
         this.showModal = this.showModal.bind(this);
-        // this.getOrderReceipt = this.getOrderReceipt.bind(this);
+        this.getOrderReceipt = this.getOrderReceipt.bind(this);
         this.state = {
             orders: '',
             receipts : '',
@@ -109,20 +109,23 @@ class Order extends Component {
                 <tbody>
                     {receipt_items}
                     <br /><br /><br /><br />
-                    {/* <tr>
-                        <td colSpan="4"><b>Sub Total</b></td>
-                        <td align="center"><b>$ {subTotal}</b></td>
+                    <tr>
+                        <td colSpan="4">Tax </td>
+                        <td align="center">$ {arr[0].Tax}</td>
                     </tr>
                     <tr>
-                        <td colSpan="4">Tax ({tax}%)</td>
-                        <td align="center">$ {(subTotal * tax / 100).toFixed(2)}</td>
+                        <td colSpan="4">Delivery</td>
+                        <td align="center">$ {arr[0].Delivery}</td>
                     </tr>
-                    {discountAmount}
-                    {deliveryAmount}
+                    <tr>    
+                        <td colSpan="4">Discount</td>
+                        <td align="center">$ {arr[0].Discount}</td>
+                    </tr>
+
                     <tr>
                         <td colSpan="4"><b>Total</b></td>
-                        <td align="center"><b>$ {total}</b></td>
-                    </tr> */}
+                        <td align="center"><b>$ {arr[0].Final}</b></td>
+                    </tr>
                 </tbody>
             </Table>
         )
