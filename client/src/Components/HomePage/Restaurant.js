@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Button, Card, Container, Col, Row } from 'react-bootstrap';
 import Header from '../LandingPage/Header';
 import NavigationBar from '../NavigationBar'
-//import backendServer from "../../webConfig";
+import backendServer from "../../webConfig";
 
 class Restaurant extends Component {
     constructor(props) {
@@ -17,21 +17,83 @@ class Restaurant extends Component {
         });
         //this.sectionItems = this.sectionItems.bind(this);
         //this.getSections();
-        this.getMenuItems();
     }
 
     componentWillMount() {
+       
+       //GETTING REST ID
+        let rest ="",
+            rest_id = "";
         if (this.props.location.state) {
-            console.log(this.props.location.state)
             document.title = this.props.location.state.RestName;
             let res = {
                 "RestName": this.props.location.state.RestName,
                 "RestId":this.props.location.state.RestId
             }
+            rest_id = this.props.location.state.RestId
             localStorage.setItem("active_res",JSON.stringify(res) );
         }
+        else{
+            rest_id = localStorage.getItem("user_id");
+        }
+        console.log("rest_id",rest_id);
 
-    }
+        const params = {
+            rest_id : rest_id
+        }
+       
+        //RESTAURANT DETAILS
+
+        axios.get(`${backendServer}/restaurant/getRestaurant`, { params})
+            .then(response => {
+                if (response.data) {
+                    rest = response.data[0];
+    
+                    var restData = {
+                        rest_id: rest.RestId ,
+                        rest_name: rest.RestName ,
+                        rest_email: rest.RestEmail,
+                        rest_phone: rest.RestPhone,
+                        rest_city: rest.RestCity,
+                        rest_country: rest.RestCountry,
+                        rest_type: rest.RestType,
+                        start_time: rest.StartTime,
+                        end_time: rest.EndTime,
+                        user_image: rest.RestImage
+                    };
+
+                    this.setState({
+                        restData: restData});
+                }
+            })
+            .catch(error => {
+                if (error.response && error.response.data) {
+                }
+            })
+
+
+            //MENU
+
+            var url = 'http://localhost:3001/restaurant/getItems'
+            url = url +'?rest_id='+rest_id
+
+            axios.get(url)
+                .then(response => {
+                    if (response.data[0]) {
+                        var menu_item_string = JSON.stringify(response.data)
+                        this.setState({
+                            menu_items: menu_item_string
+                        });
+                    }
+                })
+                .catch(err => {
+                    if (err.response && err.response.data) {
+                        console.log(err.response.data);
+                    }
+                });
+        }
+
+    
 
     // getSections = () => {
     //     if (this.props.location.state) {
@@ -55,39 +117,7 @@ class Restaurant extends Component {
     //     }
     // };
 
-    getMenuItems = () => {
-        if (this.props.location.state || localStorage.getItem("is_owner")=== 'true') {
-            let rest_id;
-            if(localStorage.getItem('is_owner')==='true'){
-                rest_id = localStorage.getItem('user_id');
-            }
-            else{
-                rest_id = this.props.location.state.RestId;
-            }
-            this.setState({
-                rest_id: rest_id
-            });
-            console.log(this.props.location.state)
-            var url = 'http://localhost:3001/restaurant/getItems'
-            url = url +'?rest_id='+rest_id
-            console.log(url)
-
-            axios.get(url)
-                .then(response => {
-                    if (response.data[0]) {
-                        var menu_item_string = JSON.stringify(response.data)
-                        this.setState({
-                            menu_items: menu_item_string
-                        });
-                    }
-                })
-                .catch(err => {
-                    if (err.response && err.response.data) {
-                        console.log(err.response.data);
-                    }
-                });
-        }
-    };
+   
 
     // sectionItems = (menu_section) => {
     //     var itemsRender = [], items, item, section;
@@ -110,19 +140,17 @@ class Restaurant extends Component {
 
     render() {
         var itemCards = null,
-            noRecordMessage = null;
-        // if (this.state && this.state.cuisineList) {
-        //     cuisineDropdown = this.state.cuisineList.map(cuisine => {
-        //         return (
-        //             <Dropdown.Item href="#" onClick={this.onCuisineSelect}>{cuisine}</Dropdown.Item>
-        //         )
-        //     })
-        // }
+            noRecordMessage = null,
+            restData =""
+
+        console.log("this state", this.state);
+        if(this.state && this.state.restData){
+            restData=this.state.restData;
+
+        }
 
         if (this.state && this.state.menu_items) {
             var arr = JSON.parse(this.state.menu_items);
-            console.log(arr);
-            console.log(this.state.menu_items, typeof(this.state.menu_items));
             itemCards = arr.map(item => {
                 return (
                     <Col sm={3}>
@@ -132,72 +160,36 @@ class Restaurant extends Component {
             });
         }
 
-
-        // if (this.state && this.state.noRecord && this.state.search_input === "") {
-        //     noRecordMessage = (
-        //         <Alert variant="warning">
-        //             No Restaurants are available now. Please try again later.
-        //         </Alert>
-        //     );
-        // }
-        // else if(this.state && this.state.noRecord){
-        //     noRecordMessage = (
-        //     <Alert variant="warning">
-        //             No Results. Please try again.
-        //         </Alert>
-        //     );
-        // }
-        // else {
-        //     noRecordMessage = null;
-        // }
-    // render() {
-    //     let redirectVar = null,
-    //         section = null,
-    //         renderOutput = [],
-    //         resImageSrc = null,
-    //         resName, resPhone, resAddress, resCuisine, resZIP,
-    //         restaurant = this.props.location.state;
-
-    //     if (!localStorage.getItem("user_id") || !this.props.location.state) {
-    //         redirectVar = <Redirect to="/home" />
-    //     }
-
-    //     if (restaurant) {
-    //         resImageSrc = `${backendServer}/grubhub/images/restaurant/${restaurant.res_image}`;
-    //         resName = restaurant.res_name;
-    //         resAddress = restaurant.res_address;
-    //         resZIP = restaurant.res_zip_code;
-    //         resAddress = restaurant.address;
-    //         resPhone = restaurant.phone_number;
-    //         resCuisine = restaurant.res_cuisine;
-    //     }
-    //     if (this.state && this.state.menu_sections && this.state.menu_sections.length > 0) {
-    //         for (var i = 0; i < this.state.menu_sections.length; i++) {
-    //             section = this.sectionItems(this.state.menu_sections[i]);
-    //             renderOutput.push(section);
-    //         }
-    //     }
-
-
-    let addButton = null;
-    if(localStorage.getItem("is_owner")==="true")
-    {
-        console.log("inside if")
-        addButton = (
-                <>
-                <Link to={{pathname: "/itempage", props:{type:'ADD'}}}>
-                <Button variant="success" >Add new Item</Button>
-                </Link>
-                </>);
-            
-       } 
+        let addButton = null;
+        if(localStorage.getItem("is_owner")==="true")
+        {
+            addButton = (
+                    <>
+                    <Link to={{pathname: "/itempage", props:{type:'ADD'}}}>
+                    <Button variant="success" >Add new Item</Button>
+                    </Link>
+                    </>);
+                
+        } 
        
        
        return (
             <div>
                 <NavigationBar/>
                 <div>
-                    <h1> Restaurant header, picture, description to go here</h1>
+                    <div><img src = {restData.rest_image} alt="Restaurant"></img></div>
+                    <div>
+                        <tr><h1>{restData.rest_name}</h1></tr>
+                        <tr>
+                            <h5> <td>Contact: {restData.rest_phone}</td>  
+                             <td>Email: {restData.rest_email}</td>
+                             <td>Timing: {restData.start_time} - {restData.end_time}</td></h5>
+                        </tr>
+                        
+                    </div>
+
+
+                    
                 </div>
                 {addButton}
                 <div>
