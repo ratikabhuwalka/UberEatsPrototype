@@ -5,8 +5,6 @@ import axios from 'axios';
 import { Container, Col, Row, Form, Button, ButtonGroup, Card } from 'react-bootstrap';
 
 
-//export class SignUp extends React.Component {
-
 
 class ItemPage extends Component{
     constructor(props) {
@@ -23,10 +21,6 @@ class ItemPage extends Component{
         
 
     }
-
-    // componentWillMount() {
-    //     this.props.getOwner();
-    // }
 
     componentWillMount() 
     {
@@ -108,7 +102,6 @@ class ItemPage extends Component{
 
         axios.post(`${backendServer}/dish/updatedish`, item_data)
             .then(response => {
-                console.log(response);
                 if (response.data === "DISH UPDATED") {
                     
                     this.setState({
@@ -137,7 +130,7 @@ class ItemPage extends Component{
         }
         axios.post(`${backendServer}/dish/adddish`, item_data)
             .then(response => {
-                
+
                 if (response.data === "DISH ADDED") {
                     
                     this.setState({

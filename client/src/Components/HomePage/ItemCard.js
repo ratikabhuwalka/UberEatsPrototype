@@ -127,7 +127,7 @@ function ItemCard({ res}) {
             return (<>
                 <center>
                 <Link to={{pathname: "/itempage", props:{type:'EDIT', dish_id : dish_id  }}}>
-                <Button variant="primary" onClick={addToCart}>
+                <Button variant="primary">
                 Edit
                 </Button>
                 </Link>
