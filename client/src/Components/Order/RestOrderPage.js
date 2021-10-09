@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import backendServer from "../../webConfig";
 import {Modal, Button, Alert, Container, Table } from "react-bootstrap";
 import Navigationbar from '../NavigationBar.js';
@@ -172,9 +172,12 @@ class RestOrder extends Component {
 
                             </td>
                             <td><Button variant ='success' onClick= {() => this.updateOrderStatus(order.OrderId, status )}> Update Order Status </Button>
-                            {"    "}<Button variant = 'primary' onClick= {() => this.getOrderReceipt(order.OrderId)}> View Receipt </Button>
-                            {"    "}<Button variant = "info" onClick= {() => this.getOrderReceipt(order.OrderId)}> View Customer Profile </Button>
-
+                            {"    "}
+                            {/* <Button variant = 'primary' onClick= {() => this.getOrderReceipt(order.OrderId)}> View Receipt </Button> */}
+                            {"    "}
+                            <Link to={{pathname: "/customerProfile", props:{cust_id:order.CustId}}}>
+                                <Button variant = "info"> View Customer Profile </Button>
+                            </Link>
                             </td>
 
                         </tr>
@@ -206,7 +209,7 @@ class RestOrder extends Component {
                 </Table>
                 </div>
                 <center>
-                    <Button href="/home">Home</Button>
+                    <Button href="/restaurant">Home</Button>
                 </center>
 
             </Container>
