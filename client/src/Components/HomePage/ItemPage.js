@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import backendServer from "../../webConfig";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Container, Col, Row, Form, Button, ButtonGroup, Card } from 'react-bootstrap';
+import { Container, Col, Row, Form, Button, ButtonGroup, Card, Dropdown, DropdownButton, InputGroup } from 'react-bootstrap';
 import Navigationbar from '../NavigationBar'
 
 
@@ -13,9 +13,11 @@ class ItemPage extends Component{
         super(props);
         this.state = {
 
-            rest_id : localStorage.getItem('user_id')
+            rest_id : localStorage.getItem('user_id'),
+            category : 'Select Category'
         };
         this.onChange = this.onChange.bind(this);
+        this.onCategorySelect = this.onCategorySelect.bind(this);
         this.onImageChange = this.onImageChange.bind(this);
         this.updateItem = this.updateItem.bind(this);
         this.onUpload = this.onUpload.bind(this);
@@ -91,6 +93,15 @@ class ItemPage extends Component{
         this.setState({
             dish_image: e.target.files[0]
         });
+    }
+
+
+    onCategorySelect = (e) => {
+        this.setState (
+            {
+                category : e.target.text
+            }
+        )
     }
     onUpload = (e) => {
         console.log("on upload");
@@ -221,7 +232,8 @@ class ItemPage extends Component{
                                             type = "text"
                                             onChange={this.onChange}
                                             value={this.state.price}
-                                            pattern="^[A-Za-z0-9 ]+$"
+                                            pattern="[0-9]+\.?[0-9]*|\.[0-9]+"
+                                            placeholder ="in USD"
                                             required={true} />
                                     </Form.Group>
                                 </Form.Row>
@@ -236,16 +248,18 @@ class ItemPage extends Component{
                                     </Form.Group>
                                 </Form.Row>
                                 <Form.Row>
-                                    <Form.Group as={Col} controlId="category">
-                                        <Form.Label>Category</Form.Label>
-                                        <Form.Control type="text"
-                                            name="category"
-                                            onChange={this.onChange}
-                                            value={this.state.category}
-                                         />
-                                    </Form.Group>
+                                <Form.Group as={Col} controlId="category">
+                                <Form.Label>Category</Form.Label>
+                                    <DropdownButton as={InputGroup.Append} variant="outline-secondary" 
+                                                                    title={this.state.category}
+                                                                    id="input-group-dropdown-2">
+                                        <Dropdown.Item href="#" onClick={this.onCategorySelect}>Veg</Dropdown.Item>
+                                        <Dropdown.Item href="#" onClick={this.onCategorySelect}>Non Veg</Dropdown.Item>
+                                        <Dropdown.Item href="#" onClick={this.onCategorySelect}>Vegan</Dropdown.Item>
+                                    </DropdownButton>
+                                </Form.Group>
                                 </Form.Row>
-
+    
                                 <Form.Row>
                                     <Form.Group as={Col} controlId="meal_type">
                                         <Form.Label>Meal Type</Form.Label>

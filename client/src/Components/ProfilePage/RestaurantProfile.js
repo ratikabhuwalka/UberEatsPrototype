@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Container, Col, Row, Form, Button, ButtonGroup, Card } from 'react-bootstrap';
+import { Container, Col, Row, Form, Button, ButtonGroup, Card, DropdownButton, Dropdown, InputGroup} from 'react-bootstrap';
 import Navigationbar from '../NavigationBar'
 import backendServer from "../../webConfig";
 
@@ -11,7 +11,8 @@ constructor(props) {
     super(props);
     this.state = {
         rest_id : localStorage.getItem('user_id'),
-        read_only : true
+        read_only : true,
+        rest_type : 'Select Type'
     };
     this.onChange = this.onChange.bind(this);
     this.onImageChange = this.onImageChange.bind(this);
@@ -70,6 +71,14 @@ onChange = (e) => {
     this.setState({
         [e.target.name]: e.target.value
     })
+}
+
+onTypeSelect = (e) => {
+    this.setState (
+        {
+            rest_type : e.target.text
+        }
+    )
 }
 
 onImageChange = (e) => {
@@ -230,13 +239,14 @@ render(){
 
                             <Form.Row>
                                 <Form.Group as={Col} controlId="rest_type">
-                                    <Form.Label>Restaurant Type</Form.Label>
-                                    <Form.Control type="text"
-                                        readOnly = {this.state.read_only}
-                                        name="rest_type"
-                                        onChange={this.onChange}
-                                        value={this.state.rest_type}
-                                     />
+                                <Form.Label>Restaurant Type</Form.Label>
+                                <DropdownButton as={InputGroup.Append} variant="outline-secondary" 
+                                                                    title={this.state.rest_type}
+                                                                        id="input-group-dropdown-2">
+                                    <Dropdown.Item href="#" onClick={this.onTypeSelect}>Delivery</Dropdown.Item>
+                                    <Dropdown.Item href="#" onClick={this.onTypeSelect}>Pickup</Dropdown.Item>
+                                    <Dropdown.Item href="#" onClick={this.onTypeSelect}>Both</Dropdown.Item>
+                                </DropdownButton>
                                 </Form.Group>
                             </Form.Row>
                             
