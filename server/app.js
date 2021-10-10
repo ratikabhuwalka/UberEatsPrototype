@@ -20,6 +20,7 @@ app.use(function (req, res, next) {
   
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
+  res.setHeader('Access-Control-Allow-Origin', 'http://ec2-34-220-244-18.us-west-2.compute.amazonaws.com:3000');
   res.setHeader('Access-Control-Allow-Origin', 'http://ec2-34-220-244-18.us-west-2.compute.amazonaws.com:3001');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
