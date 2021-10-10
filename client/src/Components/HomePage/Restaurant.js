@@ -71,7 +71,7 @@ class Restaurant extends Component {
 
             //MENU
 
-            var url = 'http://localhost:3001/restaurant/getItems'
+            var url = `${backendServer}/restaurant/getItems`
             url = url +'?rest_id='+rest_id
 
             axios.get(url)

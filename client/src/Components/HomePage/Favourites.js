@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import backendServer from "../../webConfig";
+import backendServer from "../../webConfig";
 import Navigationbar from "../NavigationBar"
 import Card from "./Card"
 import {  Col, Row } from 'react-bootstrap';
@@ -24,7 +24,7 @@ export default class Favourite extends React.Component {
 
 
         get_cust_fav(cust_id) {
-            var url = `http://localhost:3001/restaurant/getFav?cust_id=${cust_id}`
+            var url = `${backendServer}/restaurant/getFav?cust_id=${cust_id}`
             axios.get(url)
                  .then(response => {
                     if (response.data) {

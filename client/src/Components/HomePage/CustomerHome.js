@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import backendServer from "../../webConfig";
+import backendServer from "../../webConfig";
 import Navigationbar from "../NavigationBar"
 import Card from "./Card"
 import Axios from 'axios'
@@ -26,7 +26,7 @@ export default class CustomerHome extends React.Component {
         }
         
        get_rest_call(cust_city, search_param = null) {
-        var url = 'http://localhost:3001/restaurant/getRestaurants'
+        var url = `${backendServer}/restaurant/getRestaurants`
         let params = {
             search_string : search_param,
             cust_city : cust_city
@@ -66,7 +66,7 @@ export default class CustomerHome extends React.Component {
 
 
         get_cust_fav(cust_id) {
-            var url = `http://localhost:3001/restaurant/getFav?cust_id=${cust_id}`
+            var url = `${backendServer}/restaurant/getFav?cust_id=${cust_id}`
             axios.get(url)
                  .then(response => {
                     if (response.data) {

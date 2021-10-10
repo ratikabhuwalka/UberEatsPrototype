@@ -124,7 +124,7 @@ onUpload = (e) => {
     const formData = new FormData();
     console.log(this.state.rest_image);
     formData.append("file", this.state.rest_image);
-    axios.post(`http://localhost:3001/upload/restaurant/${this.state.rest_id}`,
+    axios.post(`${backendServer}/upload/restaurant/${this.state.rest_id}`,
         formData,
         {
         headers: {

@@ -108,7 +108,7 @@ class ItemPage extends Component{
         const formData = new FormData();
         console.log(this.state.dish_image);
         formData.append("file", this.state.dish_image);
-        axios.post(`http://localhost:3001/upload/dish/${this.state.dish_id}`,
+        axios.post(`${backendServer}/upload/dish/${this.state.dish_id}`,
             formData,
             {
             headers: {

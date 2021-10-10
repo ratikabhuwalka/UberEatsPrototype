@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import {  Modal, Button, Col, Row } from "react-bootstrap";
 import Axios from 'axios'
+import backendServer from '../../webConfig';
+
 
 
 import './Card.css'
@@ -17,7 +19,7 @@ function Card({ res}) {
     console.log(src);
 
     const postFav = (cust_id, rest_id) => {
-        Axios.post('http://localhost:3001/restaurant/addFav',{
+        Axios.post(`${backendServer}/restaurant/addFav`,{
            cust_id: cust_id,
            rest_id : rest_id
         }).then((response)=>{
