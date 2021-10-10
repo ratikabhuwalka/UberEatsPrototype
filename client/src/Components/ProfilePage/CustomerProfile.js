@@ -184,16 +184,7 @@ render(){
             </>
         )
 
-        uploadbuttons = (
-            <form>
-                <br /><br /><br />
-                <div class="custom-file" style={{ width: "80%" }}>
-                    <input type="file" class="custom-file-input" name="user_file" accept="image/*" onChange={this.onUserImageChange} required/>
-                    <label class="custom-file-label" for="user-file">{userFileText}</label>
-                </div><br /><br />
-                <Button type="submit" variant="primary" onClick={this.onUserUpload}>Upload</Button>
-            </form>
-        )
+       
     }
 
 

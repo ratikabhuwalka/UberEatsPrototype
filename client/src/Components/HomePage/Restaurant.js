@@ -119,7 +119,7 @@ class Restaurant extends Component {
                 <NavigationBar/>
                 <div>
                     <h1>{restData.rest_name}</h1>                 
-                    <div><img src = {restData.rest_image} alt="Restaurant" width="1000" height="500" flex ="1"></img></div>
+                    <div><img src = {restData.rest_image} alt="Restaurant" style = {{width:"100%", height:"300px", flex :"1"}}></img></div>
                     <div>
                             <h5>
                             <tr><td>Contact: {restData.rest_phone} {'   '} </td>

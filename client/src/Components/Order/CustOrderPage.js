@@ -160,7 +160,8 @@ class Order extends Component {
                         <tr>
                             <td colSpan="4"><h5>{order.RestName}</h5>
                                 ${order.Final}
-                                <br/> {order.TimeStamp}
+                                <br/> {order.Timestamp} {'     '}
+                                {order.Status}
 
                             </td>
                             <td> <a href="#" onClick= {() => this.getOrderReceipt(order.OrderId)}> view receipt </a></td>

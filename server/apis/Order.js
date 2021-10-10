@@ -20,10 +20,12 @@ router.post('/placeorder', (req, res) => {
     const delivery = req.body.delivery;
     const tax = req.body.tax;
     const final = req.body.final;
+    const orderType = req.body.orderType;
     const cartItems = JSON.parse(req.body.cart_items);
     const time = moment().format('MMMM DD YYYY, hh:mma')
-    var sql_query = "INSERT INTO Orders (CustId, RestId, Status, Total,Discount, Delivery, Tax, Final, Timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    db.query(sql_query, [custId, restId, status,total, discount, delivery, tax, final, time],
+    console.log(time);
+    var sql_query = "INSERT INTO Orders (CustId, RestId, Status, Total,Discount, Delivery, Tax, Final, Timestamp, OrderType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    db.query(sql_query, [custId, restId, status,total, discount, delivery, tax, final, time, orderType],
         (err, result) => {
             if (err) {
                 res.status(500);
@@ -70,7 +72,6 @@ router.get('/getcustorders', (req, res) =>
                 res.send("Cant Fetch");
             } 
             else{
-                console.log(res);
                 res.status(200);
                 res.send(result)
             }   
@@ -102,7 +103,6 @@ router.get('/getorderreceipt', (req, res) =>
                 res.send("Cant Fetch");
             } 
             else{
-                console.log(res);
                 res.status(200);
                 res.send(result)
             }   
@@ -133,7 +133,6 @@ router.get('/getrestorders', (req, res) =>
                 res.send("Cant Fetch");
             } 
             else{
-                console.log(res);
                 res.status(200);
                 res.send(result)
             }   

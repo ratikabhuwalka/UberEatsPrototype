@@ -3,6 +3,8 @@ import backendServer from "../../webConfig";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Col, Row, Form, Button, ButtonGroup, Card } from 'react-bootstrap';
+import Navigationbar from '../NavigationBar'
+
 
 
 
@@ -14,9 +16,9 @@ class ItemPage extends Component{
             rest_id : localStorage.getItem('user_id')
         };
         this.onChange = this.onChange.bind(this);
-        this.onUserImageChange = this.onUserImageChange.bind(this);
+        this.onImageChange = this.onImageChange.bind(this);
         this.updateItem = this.updateItem.bind(this);
-        this.onUserUpload = this.onUserUpload.bind(this);
+        this.onUpload = this.onUpload.bind(this);
         this.addItem = this.addItem.bind(this);
         
 
@@ -24,11 +26,28 @@ class ItemPage extends Component{
 
     componentWillMount() 
     {
-        if (this.props.location.props && this.props.location.props.dish_id)
+        if(this.props.location.props && this.props.location.props.type && this.props.location.props.type==='ADD'){
+            if(sessionStorage.getItem('active_dish'))
+            {
+                sessionStorage.removeItem('active_dish')
+            }     
+         }
+
+        if ((this.props.location.props && this.props.location.props.dish_id) || sessionStorage.getItem('active_dish'))
         {
+
+            let dish_id =''
+            if((this.props.location.props && this.props.location.props.dish_id))
+            {
+                dish_id = this.props.location.props.dish_id
+                sessionStorage.setItem('active_dish', this.props.location.props.dish_id)
+            }
+            else{
+                dish_id = sessionStorage.getItem('active_dish')
+            }
             var dish = ''
             const params = {
-                dish_id : this.props.location.props.dish_id
+                dish_id : dish_id
             }
             axios.get(`${backendServer}/dish/getdish`, { params })
             .then(response => {
@@ -43,7 +62,7 @@ class ItemPage extends Component{
                         category: dish.Category || this.state.category,
                         price: dish.Price || this.state.price,
                         meal_type: dish.MealType || this.state.meal_type,
-                        user_image: dish.DishImage || this.state.user_image,
+                        dish_image: dish.DishImage
                     };
                     this.setState(dishData);
                 }
@@ -54,19 +73,6 @@ class ItemPage extends Component{
             })
 
            
-
-            // var dishData = {
-            //     dish_id: dish.DishId || this.state.dish_id,
-            //     dish_name: dish.DishName || this.state.dish_name,
-            //     description: dish.Description || this.state.description,
-            //     category: dish.Category || this.state.category,
-            //     price: dish.Price || this.state.price,
-            //     meal_type: dish.MealType || this.state.meal_type,
-            //     user_image: dish.DishImage || this.state.user_image,
-            // };
-            // console.log('dish', dishData);
-
-            // this.setState(dishData);
 
 
         }
@@ -81,13 +87,27 @@ class ItemPage extends Component{
         })
     }
 
-    onUserImageChange = (e) => {
+    onImageChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.files[0],
-            userFileText: e.target.files[0].name
+            dish_image: e.target.files[0]
         });
     }
-
+    onUpload = (e) => {
+        console.log("on upload");
+        const formData = new FormData();
+        console.log(this.state.dish_image);
+        formData.append("file", this.state.dish_image);
+        axios.post(`http://localhost:3001/upload/dish/${this.state.dish_id}`,
+            formData,
+            {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            },
+            }
+        );
+        alert("Photo uploaded!")
+        window.location.reload(false);
+    }
     updateItem = (e) =>
     {
         let item_data = {
@@ -148,64 +168,26 @@ class ItemPage extends Component{
     };
     
 
-    onUserUpload = (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append("dish_image", this.state.user_file);
-        const uploadConfig = {
-            headers: {
-                "content-type": "multipart/form-data"
-            }
-        };
-        axios.post(`http://localhost:3001/upload/dish/1`, formData, uploadConfig)
-            .then(response => {
-                alert("Image uploaded successfully!");
-                this.setState({
-                    userFileText: "Choose file...",
-                    user_image: response.data
-                });
-            })
-            .catch(err => {
-                console.log("Error", err);
-            });
-    }
 
     render() {
-        var userImageSrc, title,
-            userFileText = this.state.userFileText || "Choose image..";
            
-
-        // if (this.state) {
-        //      axios.get(`http://localhost:3001/image/dish/${this.state.user_image}`).then(response =>{
-                 
-        //          userImageSrc = response;
-        //          console.log(userImageSrc);
-        //     });
-        //     title = this.state.dishName;
-
-        // }
         return (
             <div>
+                <Navigationbar />
+
                 <Container fluid={true}>
                     <Row>
-                        <Col xs={6} md={4}>
-                                <center>
-                                    <Card style={{ width: '18rem' }}>
-                                        <Card.Img variant="top" src={userImageSrc} />
-                                        <Card.Body>
-                                            <Card.Title><h3>{title}</h3></Card.Title>
-                                        </Card.Body>
-                                    </Card>
-                                    <form><br /><br /><br />
-                                        <div class="custom-file" style={{ width: "80%" }}>
-                                            <input type="file" class="custom-file-input" name="user_file" accept="image/*" onChange={this.onUserImageChange} required/>
-                                            <label class="custom-file-label" for="user-file">{userFileText}</label>
-                                        </div><br /><br />
-                                        <Button type="submit" variant="primary" onClick={this.onUserUpload}>Upload</Button>
-                                    </form>
-                                </center>
-                                
-                        </Col>
+                    <Col xs={6} md={4}>
+                            <center>
+                                <Card style={{ width: '18rem' }}>
+                                    <Card.Img variant="top" src={this.state.dish_image} />
+                                </Card>
+                                <input type ="file" name="dish_image" accept="image/*" onChange = {this.onImageChange}/>
+                                <Button type="submit" variant="primary" onClick={this.onUpload}>Upload</Button>
+                            </center>
+                            
+                    </Col>
+
                         <Col>
                             <h4>Add Item</h4>
                             <br />

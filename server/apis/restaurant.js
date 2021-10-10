@@ -66,7 +66,7 @@ router.get('/getRestaurants', (req, res) => {
     console.log(req);
     if(!req.query.search_string){
         var sql_query = `SELECT DISTINCT \
-        r.RestId, r.RestName, r.RestEmail, r.RestCity, r.RestPhone, r.StartTime, r.EndTime, r.RestType\
+        r.RestId, r.RestName, r.RestEmail, r.RestCity, r.RestPhone, r.StartTime, r.EndTime, r.RestType, r.RestImage\
         FROM Restaurant r \
         LEFT OUTER JOIN Dish d \
         ON d.RestId = r.RestId \
@@ -75,14 +75,15 @@ router.get('/getRestaurants', (req, res) => {
     else{
         const search_string = '%' + req.query.search_string + '%'
         var sql_query = `SELECT DISTINCT \
-        r.RestId, r.RestName, r.RestEmail, r.RestCity, r.RestPhone, r.StartTime, r.EndTime, r.RestType\        
+        r.RestId, r.RestName, r.RestEmail, r.RestCity, r.RestPhone, r.StartTime, r.EndTime, r.RestType, r.RestImage\        
         FROM Restaurant r \
         LEFT OUTER JOIN Dish d \
         ON d.RestId = r.RestId \
         WHERE (d.DishName LIKE '${search_string}' \
         OR d.Description LIKE '${search_string}' \
         OR r.RestName LIKE '${search_string}' \
-        OR r.RestCity LIKE '${search_string}' )\
+        OR r.RestCity LIKE '${search_string}' \
+        OR d.Category LIKE '${search_string}' )\
         ORDER BY FIELD(RestCity,'${req.query.cust_city}'
         ) Desc;`
     }
@@ -178,7 +179,7 @@ router.post('/addFav', (req, res) => {
 
 router.get('/getFav/:cust_id?', (req, res) => {
 
-    var sql_query = `SELECT r.RestId , r.RestName, r.RestPhone, r.StartTime, r.EndTime  \
+    var sql_query = `SELECT r.RestId , r.RestName, r.RestPhone, r.StartTime, r.EndTime ,r.RestType, r.RestImage \
     FROM Favourites f  \
     INNER JOIN Restaurant r\
     ON f.RestId = r.RestId
