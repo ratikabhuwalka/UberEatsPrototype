@@ -64,6 +64,28 @@ function Card({ res}) {
             }
         }
     }
+
+    function FavButton(){
+        let favourites = []
+        favourites.push(...JSON.parse(localStorage.getItem("favourites")));
+        let index = favourites.findIndex((rest => rest.RestId === rest_id));
+            console.log(index)
+            if (index !== -1) {
+                return(
+                <div>
+                    <Button variant='success' name='res'>Favourite</Button>
+                </div>
+                )
+            }
+            else{
+                return(<div>
+                    <Button variant='warning' name='res' onClick={addToFav}>Add to Favourite</Button>
+                </div>)
+
+            }
+        }
+
+
     return (<>
         
         <div className='card'>
@@ -76,9 +98,7 @@ function Card({ res}) {
                 <h4>{rest_start} - {rest_end}</h4>
             </div>
 
-        <div>
-            <Button variant='primary' name='res' onClick={addToFav}>Save</Button>
-        </div>
+            {FavButton()}
         </div>
         
         </>

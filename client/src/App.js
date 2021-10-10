@@ -14,6 +14,7 @@ import Checkout from './Components/Cart/Checkout';
 import Order from './Components/Order/CustOrderPage';
 import RestOrder from './Components/Order/RestOrderPage';
 import ItemPage from './Components/HomePage/ItemPage';
+import Favourite from './Components/HomePage/Favourites';
 import { Container } from 'react-bootstrap'
 import { Provider } from 'react-redux';
 import store from './store';
@@ -38,6 +39,8 @@ function App() {
             <Route exact path ='/customerOrder' component = {Order} />
             <Route exact path ='/restaurantOrder' component = {RestOrder} />
             <Route exact path ='/itempage' component = {ItemPage} />
+            <Route exact path ='/favourites' component = {Favourite} />
+
 
 
           </Switch>
