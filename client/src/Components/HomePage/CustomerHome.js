@@ -38,14 +38,18 @@ export default class CustomerHome extends React.Component {
              .then(response => {
                 if (response.data) {
                     var res = JSON.stringify(response.data)
-
-                    if (response.data[0].search_result === 'NO RECORD') {
+                    if (response.data.length===0) {
                         this.setState({
                             noRecord: true,
-                            search_input: ""
+                            search_input: "",
+                            restaurantList: res,
+                            displayRestaurants: res
+                            
+                            
                         });
                     }
                     else {
+                        console.log("inside else")
                         this.setState({
                             restaurantList: res,
                             displayRestaurants: res,
@@ -116,6 +120,10 @@ export default class CustomerHome extends React.Component {
                 displayRestaurants: JSON.stringify(filteredList)
             });
         }
+
+        onMealTypeSelect = (e) => {
+            this.get_rest_call(localStorage.getItem('city'), e.target.text);
+        }
     
         render() {
             var restaurantCards = null,
@@ -173,18 +181,30 @@ export default class CustomerHome extends React.Component {
                                     name="search_input"
                                     onChange={this.onChange}
                                 />
+                                {"  "}
                                 <InputGroup.Append>
-                                    <Button variant="primary" type="submit">Search</Button>
+                                {"   "} <Button variant="primary" type="submit">Search</Button>
                                 </InputGroup.Append>
                                 {"    "}
                                 <DropdownButton
                                 as={InputGroup.Append}
                                 variant="outline-secondary"
-                                title="Type"
+                                title="Restaurant Type"
                                 id="input-group-dropdown-2">
                                 
                                 <Dropdown.Item onClick={this.onTypeSelect}>Delivery</Dropdown.Item>
                                 <Dropdown.Item onClick={this.onTypeSelect}>Pickup</Dropdown.Item>
+                                </DropdownButton>
+
+                                <DropdownButton
+                                as={InputGroup.Append}
+                                variant="outline-secondary"
+                                title="Meal Type"
+                                id="input-group-dropdown-2">
+                                
+                                <Dropdown.Item onClick={this.onMealTypeSelect}>Veg</Dropdown.Item>
+                                <Dropdown.Item onClick={this.onMealTypeSelect}>Non Veg</Dropdown.Item>
+                                <Dropdown.Item onClick={this.onMealTypeSelect}>Vegan</Dropdown.Item>
                                 </DropdownButton>
 
                             </InputGroup>
