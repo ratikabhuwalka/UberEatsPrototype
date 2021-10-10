@@ -93,7 +93,7 @@ class Cart extends Component {
     };
 
     emptyCart = () => {
-        localStorage.deleteItem("cart");
+        localStorage.removeItem("cart");
         this.setState({
             cart: []
         });
