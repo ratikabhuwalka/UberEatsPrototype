@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import backendServer from "../../webConfig";
-import { Button, Alert, Container, Table } from "react-bootstrap";
+import { Button, Alert, Container, Table , DropdownButton, InputGroup, Dropdown} from "react-bootstrap";
 import Navigationbar from '../NavigationBar.js';
 import axios from 'axios';
 
@@ -10,6 +10,13 @@ class Checkout extends Component {
         super(props);
         // this.getUserProfile();
         this.placeOrder = this.placeOrder.bind(this);
+        this.onModeSelect = this.onModeSelect.bind(this);
+
+        this.setState(
+            {
+                mode: 'Mode'
+            }
+        )
     }
 
     componentWillMount() {
@@ -25,7 +32,12 @@ class Checkout extends Component {
                 total: this.props.location.state.total
             });
         }
-    };
+            this.setState(
+                {
+                    mode: 'Mode'
+                }
+             )
+        };
 
     
 
@@ -54,6 +66,7 @@ class Checkout extends Component {
             delivery: this.state.delivery,
             tax: (this.state.tax * this.state.sub_total / 100).toFixed(2),
             final: this.state.total,
+            orderType : this.state.mode,
             cart_items : JSON.stringify(this.state.cart_items)
         }
 
@@ -76,11 +89,20 @@ class Checkout extends Component {
             });
     };
 
+    onModeSelect = (e) => {
+        this.setState (
+            {
+                mode : e.target.text
+            }
+        )
+    }
+
     render() {
         let redirectVar = null,
             order = null,
             restaurant = null,
-            message = null;
+            message = null,
+            mode_dropdown = null;
             console.log(this.state.restaurant);
 
 
@@ -96,6 +118,30 @@ class Checkout extends Component {
         else if (!localStorage.getItem("cart") || localStorage.getItem("cart").length === 0) {
             redirectVar = <Redirect to="/cart" />
         }
+        if (this.state && this.state.restaurant){
+
+                if(this.state.restaurant.RestType === 'Both')
+                {
+                 mode_dropdown = () => {
+                    return (
+                        <>
+                        <Dropdown.Item href="#" onClick={this.onModeSelect}>Delivery</Dropdown.Item>
+                        <Dropdown.Item href="#" onClick={this.onModeSelect}>Pickup</Dropdown.Item>
+                        </>
+                    )
+                }
+            }
+                else{
+                    mode_dropdown = () => {
+                    return (
+                        <>
+                        <Dropdown.Item href="#" onClick={this.onModeSelect}>{this.state.restaurant.RestType}</Dropdown.Item>
+                        </>
+                    )
+
+                }
+                }
+            }
 
         if (this.state) {
             restaurant = (
@@ -128,7 +174,8 @@ class Checkout extends Component {
                 </div>
             );
 
-
+            
+            
 
             order = (
 
@@ -172,13 +219,25 @@ class Checkout extends Component {
                                     <td colSpan="4">Contact Number</td>
                                     <td align="center">{this.state.phone_number}</td>
                                 </tr>
+                                <tr>
+                                    <td>Select mode of Delivery</td>
+                                    <td><DropdownButton as={InputGroup.Append}
+                                                        variant="outline-secondary"
+                                                        title={this.state.mode}
+                                                        id="input-group-dropdown-2">
+                                                            {mode_dropdown()}
+                                        </DropdownButton>
+                                    </td>
+                                
+                                </tr>
                             </tbody>
                         </Table>
                         <div>
+                               
                         <center>
                             <br/> <br/> <br/> <br/>
                             <Button variant="success" onClick={this.placeOrder}>Confirm Order</Button>&nbsp; &nbsp;
-                            <Button variant="secondary" href="/home">Cancel</Button>
+                            <Button variant="secondary" href="/cart">Cancel</Button>
                         </center>
                         
                         </div>
