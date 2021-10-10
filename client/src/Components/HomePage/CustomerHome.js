@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 //import backendServer from "../../webConfig";
-import RestaurantCard from "./RestaurantCard";
 import Navigationbar from "../NavigationBar"
-import Header from '../LandingPage/Header';
 import Card from "./Card"
 import Axios from 'axios'
 
@@ -24,29 +22,30 @@ export default class CustomerHome extends React.Component {
     
             this.onChange = this.onChange.bind(this);
             this.onSearch = this.onSearch.bind(this);
-            //this.onCuisineSelect = this.onCuisineSelect.bind(this);
+            this.onTypeSelect = this.onTypeSelect.bind(this);
         }
         
-       get_rest_call(search_param = null) {
+       get_rest_call(cust_city, search_param = null) {
         var url = 'http://localhost:3001/restaurant/getRestaurants'
-        if(search_param){
-            url = url +'?search_string='+search_param
+        let params = {
+            search_string : search_param,
+            cust_city : cust_city
         }
-        axios.get(url)
+        // if(search_param){
+        //     url = url +'?search_string='+search_param
+        // }
+        axios.get(url, {params})
              .then(response => {
                 if (response.data) {
                     var res = JSON.stringify(response.data)
-                    console.log(typeof(res))
 
-                    if (response.data[0].search_result === 'NO_RECORD') {
+                    if (response.data[0].search_result === 'NO RECORD') {
                         this.setState({
                             noRecord: true,
                             search_input: ""
                         });
                     }
                     else {
-                        console.log("Inside else");
-
                         this.setState({
                             restaurantList: res,
                             displayRestaurants: res,
@@ -85,7 +84,7 @@ export default class CustomerHome extends React.Component {
             }
 
         componentDidMount() {
-            this.get_rest_call();
+            this.get_rest_call(localStorage.getItem('city'));
             if(localStorage.getItem('user_id')){
                 this.get_cust_fav(localStorage.getItem('user_id'));
             }
@@ -103,27 +102,32 @@ export default class CustomerHome extends React.Component {
             e.preventDefault();
             if (this.state) {
                 var searchInput = typeof this.state.search_input === "undefined" || this.state.search_input === "" ? "_" : this.state.search_input;
-                this.get_rest_call(searchInput);
+                this.get_rest_call(localStorage.getItem('city'), searchInput);
             }
         }
     
-        // onCuisineSelect = (e) => {
-        //     var filteredList = this.state.restaurantList.filter(restaurant => restaurant.res_cuisine === e.target.text);
-        //     this.setState({
-        //         displayRestaurants: filteredList
-        //     });
-        // }
+        onTypeSelect = (e) => {
+            var arr = JSON.parse(this.state.restaurantList);
+            console.log('array after parse', arr);
+            console.log(typeof(arr));
+            var filteredList = arr.filter(restaurant => restaurant.RestType=== e.target.text);
+            console.log('array after filtering',filteredList);
+            this.setState({
+                displayRestaurants: JSON.stringify(filteredList)
+            });
+        }
     
         render() {
             var restaurantCards = null,
                 noRecordMessage = null;
-            // if (this.state && this.state.cuisineList) {
-            //     cuisineDropdown = this.state.cuisineList.map(cuisine => {
-            //         return (
-            //             <Dropdown.Item href="#" onClick={this.onCuisineSelect}>{cuisine}</Dropdown.Item>
-            //         )
-            //     })
-            // }
+                
+            if (this.state && this.state.cuisineList) {
+                // cuisineDropdown = this.state.cuisineList.map(cuisine => {
+                //     return (
+                //         <Dropdown.Item href="#" onClick={this.onCuisineSelect}>{cuisine}</Dropdown.Item>
+                //     )
+                // })
+            }
     
             if (this.state && this.state.displayRestaurants) {
                 var arr = JSON.parse(this.state.displayRestaurants);
@@ -163,7 +167,7 @@ export default class CustomerHome extends React.Component {
                         <form onSubmit={this.onSearch}>
                             <InputGroup style={{ width: '50%' }} size="lg">
                                 <FormControl
-                                    placeholder="Pizza, Pasta, Noodles.."
+                                    placeholder="Restaurant Name\ Dish Name \ City "
                                     aria-label="Search Restaurants"
                                     aria-describedby="basic-addon2"
                                     name="search_input"
@@ -172,6 +176,16 @@ export default class CustomerHome extends React.Component {
                                 <InputGroup.Append>
                                     <Button variant="primary" type="submit">Search</Button>
                                 </InputGroup.Append>
+                                {"    "}
+                                <DropdownButton
+                                as={InputGroup.Append}
+                                variant="outline-secondary"
+                                title="Type"
+                                id="input-group-dropdown-2">
+                                
+                                <Dropdown.Item onClick={this.onTypeSelect}>Delivery</Dropdown.Item>
+                                <Dropdown.Item onClick={this.onTypeSelect}>Pickup</Dropdown.Item>
+                                </DropdownButton>
 
                             </InputGroup>
                         </form>

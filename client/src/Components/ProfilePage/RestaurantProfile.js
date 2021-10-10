@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Container, Col, Row, Form, Button, ButtonGroup, Card } from 'react-bootstrap';
+import Navigationbar from '../NavigationBar'
 import backendServer from "../../webConfig";
 
 class RestaurantProfile extends Component {
@@ -13,9 +14,9 @@ constructor(props) {
         read_only : true
     };
     this.onChange = this.onChange.bind(this);
-    this.onUserImageChange = this.onUserImageChange.bind(this);
+    this.onImageChange = this.onImageChange.bind(this);
     this.updateRestaurant = this.updateRestaurant.bind(this);
-    this.onUserUpload = this.onUserUpload.bind(this);
+    this.onUpload = this.onUpload.bind(this);
 }
 
 componentWillMount() 
@@ -71,13 +72,6 @@ onChange = (e) => {
     })
 }
 
-onUserImageChange = (e) => {
-    this.setState({
-        [e.target.name]: e.target.files[0],
-        userFileText: e.target.files[0].name
-    });
-}
-
 onImageChange = (e) => {
     this.setState({
         rest_image: e.target.files[0]
@@ -116,29 +110,6 @@ updateRestaurant = (e) =>
         });
 }
 
-onUserUpload = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("dish_image", this.state.user_file);
-    const uploadConfig = {
-        headers: {
-            "content-type": "multipart/form-data"
-        }
-    };
-    axios.post(`http://localhost:3001/upload/dish/1`, formData, uploadConfig)
-        .then(response => {
-            alert("Image uploaded successfully!");
-            this.setState({
-                userFileText: "Choose file...",
-                user_image: response.data
-            });
-        })
-        .catch(err => {
-            console.log("Error", err);
-        });
-};
-
-
 onUpload = (e) => {
     console.log("on upload");
     const formData = new FormData();
@@ -158,6 +129,7 @@ render(){
     
     return (
         <div>
+            <Navigationbar />
             <Container fluid={true}>
                 <Row>
                     <Col xs={6} md={4}>
