@@ -3,8 +3,6 @@ import axios from 'axios';
 import backendServer from "../../webConfig";
 import Navigationbar from "../NavigationBar"
 import Card from "./Card"
-import Axios from 'axios'
-
 import { InputGroup, FormControl, Button, DropdownButton, Dropdown, Alert, Col, Row } from 'react-bootstrap';
 
 //import Banner
