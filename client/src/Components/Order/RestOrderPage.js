@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import backendServer from "../../webConfig";
-import {Modal, Button, Alert, Container, Table, Dropdown, DropdownButton,InputGroup } from "react-bootstrap";
+import {Button, Alert, Container, Table, Dropdown, DropdownButton,InputGroup } from "react-bootstrap";
 import Navigationbar from '../NavigationBar.js';
 import axios from 'axios';
-import moment from 'moment';
 
 class RestOrder extends Component {
     constructor(props) {

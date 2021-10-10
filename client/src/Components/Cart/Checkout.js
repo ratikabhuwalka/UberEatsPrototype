@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import backendServer from "../../webConfig";
-import { Button, Alert, Container, Table , DropdownButton, InputGroup, Dropdown} from "react-bootstrap";
+import { Button, Container, Table , DropdownButton, InputGroup, Dropdown} from "react-bootstrap";
 import Navigationbar from '../NavigationBar.js';
 import axios from 'axios';
 
@@ -101,7 +101,6 @@ class Checkout extends Component {
         let redirectVar = null,
             order = null,
             restaurant = null,
-            message = null,
             mode_dropdown = null;
             console.log(this.state.restaurant);
 
@@ -113,7 +112,7 @@ class Checkout extends Component {
             redirectVar = <Redirect to="/customerOrder" />
         }
         else if (this.state.message === "ORDER ERROR") {
-            message = <Alert variant="warning">There was some error processing your order!</Alert>
+           // message = <Alert variant="warning">There was some error processing your order!</Alert>
         }
         else if (!localStorage.getItem("cart") || localStorage.getItem("cart").length === 0) {
             redirectVar = <Redirect to="/cart" />
