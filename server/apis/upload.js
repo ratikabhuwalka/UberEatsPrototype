@@ -4,7 +4,9 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const db = require('../db_config.js');
-
+const multiparty = require('multiparty');
+const fileType = require('file-type')
+const uploadFile = require('../s3_config');
 // const userstorage = multer.diskStorage({
 //     destination: path.join(__dirname, '..') + '/public/uploads/users',
 //     filename: (req, file, cb) => {
@@ -106,5 +108,44 @@ router.post("/dish/:dish_id", (req, res) => {
                 }
         }});
     });
+
+
+
+router.post("/restaurant/:rest_id", async (req, res) => {
+    const rest_id = req.params.rest_id;
+    const form = new multiparty.Form();
+    form.parse(req, async (error, fields, files) => {
+      if (error) {
+        return res.status(500).send(error);
+      }
+      try {
+        console.log(form.file)
+        const path = files.file[0].path;
+        const buffer = fs.readFileSync(path);
+        const type = await fileType.fromBuffer(buffer);
+        const fileName = `restaurantImages/${rest_id}`;
+        const data = await uploadFile(buffer, fileName, type);
+        console.log("Success: ", data);
+        if(data){
+          var sql = "Update Restaurant \
+                     Set RestImage = ?\
+                     Where RestId = ?";
+          db.query(sql,[data.Location, rest_id],
+                 (err,result)=>{
+                    if(err){
+                      console.log(err);
+                    }
+                    else{
+                      console.log("update successful");
+                    }
+            });
+        }
+        return res.status(200).send(data);
+      } catch (err) {
+        console.log("Upload Error: ", err);
+        return res.status(500).send(err);
+      }
+    });
+  });
 
 module.exports = router;

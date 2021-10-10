@@ -60,6 +60,7 @@ class Login extends Component {
             localStorage.setItem("is_owner", false);
             localStorage.setItem("user_id", this.props.user.CustId);
             localStorage.setItem("name", this.props.user.CustName);
+            localStorage.setItem("city", this.props.user.CustCity);
             redirectVar = <Redirect to="/customerHome" />
 
         }

@@ -62,26 +62,29 @@ router.get('/getRestaurant/:rest_id?', (req, res) => {
 
 
 //Restaurant search
-router.get('/getRestaurants/:search_string?', (req, res) => {
+router.get('/getRestaurants', (req, res) => {
+    console.log(req);
     if(!req.query.search_string){
-        var sql_query = "SELECT DISTINCT \
-        r.RestId, r.RestName, r.RestEmail, r.RestCity, r.RestPhone, r.StartTime, r.EndTime\
+        var sql_query = `SELECT DISTINCT \
+        r.RestId, r.RestName, r.RestEmail, r.RestCity, r.RestPhone, r.StartTime, r.EndTime, r.RestType\
         FROM Restaurant r \
         LEFT OUTER JOIN Dish d \
         ON d.RestId = r.RestId \
-       ;"    
+        ORDER BY FIELD(RestCity,'${req.query.cust_city}') Desc;`  
     }
     else{
         const search_string = '%' + req.query.search_string + '%'
         var sql_query = `SELECT DISTINCT \
-        r.RestId, r.RestName, r.RestEmail, r.RestCity, r.RestPhone, r.StartTime, r.EndTime\        
+        r.RestId, r.RestName, r.RestEmail, r.RestCity, r.RestPhone, r.StartTime, r.EndTime, r.RestType\        
         FROM Restaurant r \
         LEFT OUTER JOIN Dish d \
         ON d.RestId = r.RestId \
         WHERE (d.DishName LIKE '${search_string}' \
         OR d.Description LIKE '${search_string}' \
         OR r.RestName LIKE '${search_string}' \
-        OR r.RestCity LIKE '${search_string}' );`
+        OR r.RestCity LIKE '${search_string}' )\
+        ORDER BY FIELD(RestCity,'${req.query.cust_city}'
+        ) Desc;`
     }
     
     db.query(sql_query, 
