@@ -6,14 +6,15 @@ import Axios from 'axios'
 
 import './Card.css'
 function Card({ res}) {
-    var src= 'https://1000logos.net/wp-content/uploads/2021/04/Uber-Eats-logo-500x281.png'
+    
     res =res.restaurant
     var rest_name=res.RestName
     var rest_id=res.RestId 
     var rest_contact=res.RestPhone
     var rest_start = res.StartTime
     var rest_end = res.EndTime
-
+    var src= res.RestImage
+    console.log(src);
 
     const postFav = (cust_id, rest_id) => {
         Axios.post('http://localhost:3001/restaurant/addFav',{
@@ -62,12 +63,15 @@ function Card({ res}) {
 
                 
             }
+            window.location.reload(false);
         }
     }
 
     function FavButton(){
         let favourites = []
-        favourites.push(...JSON.parse(localStorage.getItem("favourites")));
+        if(localStorage.getItem("favourites")){
+             favourites.push(...JSON.parse(localStorage.getItem("favourites")));
+        }
         let index = favourites.findIndex((rest => rest.RestId === rest_id));
             console.log(index)
             if (index !== -1) {
@@ -89,14 +93,14 @@ function Card({ res}) {
     return (<>
         
         <div className='card'>
-        <Link to={{pathname: '/restaurant', state : res }}>
-            <img src={src} alt="" /> 
-        </Link>
+        <Link to={{pathname: '/restaurant', state : res }} style={{ textDecoration: 'none' }}>
+            <img src={src} alt="" width="300" height="250" /> 
             <div className="card__info">
                 <h2>{rest_name}</h2>
                 <h3>{rest_contact}</h3>
                 <h4>{rest_start} - {rest_end}</h4>
             </div>
+        </Link>
 
             {FavButton()}
         </div>

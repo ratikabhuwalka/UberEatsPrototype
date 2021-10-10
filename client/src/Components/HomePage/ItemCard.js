@@ -7,15 +7,13 @@ import backendServer from "../../webConfig";
 
 
 function ItemCard({ res}) {
-    var img= 'https://1000logos.net/wp-content/uploads/2021/04/Uber-Eats-logo-500x281.png'
-    console.log(res)
+    
     res=res.item
-    res.img = img
     var dish_id = res.DishId
     var title=res.DishName
     var description=res.Description 
     var price=res.Price
-
+    var img= res.DishImage
 
     const [show, setShow] = useState(false);
     let cart = [];
@@ -114,8 +112,9 @@ function ItemCard({ res}) {
         {
             return (<>
                 <center>
+                Quantity:
                 <input type="number"  name = "quantity"  value = { quantity} defaultValue= {cart_quant} min="0" max="20" step="1" pattern="[0-9]*"  onChange = {e => setQuantity(e.target.value)} />
-            
+                {'     '}
                 <Button variant="primary" onClick={addToCart}>
                 Add to cart
                 </Button>
@@ -127,11 +126,10 @@ function ItemCard({ res}) {
             return (<>
                 <center>
                 <Link to={{pathname: "/itempage", props:{type:'EDIT', dish_id : dish_id  }}}>
-                <Button variant="primary">
-                Edit
-                </Button>
+                <Button variant="primary">Edit</Button>
                 </Link>
-                <Button variant="secondary" onClick={deleteItem}>
+                {'    '}
+                <Button variant="danger" onClick={deleteItem}>
                 Delete
                 </Button>
                 </center>
@@ -143,7 +141,7 @@ function ItemCard({ res}) {
 
     return (<>
         <div className='card'>
-            <img src={img} alt="" onClick = {handleShow} />
+            <img src={img} alt="" width="50" height="50" onClick = {handleShow} />
             <div className="card__info">
                 <h2>{title}</h2>
                 <h4>{description}</h4>
@@ -154,7 +152,7 @@ function ItemCard({ res}) {
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body><img src={img} alt="" /></Modal.Body>
+        <Modal.Body><img src={img} alt="" width="470" height="400"/></Modal.Body>
         <Modal.Footer>
         {footer()}
         </Modal.Footer>
