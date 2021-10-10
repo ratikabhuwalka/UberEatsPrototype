@@ -1,14 +1,15 @@
 import { USER_LOGIN, USER_LOGOUT } from "./types";
 import axios from "axios";
+import backendServer from "../webConfig";
 
 export const userLogin = (loginData) => dispatch => {
     axios.defaults.withCredentials = true;
     let url=""
     if(loginData.is_owner){
-        url = `http://localhost:3001/restaurant`
+        url = `${backendServer}/restaurant`
     }
     else{
-        url = `http://localhost:3001/customer`
+        url = `${backendServer}/customer`
     }
     axios.get(url,{params: loginData})
         .then(response => dispatch({
