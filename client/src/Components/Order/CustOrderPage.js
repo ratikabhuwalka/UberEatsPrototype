@@ -173,18 +173,20 @@ class Order extends Component {
 
     if (this.state && this.state.displayOrders) {
         orders = this.state.displayOrders;
+        if(this.state.displayOrders.length===0){
+            message = <Alert variant="warning">You do not have any orders made in the past.</Alert>}
         if (orders.length > 0) {
             orderRows = orders.map(order => {
 
                 return (
                     
                         <tr>
-                            <td colSpan="4"><h5>{order.RestName}</h5>
-                                ${order.Final}
-                                <br/> {order.Timestamp} {'     '}
-                                {order.Status}
-
-                            </td>
+                             <td><h5>{order.RestName}</h5></td>
+                             <td>Mode Selected <br/><b>{order.OrderType}</b></td>
+                            <td>Final Price<br/><b>${order.Final}</b></td> 
+                            <td>Time <br/><b>{order.Timestamp}</b></td>
+                            <td>Status <br/><b>{order.Status}</b></td>
+                            
                             <td> <a href="#" onClick= {() => this.getOrderReceipt(order.OrderId)}> view receipt </a></td>
 
                         </tr>
