@@ -132,6 +132,7 @@ onUpload = (e) => {
         },
         }
     );
+    alert("Photo Uploaded");
 }
 
 render(){

@@ -150,6 +150,7 @@ class ItemPage extends Component{
     }
 
     addItem = (e) => {
+        e.preventDefault()
         let item_data = {
             "restId": localStorage.getItem("user_id"),
             "price": this.state.price,

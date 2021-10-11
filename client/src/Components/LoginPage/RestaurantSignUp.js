@@ -95,11 +95,15 @@ class RestaurantSignUp extends Component{
                     <Countries ref="country" class="form-control"name="restCountry" empty=" -- Select country --" flags = {true } onChange={this.onChange} /><br/>
 
                 </div>
-
-                <div class="form-group">
-                    <input type = "text" class="form-control" name="restType" placeholder="Restaurant Type"
-                        onChange = {this.onChange}/> <br/> 
+                <div class = 'form-group'>
+                <label for="restType">Rest Type</label>
+                    <select id="restType" name="restType" onChange={this.onChange} class="form-control">
+                        <option value="Delivery">Delivery</option>
+                        <option value="Pickup">Pickup</option>
+                        <option value="Both">Both</option>
+                    </select>
                 </div>
+                <br/>
                 <div class="form-group">
                     <input type = "text" name="startTime" class="form-control" placeholder="Start Time"
                         onChange = {this.onChange}/> <br/>

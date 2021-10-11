@@ -118,14 +118,17 @@ class Restaurant extends Component {
             <div>
                 <NavigationBar/>
                 <div>
-                    <h1>{restData.rest_name}</h1>                 
+                    <tr><h1>{restData.rest_name}</h1>
+                    <h3> {restData.rest_city}</h3>     </tr>            
                     <div><img src = {restData.rest_image} alt="Restaurant" style = {{width:"100%", height:"300px", flex :"1"}}></img></div>
                     <div>
-                            <h5>
-                            <tr><td>Contact: {restData.rest_phone} {'   '} </td>
-                                <td>Email: {restData.rest_email}</td></tr>
-                            <tr><td>Timing: {restData.start_time} - {restData.end_time}</td></tr>
-                            </h5>
+                       
+                            <tr><td>Contact: {restData.rest_phone} {'    '}</td>
+                                <td>Email: {restData.rest_email} {'    '}</td></tr>
+                            <tr>
+                            <td>Timing: {restData.start_time} - {restData.end_time}</td>
+                            </tr>
+                          
                     </div>
 
 

@@ -101,6 +101,7 @@ function Card({ res}) {
                 <h2>{rest_name}</h2>
                 <h3>{rest_contact}</h3>
                 <h4>{rest_start} - {rest_end}</h4>
+                <h4>{res.RestCity}</h4>
             </div>
         </Link>
 
