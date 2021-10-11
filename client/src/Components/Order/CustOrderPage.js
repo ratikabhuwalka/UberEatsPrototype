@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import backendServer from "../../webConfig";
-import {Modal, Button, Alert, Container, Table } from "react-bootstrap";
+import {Modal, Button, Alert, Container, Table, DropdownButton, Dropdown, InputGroup } from "react-bootstrap";
 import Navigationbar from '../NavigationBar.js';
 import axios from 'axios';
 import moment from 'moment';
@@ -38,6 +38,26 @@ class Order extends Component {
        
     };
 
+
+    onStatusSelect = (e) => {
+        if (this.state && this.state.orders){
+        var filteredList
+        if(e.target.text === "Completed"){
+            filteredList = this.state.orders.filter(order => order.Status=== "DELIVERED" || order.Status=== "PICKED UP");
+        }
+        else if(e.target.text === "New") {
+            filteredList = this.state.orders.filter(order => order.Status!== "DELIVERED" && order.Status!== "PICKED UP")
+        }
+        else{
+            filteredList = this.state.orders
+        }
+        this.setState({
+            displayOrders: filteredList
+            });
+        }
+    }
+
+
     getCustomerOrders = () => {
         const params = {
             cust_id : localStorage.getItem('user_id')
@@ -46,7 +66,8 @@ class Order extends Component {
         .then(response => {
             if(response.data[0]){
                 this.setState({
-                    orders: response.data
+                    orders: response.data,
+                    displayOrders: response.data
                 });
             }
         })
@@ -150,8 +171,8 @@ class Order extends Component {
       </Modal>);
     
 
-    if (this.state && this.state.orders) {
-        orders = this.state.orders;
+    if (this.state && this.state.displayOrders) {
+        orders = this.state.displayOrders;
         if (orders.length > 0) {
             orderRows = orders.map(order => {
 
@@ -185,6 +206,16 @@ class Order extends Component {
             <Container className="justify-content">
                 <h3>Your past orders</h3>
                 {message}
+                <DropdownButton
+                                as={InputGroup.Append}
+                                variant="outline-secondary"
+                                title="Order Status"
+                                id="input-group-dropdown-2">
+                                <Dropdown.Item onClick={this.onStatusSelect}>New</Dropdown.Item>
+                                <Dropdown.Item onClick={this.onStatusSelect}>Completed</Dropdown.Item>
+                                <Dropdown.Item onClick={this.onStatusSelect}>All</Dropdown.Item>
+
+                </DropdownButton>
                 <br/>
                 <div>
                 <Table style={{ width: "90%" }}>
