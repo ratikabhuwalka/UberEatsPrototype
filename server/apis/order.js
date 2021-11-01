@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passwordHash = require('password-hash');
-const db = require('../db_config.js');
+const db = require('../../kafka-backend/config/keys.js');
 const moment = require('moment');
 const { response } = require("express");
 

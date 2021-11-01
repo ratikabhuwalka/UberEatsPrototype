@@ -1,9 +1,9 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const express = require("express");
-const User = require("../models/User.js");
+const User = require("../../kafka-backend/models/User.js");
 const router = express.Router();
-const { secret_key } = require('../utils/config.js');
+const { secret_key } = require('../../kafka-backend/config/keys.js');
 
 //const { auth } = require("../utils/Passport");
 

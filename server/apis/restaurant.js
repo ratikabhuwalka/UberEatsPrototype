@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const passwordHash = require('password-hash');
-const db = require('../db_config.js');
+//const passwordHash = require('password-hash');
+//const db = require('../../kafka-backend/config/keys.js');
+var kafka = require("../kafka/client");
 
 //const pool = require('../pool.js');
 
@@ -9,30 +10,61 @@ const db = require('../db_config.js');
 // create new restaurant
 router.post('/', (req, res) => {
     console.log("Request reached!");
-    const restName = req.body.restName;
-    const restEmail = req.body.restEmail;
-    const restPass = passwordHash.generate(req.body.restPass);
-    const restPhone = req.body.restPhone;
-    const restCity = req.body.restCity;
-    const restCountry = req.body.restCountry;
-    const startTime = req.body.startTime;
-    const endTime = req.body.endTime;
-    const restType = req.body.restType;
+    var data = {
+        restName : req.body.restName,
+        restEmail : req.body.restEmail,
+        restPass : req.body.restPass,
+        restPhone : req.body.restPhone,
+        restCity : req.body.restCity,
+        restCountry : req.body.restCountry,
+        startTime : req.body.startTime,
+        endTime : req.body.endTime,
+        restType : req.body.restType,
+    };
+   
 
-
-    var sql_query = "INSERT INTO Restaurant (RestName, RestEmail, RestPass, RestPhone, RestCity, RestCountry, StartTime, EndTime, RestType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-    db.query(sql_query, [restName, restEmail, restPass, restPhone, restCity, restCountry, startTime, endTime, restType],
-        (err, result) => {
-            if (err) {
-                res.status(500);
-                console.log(err);
-                res.send("SQL error, Check log for more details");
-            } else {
-                res.status(200);
-                res.send("RESTAURANT ADDED");
-            }
+    kafka.make_request("add_restaurant", data, function (err, results) {
+        if (err) {
+          console.log("Inside err");
+          res.json({
+            status: "error",
+            msg: "System Error, Try Again.",
+          });
+        } else {
+          console.log(results);
+          if (results === "Restaurant Already Exists") {
+            res.status(404).json({ msg: "Restaurant Exists" });
+          } else {
+            console.log("Inside router post");
+            res.status(200).json({ msg: "Restaurant Created successfully" });
+          }
         }
-    );
+      });
+    
+
+    //   const restName = req.body.restName;
+    //   const restEmail = req.body.restEmail;
+    //   const restPass = passwordHash.generate(req.body.restPass);
+    //   const restPhone = req.body.restPhone;
+    //   const restCity = req.body.restCity;
+    //   const restCountry = req.body.restCountry;
+    //   const startTime = req.body.startTime;
+    //   const endTime = req.body.endTime;
+    //   const restType = req.body.restType;
+
+    // var sql_query = "INSERT INTO Restaurant (RestName, RestEmail, RestPass, RestPhone, RestCity, RestCountry, StartTime, EndTime, RestType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    // db.query(sql_query, [restName, restEmail, restPass, restPhone, restCity, restCountry, startTime, endTime, restType],
+    //     (err, result) => {
+    //         if (err) {
+    //             res.status(500);
+    //             console.log(err);
+    //             res.send("SQL error, Check log for more details");
+    //         } else {
+    //             res.status(200);
+    //             res.send("RESTAURANT ADDED");
+    //         }
+    //     }
+    // );
 
 });
 
@@ -231,32 +263,3 @@ router.post('/updaterest', (req, res) => {
 });
 
 module.exports = router;
-
-
-
-
-// router.post('/restaurant', (req, res) => {
-//     var hashedPassword = passwordHash.generate(req.body.password);
-//     let sql = `CALL Restaurant_Owner_put('${req.body.name}', '${req.body.res_name}', '${req.body.res_cuisine}', '${req.body.email_id}', '${hashedPassword}', '${req.body.res_zip_code}', '${req.body.address}', '${req.body.phone_number}');`;
-  
-//     pool.query(sql, (err, result) => {
-//       if (err) {
-//         res.writeHead(500, {
-//           'Content-Type': 'text/plain'
-//         });
-//         res.end("Error in Data");
-//       }
-//       if (result && result.length > 0 && result[0][0].status === 'USER_ADDED') {
-//         res.writeHead(200, {
-//           'Content-Type': 'text/plain'
-//         });
-//         res.end(result[0][0].status);
-//       }
-//       else if (result && result.length > 0 && result[0][0].status === 'USER_EXISTS') {
-//         res.writeHead(401, {
-//           'Content-Type': 'text/plain'
-//         });
-//         res.end(result[0][0].status);
-//       }
-//     });
-//   });

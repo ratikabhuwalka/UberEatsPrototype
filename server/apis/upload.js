@@ -3,10 +3,10 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const db = require('../db_config.js');
+const db = require('../../kafka-backend/config/keys.js');
 const multiparty = require('multiparty');
 const fileType = require('file-type')
-const uploadFile = require('../s3_config');
+const uploadFile = require('../../kafka-backend/config/s3_config');
 
 
 router.post("/restaurant/:rest_id", async (req, res) => {

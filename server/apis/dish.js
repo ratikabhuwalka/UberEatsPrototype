@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passwordHash = require('password-hash');
-const db = require('../db_config.js');
+const db = require('../../kafka-backend/config/keys.js');
 
 router.post('/adddish', (req, res) => {
     console.log("Add new Dish Request reached!");
