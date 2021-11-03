@@ -42,54 +42,82 @@ router.post('/', (req, res) => {
       });
     
 
-    //   const restName = req.body.restName;
-    //   const restEmail = req.body.restEmail;
-    //   const restPass = passwordHash.generate(req.body.restPass);
-    //   const restPhone = req.body.restPhone;
-    //   const restCity = req.body.restCity;
-    //   const restCountry = req.body.restCountry;
-    //   const startTime = req.body.startTime;
-    //   const endTime = req.body.endTime;
-    //   const restType = req.body.restType;
+});
 
-    // var sql_query = "INSERT INTO Restaurant (RestName, RestEmail, RestPass, RestPhone, RestCity, RestCountry, StartTime, EndTime, RestType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-    // db.query(sql_query, [restName, restEmail, restPass, restPhone, restCity, restCountry, startTime, endTime, restType],
+
+// login restaurant
+router.get('/', (req, res) => {
+    try{
+    var data = {
+        restEmail : req.query.restEmail,
+        restPass : req.query.restPass
+    }
+   
+    kafka.make_request("login_restaurant", data, function (err, results) {
+        if (err) {
+          console.log("Inside err");
+          res.json({
+            status: "error",
+            msg: "System Error, Try Again.",
+          });
+        } else {
+
+            console.log("Inside router post");
+            console.log(results);
+            res.status(200).send(results);
+        }
+      });
+    
+    } catch(error){
+        console.log("error:", error);
+        return res.status(500).json(error);
+    }
+});
+
+
+//Restaurant by id
+router.get('/getRestaurant/:rest_id?', (req, res) => {
+    // var sql_query = `SELECT * \
+    //     FROM Restaurant r \
+    //     WHERE RestId = ${rest_id}\
+    //    ;`   
+    
+    // db.query(sql_query, 
     //     (err, result) => {
     //         if (err) {
     //             res.status(500);
     //             console.log(err);
     //             res.send("SQL error, Check log for more details");
     //         } else {
+    //             res.send(result);
     //             res.status(200);
-    //             res.send("RESTAURANT ADDED");
     //         }
     //     }
     // );
 
-});
+    try{
 
-
-
-//Restaurant by id
-router.get('/getRestaurant/:rest_id?', (req, res) => {
-    let rest_id = req.query.rest_id
-    var sql_query = `SELECT * \
-        FROM Restaurant r \
-        WHERE RestId = ${rest_id}\
-       ;`   
-    
-    db.query(sql_query, 
-        (err, result) => {
-            if (err) {
-                res.status(500);
-                console.log(err);
-                res.send("SQL error, Check log for more details");
-            } else {
-                res.send(result);
-                res.status(200);
-            }
+        var data = {
+            rest_id = req.query.rest_id
         }
-    );
+       
+        kafka.make_request("get_restaurant_id", data, function (err, results) {
+            if (err) {
+              console.log("Inside err");
+              res.json({
+                status: "error",
+                msg: "System Error, Try Again.",
+              });
+            } else {
+                console.log("Inside router post");
+                console.log(results);
+                res.status(200).send(results);
+            }
+          });
+        } catch(error){
+            console.log("error:", error);
+            return res.status(500).json(error);
+     }
 });
 
 
@@ -135,36 +163,6 @@ router.get('/getRestaurants', (req, res) => {
     );
 });
 
-
-// get restaurant
-router.get('/', (req, res) => {
-    const restEmail = req.query.email_id;
-    const restPass = req.query.password;
-    const isOwner = req.query.is_owner;
-
-    if(isOwner)
-{
-    db.query(
-        "SELECT * FROM Restaurant WHERE RestEmail = ?",
-        [ restEmail],
-        (err, result) => {
-            if (err) {
-                res.status(500);
-                console.log({err : err});
-                res.send("SQL error, Check log for more details");
-            } else {
-                if(result){
-                    console.log(result);
-                    if (passwordHash.verify(restPass, result[0].RestPass)){
-                    res.send(result[0]);}
-                }else{
-                    res.send("Wrong Email Id or Password!")
-                }
-            }
-        }
-    );
-    }
-});
 
 
 router.get('/getItems/:rest_id?', (req, res) => {

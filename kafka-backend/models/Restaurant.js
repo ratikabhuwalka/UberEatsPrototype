@@ -1,6 +1,6 @@
    
 const mongoose = require("mongoose");
-const validator = require("validator")
+const validator = require("validator");
 
 const restaurantSchema = new mongoose.Schema({
   // RestId: {
@@ -45,8 +45,7 @@ const restaurantSchema = new mongoose.Schema({
   RestPass:{
     type: String,
     required: [true, "Please provide a password"],
-    minlength: 8,
-    select: false
+    minlength: 8 
   },
 
   Dishes: [
@@ -63,13 +62,13 @@ const restaurantSchema = new mongoose.Schema({
     collection: 'Restaurant'
 });
 
-restaurantSchema.pre("save", async function (next) {
-    if (!this.isModified("password")) {
-        return next();
-      }
-    this.password = await bcrypt.hash(this.password, 12);
-    next();
-});
+// restaurantSchema.pre("save", async function (next) {
+//     if (!this.isModified("RestPass")) {
+//         return next();
+//       }
+//     this.RestPass = await bcrypt.hash(this.RestPass, 12);
+//     next();
+// });
 
 const Restaurant = mongoose.model("Restaurant", restaurantSchema);
 

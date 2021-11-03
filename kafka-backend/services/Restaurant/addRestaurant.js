@@ -1,4 +1,5 @@
 let Restaurant = require("../../models/Restaurant");
+var bcrypt = require("bcryptjs");
 
 function handle_request(msg, callback) {
   console.log("Inside add restaurant kafka backend");
@@ -7,8 +8,9 @@ function handle_request(msg, callback) {
   try {
     const { restName, restEmail, restPass, restPhone, restCity, restCountry,
       startTime, endTime, restType } = msg;
-    var dishes = [];
-    
+
+    var dishes = [];    
+
  
     Restaurant.findOne({ RestEmail: msg.restEmail }, (err, result) => {
       if (err) {
@@ -19,7 +21,7 @@ function handle_request(msg, callback) {
         callback(null, "Restaurant Already Exists");
         // res.status(400).json({ msg: "group already exists" });
       } else {
-
+       
         const newRest = new Restaurant({
           RestName: restName,
           RestEmail: restEmail,

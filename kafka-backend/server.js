@@ -22,7 +22,8 @@ mongoose
 var connection = new require("./kafka/Connection");
 
 var addRestaurant = require("./services/Restaurant/addRestaurant")
-
+var loginRestaurant = require("./services/Restaurant/loginRestaurant")
+var getRestaurantId = require("./services/Restaurant/getRestaurantId")
 // var getProfile = require("./services/getProfile");
 // var updateProfile = require("./services/updateProfile");
 
@@ -90,6 +91,9 @@ function handleTopicRequest(topic_name, fname) {
 }
 
 handleTopicRequest("add_restaurant", addRestaurant);
+handleTopicRequest("login_restaurant", loginRestaurant);
+handleTopicRequest("get_restaurant_id", getRestaurantId)
+
 
 // handleTopicRequest("get_profile", getProfile);
 // handleTopicRequest("update_profile", updateProfile);
