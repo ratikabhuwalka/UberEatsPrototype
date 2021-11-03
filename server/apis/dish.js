@@ -2,28 +2,62 @@ const express = require("express");
 const router = express.Router();
 const passwordHash = require('password-hash');
 const db = require('../../kafka-backend/config/keys.js');
+var kafka = require("../kafka/client");
+
 
 router.post('/adddish', (req, res) => {
+    try{
     console.log("Add new Dish Request reached!");
-    const dishName = req.body.dishName;
-    const ingredients = req.body.ingredients;
-    const price = req.body.price;
-    const description = req.body.description;
-    const category = req.body.category;
-    const restId = req.body.restId;
-    const mealType = req.body.mealType;
-    var sql_query = "INSERT INTO Dish (dishName, ingredients,  price,description, category, restId, mealType) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    db.query(sql_query, [dishName, ingredients, price, description, category, restId, mealType],
-        (err, result) => {
-            if (err) {
-                res.status(500);
-                res.send("SQL error, Check log for more details");
-            } else {
-                res.status(200);
-                res.send("DISH ADDED");
-            }
+    var data = {
+        dishName : req.body.dishName,
+        ingredients : req.body.ingredients,
+        price : req.body.price,
+        description : req.body.description,
+        category : req.body.category,
+        restId : req.body.restId,
+        mealType : req.body.mealType,
+        dishImage : "",
+    }
+   
+    kafka.make_request("add_dish", data, function (err, results) {
+        if (err) {
+          console.log("Inside err");
+          res.json({
+            status: "error",
+            msg: "System Error, Try Again.",
+          });
+        } else {
+            console.log("Inside router post");
+            console.log(results);
+            res.status(200).send(results);
         }
-    );
+      });
+    } catch(error){
+        console.log("error:", error);
+        return res.status(500).json(error);
+ }
+   
+   
+   
+    // const dishName = req.body.dishName;
+    // const ingredients = req.body.ingredients;
+    // const price = req.body.price;
+    // const description = req.body.description;
+    // const category = req.body.category;
+    // const restId = req.body.restId;
+    // const mealType = req.body.mealType;
+    // var sql_query = "INSERT INTO Dish (dishName, ingredients,  price,description, category, restId, mealType) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    // db.query(sql_query, [dishName, ingredients, price, description, category, restId, mealType],
+    //     (err, result) => {
+    //         if (err) {
+    //             res.status(500);
+    //             res.send("SQL error, Check log for more details");
+    //         } else {
+    //             res.status(200);
+    //             res.send("DISH ADDED");
+    //         }
+    //     }
+    // );
 
 });
 

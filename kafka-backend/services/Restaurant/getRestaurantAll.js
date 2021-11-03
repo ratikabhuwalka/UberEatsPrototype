@@ -5,16 +5,18 @@ let Restaurant = require("../../models/Restaurant");
 // auth();
 
 async function handle_request(msg, callback) {
-  console.log("Inside get restaurant by id kafka backend");
+  console.log("Inside get restaurant all kafka backend");
   console.log(msg);
 
   try {
       console.log(msg);
-      rest_id = msg.rest_id
-      await Restaurant.find({_id: rest_id}, (err, result) => {
+      search_string = msg.search_string
+      await Restaurant.find({}, (err, result) => {
       if (err) {
-        console.log("error in findOne");
+        console.log("error in find all restaurant");
         //   res.end();
+
+        //TODO: search restaurant by search string
       }
       else {
         if (result) {

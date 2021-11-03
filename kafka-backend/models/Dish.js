@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const dishSchema = new mongoose.Schema({
-  DishId: {
-        type: String,
-        required: [true, "Please enter the name of the dish"]
-      },
   DishName: {
     type: String,
     required: [true, "Please enter the name of the dish"]
@@ -12,6 +8,9 @@ const dishSchema = new mongoose.Schema({
   Price: {
     type: Number,
     required: [true, "Please enter the price of the dish"]
+  },
+  Ingredients: {
+    type: String,
   },
   MealType: {
     type: String
@@ -26,7 +25,12 @@ const dishSchema = new mongoose.Schema({
   },
   DishImage : {
       type: String,
-  }
+  },
+  RestId : {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Restaurant"
+}
+
 });
 
 const Dish = mongoose.model("Dish", dishSchema);

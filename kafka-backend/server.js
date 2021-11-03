@@ -24,6 +24,8 @@ var connection = new require("./kafka/Connection");
 var addRestaurant = require("./services/Restaurant/addRestaurant")
 var loginRestaurant = require("./services/Restaurant/loginRestaurant")
 var getRestaurantId = require("./services/Restaurant/getRestaurantId")
+var getRestaurantAll = require("./services/Restaurant/getRestaurantAll")
+var addDish = require("./services/Restaurant/addDish")
 // var getProfile = require("./services/getProfile");
 // var updateProfile = require("./services/updateProfile");
 
@@ -92,7 +94,9 @@ function handleTopicRequest(topic_name, fname) {
 
 handleTopicRequest("add_restaurant", addRestaurant);
 handleTopicRequest("login_restaurant", loginRestaurant);
-handleTopicRequest("get_restaurant_id", getRestaurantId)
+handleTopicRequest("get_restaurant_id", getRestaurantId);
+handleTopicRequest("get_restaurant_all", getRestaurantAll);
+handleTopicRequest("add_dish", addDish);
 
 
 // handleTopicRequest("get_profile", getProfile);
@@ -132,3 +136,4 @@ handleTopicRequest("get_restaurant_id", getRestaurantId)
 //     console.log("running on the port 3002");
 //   });
 //  module.exports = app;
+
