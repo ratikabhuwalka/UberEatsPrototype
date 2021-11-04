@@ -25,7 +25,11 @@ var addRestaurant = require("./services/Restaurant/addRestaurant")
 var loginRestaurant = require("./services/Restaurant/loginRestaurant")
 var getRestaurantId = require("./services/Restaurant/getRestaurantId")
 var getRestaurantAll = require("./services/Restaurant/getRestaurantAll")
+var updateRestaurant = require("./services/Restaurant/updateRestaurant")
 var addDish = require("./services/Restaurant/addDish")
+var updateDish = require("./services/Restaurant/updateDish")
+
+
 // var getProfile = require("./services/getProfile");
 // var updateProfile = require("./services/updateProfile");
 
@@ -61,32 +65,32 @@ var addDish = require("./services/Restaurant/addDish")
 
 function handleTopicRequest(topic_name, fname) {
   //var topic_name = 'root_topic';
-  console.log("in handle topic req");
-  var consumer = connection.getConsumer(topic_name);
-  var producer = connection.getProducer();
-  console.log("server is running ");
-  consumer.on("message", function (message) {
-    console.log("message received for " + topic_name + " ", fname);
-    console.log(JSON.stringify(message.value));
-    var data = JSON.parse(message.value);
+    console.log("in handle topic req");
+    var consumer = connection.getConsumer(topic_name);
+    var producer = connection.getProducer();
+    console.log("server is running ");
+    consumer.on("message", function (message) {
+      console.log("message received for " + topic_name + " ", fname);
+      console.log(JSON.stringify(message.value));
+      var data = JSON.parse(message.value);
 
-    fname.handle_request(data.data, function (err, res) {
-      console.log("after handle" + res);
-      var payloads = [
-        {
-          topic: data.replyTo,
-          messages: JSON.stringify({
-            correlationId: data.correlationId,
-            data: res,
-          }),
-          partition: 0,
-        },
-      ];
-      // console.log("payload created")
-      // console.log(payloads)
-      producer.send(payloads, function (err, data) {
-        console.log(data);
-      });
+      fname.handle_request(data.data, function (err, res) {
+        console.log("after handle" + res);
+        var payloads = [
+          {
+            topic: data.replyTo,
+            messages: JSON.stringify({
+              correlationId: data.correlationId,
+              data: res,
+            }),
+            partition: 0,
+          },
+        ];
+        // console.log("payload created")
+        // console.log(payloads)
+        producer.send(payloads, function (err, data) {
+          console.log(data);
+        });
       return;
     });
   });
@@ -97,6 +101,9 @@ handleTopicRequest("login_restaurant", loginRestaurant);
 handleTopicRequest("get_restaurant_id", getRestaurantId);
 handleTopicRequest("get_restaurant_all", getRestaurantAll);
 handleTopicRequest("add_dish", addDish);
+handleTopicRequest("update_restaurant", updateRestaurant);
+handleTopicRequest("update_dish", updateDish);
+
 
 
 // handleTopicRequest("get_profile", getProfile);

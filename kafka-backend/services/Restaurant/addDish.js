@@ -1,5 +1,5 @@
-let Restaurant = require("../../models/Restaurant");
-let Dish = require("../../models/Dish");
+let {Restaurant} = require("../../models/Restaurant");
+let {Dish} = require("../../models/Restaurant");
 
 
 async function handle_request(msg, callback) {

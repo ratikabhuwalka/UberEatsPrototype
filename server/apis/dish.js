@@ -90,29 +90,38 @@ router.get('/getdish', (req, res) =>
 });
 
 router.post('/updatedish', (req, res) => {
-
-    console.log("update Dish Request reached!");
-    const dishId = req.body.dishId;
-    const dishName = req.body.dishName;
-    const ingredients = req.body.ingredients;
-    const price = req.body.price;
-    const description = req.body.description;
-    const category = req.body.category;
-    const mealType = req.body.mealType;
-
-    db.query("UPDATE Dish SET DishName = ?,category = ?,description =?,price=?,MealType=?, Ingredients =? WHERE DishId = ?",
-    [dishName,category,description,price,mealType,ingredients, dishId],
-        (err, result) => {
-            if (err) {
-                res.status(500);
-                res.send("SQL error, Check log for more details");
-            } else {
-                console.log("entered else sending response")
-                res.status(200);
-                res.send("DISH UPDATED");
-            }
+    try
+    {
+        const data =
+        {
+            dishId : req.body.dishId,
+            dishName : req.body.dishName,
+            ingredients : req.body.ingredients,
+            price : req.body.price,
+            description : req.body.description,
+            category : req.body.category,
+            mealType : req.body.mealType,
+            dishImage : req.body.dishImage,
+            restId : req.body.restId,
         }
-    );
+
+    kafka.make_request("update_dish", data, function (err, results) {
+        if (err) {
+          console.log("Inside err");
+          res.json({
+            status: "error",
+            msg: "System Error, Try Again.",
+          });
+        } else {
+            console.log("Inside router post");
+            console.log(results);
+            res.status(200).send(results);
+        }
+      });
+    } catch(error){
+        console.log("error:", error);
+        return res.status(500).json(error);
+ }
 
 });
 

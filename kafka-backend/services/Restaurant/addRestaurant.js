@@ -1,4 +1,4 @@
-let Restaurant = require("../../models/Restaurant");
+let {Restaurant} = require("../../models/Restaurant");
 var bcrypt = require("bcryptjs");
 
 function handle_request(msg, callback) {
