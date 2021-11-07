@@ -1,5 +1,9 @@
 let {Restaurant} = require("../../models/Restaurant");
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+const { secret_key } = require("../../config/keys");
+const {auth } = require("../../config/passport");
+auth();
 
 async function handle_request(msg, callback) { 
     try {

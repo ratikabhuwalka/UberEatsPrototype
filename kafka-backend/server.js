@@ -1,9 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-
 const mongo = require("./config/keys").mongoDB;
 
+require("./config/passport")
 mongoose
   .connect(
     mongo,

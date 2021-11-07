@@ -11,12 +11,17 @@ var cookieParser = require('cookie-parser');
 //import cors
 const cors = require('cors');
 
+
 const { mongoDB } = require('../kafka-backend/config/keys.js');
 const mongoose = require('mongoose');
+const passport = require("passport");
+const checkAuth = require('../kafka-backend/config/passport');
 
-
+require('../kafka-backend/config/passport')
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+app.use(passport.initialize());
 
 //app.use(cors({ origin: 'http://ec2-34-220-244-18.us-west-2.compute.amazonaws.com:3000', credentials: true }));
 
@@ -32,6 +37,8 @@ app.use(function (req, res, next) {
   res.setHeader('Cache-Control', 'no-cache');
   next();
 });
+
+
 
 mongoose
   .connect(mongoDB, {

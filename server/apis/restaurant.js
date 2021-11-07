@@ -50,8 +50,10 @@ router.get('/', (req, res) => {
     try{
     var data = {
         restEmail : req.query.restEmail,
-        restPass : req.query.restPass
+        restPass : req.query.restPass,
+        isOwner : true
     }
+    console.log("inside login router", data);
    
     kafka.make_request("login_restaurant", data, function (err, results) {
         if (err) {

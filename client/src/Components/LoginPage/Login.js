@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userLogin } from '../../actions/loginAction'
 import NavigationBar from '../NavigationBar';
+import jwt_decode from "jwt-decode";
+
 
 class Login extends Component {
     //call the constructor method
@@ -33,6 +35,7 @@ class Login extends Component {
             password: this.state.password,
             is_owner: this.state.isOwner
         }
+
         this.props.userLogin(data);
 
         this.setState({
@@ -46,6 +49,33 @@ class Login extends Component {
         let redirectVar = null;
         let message = ""
         let res =""
+        console.log("token", this.props.user);
+        if (this.props.user!= null)
+        {
+            localStorage.setItem("token",JSON.stringify(this.props.user));
+        }
+
+        // console.log("token in state", this.state.user);
+        if (localStorage.getItem("token")){
+            var decoded = jwt_decode(localStorage.getItem("token").split(' ')[1]);
+            console.log("Decoded", decoded);
+
+        }
+
+
+        //     var decoded = jwt_decode(this.state.user.split(' ')[1]);
+        //     console.log("Decoded", decoded);
+        // }
+        // if (this.props.user) {
+        //     console.log("here for login url check");
+        //     var decoded = jwt_decode(this.props.user);
+        //     console.log(decoded);
+        //     // localStorage.setItem("user_id", decoded.id);
+        //     // localStorage.setItem("username", decoded.username);
+        //     // localStorage.setItem("usertype", decoded.usertype);
+            
+        //     redirectVar = <Redirect to="/home" />
+        // }
         if(this.props.user && this.props.user.RestId){
             localStorage.setItem("email_id", this.props.user.RestEmail);
             localStorage.setItem("is_owner", true);

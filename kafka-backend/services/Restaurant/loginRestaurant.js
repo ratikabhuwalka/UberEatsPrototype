@@ -2,10 +2,8 @@ let {Restaurant} = require("../../models/Restaurant");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { secret_key } = require("../../config/keys");
-const {auth } = require("../../config/passport");
-auth();
 
-function handle_request(msg, callback) {
+async function handle_request(msg, callback) {
   console.log("Inside login restaurant kafka backend");
   console.log(msg);
 
@@ -18,12 +16,13 @@ function handle_request(msg, callback) {
       else {
         if (result) {
             console.log("result",result);
-            //if (bcrypt.compareSync(msg.restPass, result.RestPass)) {
-            if (msg.restPass === result.RestPass) {
+          if (bcrypt.compareSync(msg.restPass, result.RestPass)) {
+            //if (msg.restPass === result.RestPass) {
                 const payload = {
                 restId: result._id,
                 restName: result.restName,
-                restEmail: result.restEmail
+                restEmail: result.restEmail,
+                isOwner: true
                 };
                 const token = jwt.sign(payload, secret_key);
                 // res.status(200).end("JWT " + token);

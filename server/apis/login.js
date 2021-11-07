@@ -46,12 +46,13 @@ const express = require("express");
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const { secret } = require('../utils/config');
-const User = require('../models/User');
+const User = require('../models/UserModel');
 const { auth } = require("../utils/Passport");
 auth();
 
 //Route to handle Post Request Call
 router.post('/', (req, res) => {
+
     User.findOne({ email: req.body.email, password: req.body.password }, (error, user) => {
         if (error) {
             res.status(500).end("Error Occured");

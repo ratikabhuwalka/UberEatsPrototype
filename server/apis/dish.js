@@ -3,6 +3,10 @@ const router = express.Router();
 const passwordHash = require('password-hash');
 const db = require('../../kafka-backend/config/keys.js');
 var kafka = require("../kafka/client");
+const { checkAuth } = require("../config/passport");
+const { auth } = require("../config/passport");
+auth();
+
 
 
 router.post('/adddish', (req, res) => {
@@ -89,7 +93,7 @@ router.get('/getdish', (req, res) =>
     }
 });
 
-router.post('/updatedish', (req, res) => {
+router.post('/updatedish', checkAuth, (req, res) => {
     try
     {
         const data =
