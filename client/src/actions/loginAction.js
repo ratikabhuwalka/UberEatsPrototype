@@ -13,6 +13,7 @@ export const userLogin = (loginData) => dispatch => {
     }
     axios.get(url,{params: loginData})
         .then(response => dispatch({
+            
             type: USER_LOGIN,
             payload: response.data
         }))

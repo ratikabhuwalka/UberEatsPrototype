@@ -35,52 +35,26 @@ class ItemPage extends Component{
             }     
          }
 
-        if ((this.props.location.props && this.props.location.props.dish_id) || sessionStorage.getItem('active_dish'))
+        if ((this.props.location.props && this.props.location.props.dish) || sessionStorage.getItem('active_dish'))
         {
-
-            let dish_id =''
-            if((this.props.location.props && this.props.location.props.dish_id))
-            {
-                dish_id = this.props.location.props.dish_id
-                sessionStorage.setItem('active_dish', this.props.location.props.dish_id)
-            }
-            else{
-                dish_id = sessionStorage.getItem('active_dish')
-            }
             var dish = ''
-            const params = {
-                dish_id : dish_id
+            if((this.props.location.props && this.props.location.props.dish))
+            {
+                dish = this.props.location.props.dish
+            
+                var dishData = {
+                    dish_id: dish._id,
+                    dish_name: dish.DishName,
+                    description: dish.Description,
+                    ingredients: dish.Ingredients,
+                    category: dish.Category,
+                    price: dish.Price,
+                    meal_type: dish.MealType,
+                    dish_image: dish.DishImage
+                 };
+            this.setState(dishData);
             }
-            axios.get(`${backendServer}/dish/getdish`, { params })
-            .then(response => {
-                if (response.data) {
-                    dish = response.data[0];
-
-                    var dishData = {
-                        dish_id: dish.DishId || this.state.dish_id,
-                        dish_name: dish.DishName || this.state.dish_name,
-                        description: dish.Description || this.state.description,
-                        ingredients: dish.Ingredients || this.state.ingredients,
-                        category: dish.Category || this.state.category,
-                        price: dish.Price || this.state.price,
-                        meal_type: dish.MealType || this.state.meal_type,
-                        dish_image: dish.DishImage
-                    };
-                    this.setState(dishData);
-                }
-            })
-            .catch(error => {
-                if (error.response && error.response.data) {
-                }
-            })
-
-           
-
-
         }
-
-
-
     }
 
     onChange = (e) => {
@@ -130,8 +104,8 @@ class ItemPage extends Component{
             "category": this.state.category,
             "mealType": this.state.meal_type
         }
-
-        axios.post(`${backendServer}/dish/updatedish`, item_data)
+        var token = localStorage.getItem('token').split(' ')[1]
+        axios.post(`${backendServer}/dish/updatedish`, item_data, { headers: {"Authorization" : `Bearer ${token}`} })
             .then(response => {
                 if (response.data === "DISH UPDATED") {
                     

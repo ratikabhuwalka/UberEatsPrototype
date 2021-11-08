@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { userLogin } from '../../actions/loginAction'
 import NavigationBar from '../NavigationBar';
 import jwt_decode from "jwt-decode";
+import { decode } from 'jsonwebtoken';
 
 
 class Login extends Component {
@@ -49,16 +50,35 @@ class Login extends Component {
         let redirectVar = null;
         let message = ""
         let res =""
-        console.log("token", this.props.user);
-        if (this.props.user!= null)
+        console.log(this.props.user);
+        if (this.props.user!=null && typeof this.props.user === 'string') 
         {
-            localStorage.setItem("token",JSON.stringify(this.props.user));
+            console.log("inside first if");
+            var login_res = this.props.user
+            if (login_res.split(' ')[0]=== 'JWT'){
+                console.log("props user",this.props.user);
+                localStorage.setItem("token",JSON.stringify(this.props.user));
+                var decoded = jwt_decode(login_res.split(' ')[1]);
+                console.log("Decoded", decoded);
+                if (decoded.IsOwner){
+                localStorage.setItem("email_id", decoded.RestEmail);
+                localStorage.setItem("is_owner", true);
+                localStorage.setItem("user_id", decoded.RestId);
+                localStorage.setItem("name", decoded.RestName);
+                localStorage.setItem("rest_type", decoded.RestType);
+            
+                redirectVar = <Redirect to={{pathname: '/restaurant', state : decoded }} />
+            }
+
+            }
+            
+           
         }
 
         // console.log("token in state", this.state.user);
         if (localStorage.getItem("token")){
-            var decoded = jwt_decode(localStorage.getItem("token").split(' ')[1]);
-            console.log("Decoded", decoded);
+            
+
 
         }
 

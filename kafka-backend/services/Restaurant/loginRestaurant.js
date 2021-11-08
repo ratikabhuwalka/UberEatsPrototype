@@ -19,10 +19,11 @@ async function handle_request(msg, callback) {
           if (bcrypt.compareSync(msg.restPass, result.RestPass)) {
             //if (msg.restPass === result.RestPass) {
                 const payload = {
-                restId: result._id,
-                restName: result.restName,
-                restEmail: result.restEmail,
-                isOwner: true
+                RestId: result._id,
+                RestName: result.RestName,
+                RestEmail: result.RestEmail,
+                RestType : result.RestType,
+                IsOwner: true
                 };
                 const token = jwt.sign(payload, secret_key);
                 // res.status(200).end("JWT " + token);
@@ -37,7 +38,7 @@ async function handle_request(msg, callback) {
     }
     else {
         console.log("Restaurant doesn't exist");
-        callback(null, "Restaurant doesn't exist");
+        callback(null, "User Not Found");
 
         //   res.status(400).json({ msg: "User doesn't exist" });
           }

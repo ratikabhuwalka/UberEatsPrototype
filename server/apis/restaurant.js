@@ -49,8 +49,8 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
     try{
     var data = {
-        restEmail : req.query.restEmail,
-        restPass : req.query.restPass,
+        restEmail : req.query.email_id,
+        restPass : req.query.password,
         isOwner : true
     }
     console.log("inside login router", data);

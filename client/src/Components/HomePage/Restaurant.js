@@ -21,6 +21,7 @@ class Restaurant extends Component {
        //GETTING REST ID
         let rest ="",
             rest_id = "";
+        console.log("props from login",this.props.location.state);
         if (this.props.location.state) {
             document.title = this.props.location.state.RestName;
             let res = {
@@ -44,7 +45,7 @@ class Restaurant extends Component {
         axios.get(`${backendServer}/restaurant/getRestaurant`, { params})
             .then(response => {
                 if (response.data) {
-                    rest = response.data[0];
+                    rest = response.data;
     
                     var restData = {
                         rest_id: rest.RestId ,
@@ -58,9 +59,12 @@ class Restaurant extends Component {
                         end_time: rest.EndTime,
                         rest_image: rest.RestImage
                     };
+                    //var menu_item_string = JSON.stringify(rest.Dishes)
+                  
 
                     this.setState({
-                        restData: restData});
+                        restData: restData,
+                        menu_items: rest.Dishes});
                 }
             })
             .catch(error => {
@@ -71,23 +75,8 @@ class Restaurant extends Component {
 
             //MENU
 
-            var url = `${backendServer}/restaurant/getItems`
-            url = url +'?rest_id='+rest_id
 
-            axios.get(url)
-                .then(response => {
-                    if (response.data[0]) {
-                        var menu_item_string = JSON.stringify(response.data)
-                        this.setState({
-                            menu_items: menu_item_string
-                        });
-                    }
-                })
-                .catch(err => {
-                    if (err.response && err.response.data) {
-                        console.log(err.response.data);
-                    }
-                });
+                        
         }
 
 
@@ -101,10 +90,13 @@ class Restaurant extends Component {
             restData=this.state.restData;
 
         }
+        console.log("this.state", this.state);
 
         if (this.state && this.state.menu_items) {
-            var arr = JSON.parse(this.state.menu_items);
+            var arr = this.state.menu_items;
+            console.log("arr item card prop from rest page:", arr);
             itemCards = arr.map(item => {
+                console.log("item", item);
                 return (
                     <Col sm={3}>
                          <ItemCard res = { {item} }  />

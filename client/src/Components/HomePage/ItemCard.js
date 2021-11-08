@@ -7,9 +7,10 @@ import backendServer from "../../webConfig";
 
 
 function ItemCard({ res}) {
-    
+    console.log("res",res);
     res=res.item
-    var dish_id = res.DishId
+    console.log(res)
+    var dish_id = res._id
     var title=res.DishName
     var description=res.Description 
     var price=res.Price
@@ -125,7 +126,7 @@ function ItemCard({ res}) {
             console.log("In else for owner");
             return (<>
                 <center>
-                <Link to={{pathname: "/itempage", props:{type:'EDIT', dish_id : dish_id  }}}>
+                <Link to={{pathname: "/itempage", props:{type:'EDIT', dish : res  }}}>
                 <Button variant="primary">Edit</Button>
                 </Link>
                 {'    '}
