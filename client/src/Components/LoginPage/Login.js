@@ -57,7 +57,7 @@ class Login extends Component {
             var login_res = this.props.user
             if (login_res.split(' ')[0]=== 'JWT'){
                 console.log("props user",this.props.user);
-                localStorage.setItem("token",JSON.stringify(this.props.user));
+                localStorage.setItem("token",login_res.split(' ')[1]);
                 var decoded = jwt_decode(login_res.split(' ')[1]);
                 console.log("Decoded", decoded);
                 if (decoded.IsOwner){

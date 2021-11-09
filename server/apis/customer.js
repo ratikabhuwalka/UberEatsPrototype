@@ -1,41 +1,42 @@
 const express = require("express");
 const router = express.Router();
-const passwordHash = require('password-hash');
-const db = require('../../kafka-backend/config/keys.js');
+// const passwordHash = require('password-hash');
+// const db = require('../../kafka-backend/config/keys.js');
+var kafka = require("../kafka/client");
+
 
 //const pool = require('../pool.js');
 
 // get customer
-router.get('/', (req, res) => {
-    const custEmail = req.query.email_id;
-    const custPass = req.query.password;
-    const isOwner = req.query.is_owner;
-
-
-    db.query(
-        "SELECT * FROM Customer WHERE CustEmail = ?",
-        [ custEmail],
-        (err, result) => {
-            if (err) {
-                res.status(500);
-                console.log({err : err});
-                res.send("SQL error, Check log for more details");
-            } else {
-                if(result){
-                    console.log(result);
-                    if (passwordHash.verify(custPass, result[0].CustPass)){
-                    res.send(result[0]);}
-                    else{
-                        res.send("INCORRECT PASSWORD")
-                    }
-                }else{
-                    res.send("User not found")
-                }
-            }
-        }
-    );
+router.get('/', (req, res) =>{
+ try{
+    var data = {
+        custEmail : req.query.email_id,
+        custPass : req.query.password,
+        isOwner : false
     }
-);
+    console.log("inside login router", data);
+   
+    kafka.make_request("login_customer", data, function (err, results) {
+        if (err) {
+          console.log("Inside err");
+          res.json({
+            status: "error",
+            msg: "System Error, Try Again.",
+          });
+        } else {
+
+            console.log("Inside router post");
+            console.log(results);
+            res.status(200).send(results);
+        }
+      });
+    
+    } catch(error){
+        console.log("error:", error);
+        return res.status(500).json(error);
+    }
+});
 
 
 router.get('/customerdetail', (req, res) => {
@@ -66,28 +67,65 @@ router.get('/customerdetail', (req, res) => {
 
 // create new Customer
 router.post('/', (req, res) => {
-    console.log("Request reached!");
-    const CustName = req.body.CustName;
-    const CustEmail = req.body.CustEmail;
-    const CustPass = passwordHash.generate(req.body.CustPass);
-    const CustPhone = req.body.CustPhone;
-    const CustCity = req.body.CustCity;
-    const CustCountry = req.body.CustCountry;
-    const DOB = req.body.DOB;
-
-    var sql_query = "INSERT INTO Customer (CustName, CustEmail, CustPass, CustPhone, CustCity, CustCountry, DOB) VALUES (?, ?, ?, ?, ?, ?, ?)"
-    db.query(sql_query, [CustName, CustEmail, CustPass, CustPhone, CustCity, CustCountry, DOB],
-        (err, result) => {
+    
+        console.log("Request reached!");
+        
+        
+        var data = {
+            CustName : req.body.CustName,
+            CustEmail : req.body.CustEmail,
+            CustPass :req.body.CustPass,
+            CustPhone : req.body.CustPhone,
+            CustCity : req.body.CustCity,
+            CustCountry : req.body.CustCountry,
+            DOB : req.body.DOB,
+        };
+       
+    
+        kafka.make_request("add_customer", data, function (err, results) {
             if (err) {
-                res.status(500);
-                console.log(err);
-                res.send("SQL error, Check log for more details");
+              console.log("Inside err");
+              res.json({
+                status: "error",
+                msg: "System Error, Try Again.",
+              });
             } else {
-                res.status(200);
-                res.send("CUSTOMER ADDED");
+              console.log(results);
+              if (results === "Customer Already Exists") {
+                res.status(404).json({ msg: "User Exists" });
+              } else {
+                console.log("Inside router post");
+                res.status(200).json({ msg: "User Created successfully" });
+              }
             }
-        }
-    );
+          });
+        
+   
+    
+    
+    
+    // console.log("Request reached!");
+    // const CustName = req.body.CustName;
+    // const CustEmail = req.body.CustEmail;
+    // const CustPass = passwordHash.generate(req.body.CustPass);
+    // const CustPhone = req.body.CustPhone;
+    // const CustCity = req.body.CustCity;
+    // const CustCountry = req.body.CustCountry;
+    // const DOB = req.body.DOB;
+
+    // var sql_query = "INSERT INTO Customer (CustName, CustEmail, CustPass, CustPhone, CustCity, CustCountry, DOB) VALUES (?, ?, ?, ?, ?, ?, ?)"
+    // db.query(sql_query, [CustName, CustEmail, CustPass, CustPhone, CustCity, CustCountry, DOB],
+    //     (err, result) => {
+    //         if (err) {
+    //             res.status(500);
+    //             console.log(err);
+    //             res.send("SQL error, Check log for more details");
+    //         } else {
+    //             res.status(200);
+    //             res.send("CUSTOMER ADDED");
+    //         }
+    //     }
+    // );
 
 });
 

@@ -13,7 +13,7 @@ function auth() {
     };
     passport.use(
         new JwtStrategy(opts, (jwt_payload, callback) => {
-            const user_id = jwt_payload.restId;
+            const user_id = jwt_payload.RestId;
             console.log("jwt", jwt_payload);
             Restaurant.findById(user_id, (err, results) => {
                 if (err) {
