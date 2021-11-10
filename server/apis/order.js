@@ -110,63 +110,76 @@ router.get('/getcustorders', (req, res) =>
 
 router.get('/getorderreceipt', (req, res) =>
 {
-    let order_id = ''
-    if(req.query.order_id){
-        order_id=req.query.order_id;
-        
-        let receiptsql = `select * from Orders \
-        Inner Join OrderItem \
-        on Orders.OrderId= OrderItem.OrderId \
-        Inner Join Dish\
-        on OrderItem.DishId = Dish.DishId
-        where Orders.OrderId = ${order_id};`
+    try{
+        data = req.query;
 
-        db.query(receiptsql, (err, result) =>
-        {
-            if(err){
-                res.status(500);
-                res.send("Cant Fetch");
-            } 
-            else{
-                res.status(200);
-                res.send(result)
-            }   
+     kafka.make_request("get_order_receipt", data, function (err, results) {
+        if (err) {
+            console.log("Inside err");
+            res.json({
+            status: "error",
+            msg: "System Error, Try Again.",
+            });
+        } else {
+            console.log("Inside router post");
+            console.log(results);
+            res.status(200).send(results);
         }
-        );
-
-    }
-    else{
+        });
+        } catch(error){
+            console.log("error:", error);
+            return res.status(500).json(error);
     }
 });
 
 
 router.get('/getrestorders', (req, res) =>
 {
-    let rest_id = ''
-    if(req.query.rest_id){
-        rest_id=req.query.rest_id;
-        
-        let ordersql = `select * from Orders \
-        Inner Join Customer \
-        on Orders.CustId= Customer.CustId \
-        where RestId = ${rest_id};`
+    try{
+        data = req.query;
 
-        db.query(ordersql, (err, result) =>
-        {
-            if(err){
-                res.status(500);
-                res.send("Cant Fetch");
-            } 
-            else{
-                res.status(200);
-                res.send(result)
-            }   
+     kafka.make_request("get_rest_order", data, function (err, results) {
+        if (err) {
+            console.log("Inside err");
+            res.json({
+            status: "error",
+            msg: "System Error, Try Again.",
+            });
+        } else {
+            console.log("Inside router post");
+            console.log(results);
+            res.status(200).send(results);
         }
-        );
+        });
+        } catch(error){
+            console.log("error:", error);
+            return res.status(500).json(error);
+    }
+    
+    // if(req.query.rest_id){
+    //     rest_id=req.query.rest_id;
+        
+    //     let ordersql = `select * from Orders \
+    //     Inner Join Customer \
+    //     on Orders.CustId= Customer.CustId \
+    //     where RestId = ${rest_id};`
 
-    }
-    else{
-    }
+    //     db.query(ordersql, (err, result) =>
+    //     {
+    //         if(err){
+    //             res.status(500);
+    //             res.send("Cant Fetch");
+    //         } 
+    //         else{
+    //             res.status(200);
+    //             res.send(result)
+    //         }   
+    //     }
+    //     );
+
+    // }
+    // else{
+    // }
 });
 
 router.put('/updateorderstatus', (req, res)=>{
