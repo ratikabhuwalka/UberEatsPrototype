@@ -199,48 +199,93 @@ router.get('/getItems/:rest_id?', (req, res) => {
     );
 });
 
-
+//TODO:
 router.post('/addFav', (req, res) => {
-    
-    const rest_id = req.body.rest_id;
-    const cust_id = req.body.cust_id;
-    var sql_query = "INSERT INTO Favourites (RestId, CustId) VALUES (?, ?)"
-    db.query(sql_query, [rest_id, cust_id],
-        (err, result) => {
-            if (err) {
-                res.status(500);
-                console.log(err);
-                res.send("SQL error, Check log for more details");
-            } else {
-                res.status(200);
-                res.send("Favourite added successfully");
-            }
-        }
-    );
+    try{
+    var data = {
+        rest_id : req.body.rest_id,
+        cust_id : req.body.cust_id
+    }
+    kafka.make_request("add_favourite", data, function (err, results){
+        if (err) {
+            console.log("Inside err");
+            res.json({
+              status: "error",
+              msg: "System Error, Try Again.",
+            });
+          } else {
+  
+              console.log("Inside router post");
+              console.log(results);
+              res.status(200).send(results);
+          }
+        });
 
+
+    }
+    // var sql_query = "INSERT INTO Favourites (RestId, CustId) VALUES (?, ?)"
+    // db.query(sql_query, [rest_id, cust_id],
+    //     (err, result) => {
+    //         if (err) {
+    //             res.status(500);
+    //             console.log(err);
+    //             res.send("SQL error, Check log for more details");
+    //         } else {
+    //             res.status(200);
+    //             res.send("Favourite added successfully");
+    //         }
+    //     }
+    // );
+    // }
+    catch(error){
+        console.log("error:", error);
+        return res.status(500).json(error);
+    }
 });
 
+//TODO:
 router.get('/getFav/:cust_id?', (req, res) => {
-
-    var sql_query = `SELECT r.RestId , r.RestName, r.RestPhone, r.StartTime, r.EndTime ,r.RestType, r.RestImage \
-    FROM Favourites f  \
-    INNER JOIN Restaurant r\
-    ON f.RestId = r.RestId
-    Where CustId = ${req.query.cust_id}\
-    ;`    
-    db.query(sql_query, 
-        (err, result) => {
+    try{
+        var data = req.query
+        kafka.make_request("get_favourite", data, function (err, results){
             if (err) {
-                res.status(500);
-                console.log(err);
-                res.send("SQL error, Check log for more details");
-            } else {
-                res.send(result)
-                res.status(200);
-                
-            }
+                console.log("Inside err");
+                res.json({
+                  status: "error",
+                  msg: "System Error, Try Again.",
+                });
+              } else {
+      
+                  console.log("Inside router post");
+                  console.log(results);
+                  res.status(200).send(results);
+              }
+            });
+    
+    
+        } catch(error){
+            console.log("error:", error);
+            return res.status(500).json(error);
         }
-    );
+    // var sql_query = `SELECT r.RestId , r.RestName, r.RestPhone, r.StartTime, r.EndTime ,r.RestType, r.RestImage \
+    // FROM Favourites f  \
+    // INNER JOIN Restaurant r\
+    // ON f.RestId = r.RestId
+    // Where CustId = ${req.query.cust_id}\
+    // ;`    
+    // db.query(sql_query, 
+    //     (err, result) => {
+    //         if (err) {
+    //             res.status(500);
+    //             console.log(err);
+    //             res.send("SQL error, Check log for more details");
+    //         } else {
+    //             res.send(result)
+    //             res.status(200);
+                
+    //         }
+    //     }
+    // );
 });
 
 

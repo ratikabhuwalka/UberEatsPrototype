@@ -37,6 +37,10 @@ var loginCustomer = require("./services/Customer/loginCustomer")
 var placeOrder = require("./services/Customer/placeOrder")
 var getCustOrders = require("./services/Customer/getCustomerOrder")
 var getOrderReceipt = require("./services/Customer/getOrderReceipt")
+var getCustomerId = require("./services/Customer/getCustomerId")
+var updateCustomer = require("./services/Customer/updateCustomer")
+var addFavourite = require("./services/Customer/addFavourite")
+var getFavourite = require("./services/Customer/getFavourite")
 
 // var getProfile = require("./services/getProfile");
 // var updateProfile = require("./services/updateProfile");
@@ -117,6 +121,10 @@ handleTopicRequest("place_order", placeOrder);
 handleTopicRequest("get_cust_order", getCustOrders);
 handleTopicRequest("get_order_receipt", getOrderReceipt);
 handleTopicRequest("get_rest_order", getRestOrders);
+handleTopicRequest("get_customer_id", getCustomerId);
+handleTopicRequest("update_customer", updateCustomer);
+handleTopicRequest("add_favourite", addFavourite);
+handleTopicRequest("get_favourite", getFavourite);
 
 
 // handleTopicRequest("get_profile", getProfile);
