@@ -29,6 +29,12 @@ var updateRestaurant = require("./services/Restaurant/updateRestaurant")
 var addDish = require("./services/Restaurant/addDish")
 var updateDish = require("./services/Restaurant/updateDish")
 
+//Customer apis
+
+var addCustomer = require("./services/Customer/addCustomer")
+var loginCustomer = require("./services/Customer/loginCustomer")
+var placeOrder = require("./services/Customer/placeOrder")
+var getCustOrders = require("./services/Customer/getCustomerOrder")
 
 // var getProfile = require("./services/getProfile");
 // var updateProfile = require("./services/updateProfile");
@@ -103,7 +109,10 @@ handleTopicRequest("get_restaurant_all", getRestaurantAll);
 handleTopicRequest("add_dish", addDish);
 handleTopicRequest("update_restaurant", updateRestaurant);
 handleTopicRequest("update_dish", updateDish);
-
+handleTopicRequest("add_customer", addCustomer);
+handleTopicRequest("login_customer", loginCustomer);
+handleTopicRequest("place_order", placeOrder);
+handleTopicRequest("get_cust_order", getCustOrders);
 
 
 // handleTopicRequest("get_profile", getProfile);

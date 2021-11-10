@@ -81,6 +81,10 @@ const restaurantSchema = new mongoose.Schema({
     minlength: 8 
   },
 
+  RestImage: {
+    type: String,
+    default: ''
+  },
   Dishes: [dishSchema] 
 },
 {

@@ -7,9 +7,8 @@ import backendServer from "../../webConfig";
 
 
 function ItemCard({ res}) {
-    console.log("res",res);
+    console.log(res);
     res=res.item
-    console.log(res)
     var dish_id = res._id
     var title=res.DishName
     var description=res.Description 
@@ -28,7 +27,7 @@ function ItemCard({ res}) {
         if (localStorage.getItem("cart")){
             cart.push(...JSON.parse(localStorage.getItem("cart")));
         }
-        let index = cart.findIndex((dish => dish.DishId === res.DishId))
+        let index = cart.findIndex((dish => dish.DishId === dish_id))
         if (index !== -1)
         {
             cart_quant = cart[index].DishQuantity
@@ -126,7 +125,7 @@ function ItemCard({ res}) {
             console.log("In else for owner");
             return (<>
                 <center>
-                <Link to={{pathname: "/itempage", props:{type:'EDIT', dish : res  }}}>
+                <Link to={{pathname: "/itempage", props:{type:'EDIT', dish_id : dish_id  }}}>
                 <Button variant="primary">Edit</Button>
                 </Link>
                 {'    '}

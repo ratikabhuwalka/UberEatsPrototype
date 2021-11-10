@@ -44,10 +44,10 @@ componentWillMount()
     axios.get(`${backendServer}/restaurant/getRestaurant`, { params})
         .then(response => {
             if (response.data) {
-                rest = response.data[0];
+                rest = response.data;
 
                 var restData = {
-                    rest_id: rest.RestId || this.state.rest_id,
+                    rest_id: rest._id || this.state.rest_id,
                     rest_name: rest.RestName || this.state.rest_name,
                     rest_email: rest.RestEmail || this.state.rest_email,
                     rest_phone: rest.RestPhone || this.state.rest_phone,

@@ -4,7 +4,6 @@ import backendServer from "../../webConfig";
 import {Modal, Button, Alert, Container, Table, DropdownButton, Dropdown, InputGroup } from "react-bootstrap";
 import Navigationbar from '../NavigationBar.js';
 import axios from 'axios';
-import moment from 'moment';
 
 class Order extends Component {
     constructor(props) {
@@ -18,8 +17,8 @@ class Order extends Component {
             receipts : '',
             show: false
           }
-
     }
+
     showModal = () => {
         this.setState({show : true});
     };
@@ -28,14 +27,10 @@ class Order extends Component {
         this.setState({show : false});
     };
 
-
-
     componentDidMount() {
         console.log("order page mounted");
         document.title = "Order History";
         this.getCustomerOrders();
-        
-       
     };
 
 

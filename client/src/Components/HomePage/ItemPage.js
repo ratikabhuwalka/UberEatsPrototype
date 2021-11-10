@@ -41,7 +41,7 @@ class ItemPage extends Component{
             if((this.props.location.props && this.props.location.props.dish))
             {
                 dish = this.props.location.props.dish
-            
+                console.log("dish", dish);
                 var dishData = {
                     dish_id: dish._id,
                     dish_name: dish.DishName,
@@ -50,7 +50,8 @@ class ItemPage extends Component{
                     category: dish.Category,
                     price: dish.Price,
                     meal_type: dish.MealType,
-                    dish_image: dish.DishImage
+                    dish_image: dish.DishImage,
+                    rest_id : dish.RestId
                  };
             this.setState(dishData);
             }
@@ -102,10 +103,14 @@ class ItemPage extends Component{
             "ingredients": this.state.ingredients,
             "description": this.state.description,
             "category": this.state.category,
-            "mealType": this.state.meal_type
+            "mealType": this.state.meal_type,
+            "restId": this.state.rest_id,
+            "restImage": ""
         }
-        var token = localStorage.getItem('token').split(' ')[1]
-        axios.post(`${backendServer}/dish/updatedish`, item_data, { headers: {"Authorization" : `Bearer ${token}`} })
+        var token = localStorage.getItem('token')
+        console.log(token);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        axios.post(`${backendServer}/dish/updatedish`, item_data)
             .then(response => {
                 if (response.data === "DISH UPDATED") {
                     
