@@ -29,6 +29,7 @@ var updateRestaurant = require("./services/Restaurant/updateRestaurant")
 var addDish = require("./services/Restaurant/addDish")
 var updateDish = require("./services/Restaurant/updateDish")
 var getRestOrders = require("./services/Restaurant/getRestaurantOrders")
+var updateOrderStatus = require("./services/Restaurant/updateOrderStatus")
 
 //Customer apis
 
@@ -125,6 +126,7 @@ handleTopicRequest("get_customer_id", getCustomerId);
 handleTopicRequest("update_customer", updateCustomer);
 handleTopicRequest("add_favourite", addFavourite);
 handleTopicRequest("get_favourite", getFavourite);
+handleTopicRequest("update_order_status", updateOrderStatus);
 
 
 // handleTopicRequest("get_profile", getProfile);

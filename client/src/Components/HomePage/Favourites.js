@@ -20,20 +20,19 @@ export default class Favourite extends React.Component {
             });
     
         }
-        
-
 
         get_cust_fav(cust_id) {
             var url = `${backendServer}/restaurant/getFav?cust_id=${cust_id}`
             axios.get(url)
                  .then(response => {
                     if (response.data) {
-                        var res = JSON.stringify(response.data)
-                        
-                        if (response.data[0].search_result === 'NO_RECORD') {
+                        var res = JSON.stringify(response.data.Favourites)
+                        console.log("stringified favs",response.data.Favourites)
+                        if (response.data.Favourites.length===0) {
                            console.log("no favs")
                         }
                         else {
+                            console.log("in else, fav", res)
                             this.setState(
                                 {
                                     restaurantList : res,

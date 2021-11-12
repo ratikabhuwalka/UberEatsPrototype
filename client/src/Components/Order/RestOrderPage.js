@@ -45,10 +45,11 @@ class RestOrder extends Component {
         }
         axios.get(`${backendServer}/order/getrestorders`, {params})
         .then(response => {
-            if(response.data[0]){
+            console.log("response of restorders",response.data.response.data);
+            if(response.data.response.data[0]){
                 this.setState({
-                    orders: response.data,
-                    displayOrders : response.data
+                    orders: response.data.response.data,
+                    displayOrders : response.data.response.data
                 });
             }
         })
@@ -68,7 +69,7 @@ class RestOrder extends Component {
         } 
         else{
             if(order_type ==='Delivery'){
-                if(status==='ORDER PLACED'){
+                if(status==='NEW'){
                     status = 'PREPARING';
                 }
                 else if(status==='PREPARING'){
@@ -80,7 +81,7 @@ class RestOrder extends Component {
             }
 
             else{
-                if(status==='ORDER PLACED'){
+                if(status==='NEW'){
                     status = 'PREPARING';
                 }
                 else if(status==='PREPARING'){
@@ -96,9 +97,11 @@ class RestOrder extends Component {
                 order_id : order_id,
                 status : status
             }
+            console.log()
             axios.put(`${backendServer}/order/updateorderstatus`, params)
             .then(response => {
-                if (response.data === "DISH UPDATED") {
+                console.log("response of update status",response)
+                if (response.data.status_code === 200) {
                     window.location.reload();
                 }
     
@@ -177,7 +180,7 @@ class RestOrder extends Component {
                             <td>Time <br/><b>{order.Timestamp}</b></td>
                             <td>Status <br/><b>{status}</b></td>
                                                     
-                            <td><Button variant ='success' size="sm" onClick= {() => this.updateOrderStatus(order.OrderId, status, order.OrderType)}> 
+                            <td><Button variant ='success' size="sm" onClick= {() => this.updateOrderStatus(order._id, status, order.OrderType)}> 
                             Update Status </Button>
                             {/* <Button variant = 'primary' onClick= {() => this.getOrderReceipt(order.OrderId)}> View Receipt </Button> */}
                             </td>

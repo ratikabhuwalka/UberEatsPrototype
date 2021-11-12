@@ -54,8 +54,9 @@ componentWillMount()
    
     axios.get(`${backendServer}/customer/customerdetail`, { params})
         .then(response => {
+            console.log("response from customerdetail api", response);
             if (response.data) {
-                cust = response.data[0];
+                cust = response.data;
 
                 var custData = {
                     cust_id: cust.CustId || this.state.cust_id,

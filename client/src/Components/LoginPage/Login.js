@@ -69,6 +69,9 @@ class Login extends Component {
             
                 redirectVar = <Redirect to={{pathname: '/restaurant', state : decoded }} />
             }
+            else{
+
+            }
 
             }
             
@@ -77,7 +80,13 @@ class Login extends Component {
 
         // console.log("token in state", this.state.user);
         if (localStorage.getItem("token")){
-            
+              localStorage.setItem("email_id", decoded.CustEmail);
+            localStorage.setItem("is_owner", false);
+            localStorage.setItem("user_id", decoded.CustId);
+            localStorage.setItem("name", decoded.CustName);
+            localStorage.setItem("city", decoded.CustCity);
+            redirectVar = <Redirect to="/customerHome" />
+
 
 
         }

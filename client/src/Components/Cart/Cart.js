@@ -44,9 +44,10 @@ class Cart extends Component {
                 rest_id = temp_cart[0].RestId
                 axios.get(`${backendServer}/restaurant/getRestaurant?rest_id=${rest_id}`)
                     .then(response => {
+                        console.log("response get rest by id", response);
                         if (response.data) {
                             this.setState({
-                                restaurant: response.data[0]
+                                restaurant: response.data
                             });
                         }
                     })

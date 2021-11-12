@@ -80,15 +80,18 @@ function ItemCard({ res}) {
 
         console.log(cart);
         
-        let index = cart.findIndex((dish => dish.DishId === res.DishId))
+        let index = cart.findIndex((dish => dish._id === res._id))
         if (index === -1){
             console.log(res, item)
             item = {
-                    'DishId': res.DishId,
+                    'DishId': res._id,
                     'DishName': res.DishName,
                     'DishQuantity': quantity,
                     'DishPrice': res.Price,
-                    'RestId': res.RestId
+                    'RestId': res.RestId,
+                    'Category': res.Category,
+                    'Description': res.Description,
+                    'Ingredients' : res.Ingredients
                     }
                 console.log("Response and cart item:", res, item)
 

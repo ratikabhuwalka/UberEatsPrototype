@@ -7,23 +7,25 @@ async function handle_request(msg, callback) {
         const { custId, restId,custName, restName, status, 
             total, discount, delivery, tax, cartItems, deliveryAddress,
              time, final, orderType, instruction }= msg;
+        console.log("data received in kafka backend", msg)
         // For single Rest order place:
         let order_items = [];
 
         if(cartItems.length > 0 && cartItems[0]){
-            const cart_items = cartItems
+
+            const cart_items = cartItems;
             console.log("cart_items:", cart_items);
             for( dish of cart_items){
+                console.log("dish", dish)
             order_items.push({
-                
-                DishId : dish.dishId,
-                DishName : dish.dishName,
-                Description : dish.description,
-                Subtotal : dish.subtotal,
-                Quantity : dish.quantity,
-                Price : dish.price, 
-                Category : dish.category,
-                Ingredients : dish.ingredients,
+                DishId : dish._id,
+                DishName : dish.DishName,
+                Description : dish.Description,
+                Subtotal : dish.DishQuantity * dish.DishPrice,
+                Quantity : dish.DishQuantity,
+                Price : dish.DishPrice, 
+                Category : dish.Category,
+                Ingredients : dish.Ingredients,
             })
         }
         }

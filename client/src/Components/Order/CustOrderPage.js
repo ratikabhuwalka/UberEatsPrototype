@@ -59,10 +59,11 @@ class Order extends Component {
         }
         axios.get(`${backendServer}/order/getcustorders`, {params})
         .then(response => {
-            if(response.data[0]){
+            console.log(response.data)
+            if(response.data.response.data[0]){
                 this.setState({
-                    orders: response.data,
-                    displayOrders: response.data
+                    orders: response.data.response.data,
+                    displayOrders: response.data.response.data
                 });
             }
         })

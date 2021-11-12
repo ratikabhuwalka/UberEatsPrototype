@@ -22,6 +22,7 @@ class Checkout extends Component {
     componentWillMount() {
         document.title = "Your Order";
         if (this.props.location.state) {
+            console.log("props received", this.props.location.state)
             this.setState({
                 restaurant: this.props.location.state.restaurant,
                 cart_items: this.props.location.state.cart,
@@ -59,21 +60,28 @@ class Checkout extends Component {
     placeOrder = (e) => {
         let order_data = {
             custId: localStorage.getItem("user_id"),
-            restId: this.state.restaurant.RestId,
-            status: 'ORDER PLACED',
+            restId: this.state.restaurant._id,
+            restName: this.state.restaurant.RestName,
+            custName: localStorage.getItem("name"),
+            status: 'NEW',
             total: this.state.sub_total,
             discount: (this.state.discount * this.state.sub_total / 100).toFixed(2),
             delivery: this.state.delivery,
             tax: (this.state.tax * this.state.sub_total / 100).toFixed(2),
             final: this.state.total,
             orderType : this.state.mode,
-            cart_items : JSON.stringify(this.state.cart_items)
+            cartItems : this.state.cart_items,
+            deliveryAddress: "dummy data",
+            instruction : "dummy instruction"
+
         }
+
+        console.log(order_data);
 
         axios.post(`${backendServer}/order/placeorder`, order_data)
             .then(response => {
                 console.log(response);
-                if (response.data === "ORDER PLACED") {
+                if (response.data.status_code === 200) {
                     localStorage.removeItem("cart");
                     this.setState({
                         message: response.data

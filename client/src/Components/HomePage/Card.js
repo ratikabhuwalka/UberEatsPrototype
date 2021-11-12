@@ -9,9 +9,10 @@ import backendServer from '../../webConfig';
 import './Card.css'
 function Card({ res}) {
     
+    console.log(res);
     res =res.restaurant
     var rest_name=res.RestName
-    var rest_id=res.RestId 
+    var rest_id=res._id 
     var rest_contact=res.RestPhone
     var rest_start = res.StartTime
     var rest_end = res.EndTime
@@ -74,7 +75,7 @@ function Card({ res}) {
         if(localStorage.getItem("favourites")){
              favourites.push(...JSON.parse(localStorage.getItem("favourites")));
         }
-        let index = favourites.findIndex((rest => rest.RestId === rest_id));
+        let index = favourites.findIndex((rest => rest._id === rest_id));
             console.log(index)
             if (index !== -1) {
                 return(

@@ -184,20 +184,42 @@ router.get('/getrestorders', (req, res) =>
 
 //TODO:
 router.put('/updateorderstatus', (req, res)=>{
-    console.log("Update Order Request reached!", req.body);
-    db.query("UPDATE Orders SET Status = ? WHERE OrderId = ?;",
-    [ req.body.status, req.body.order_id],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-                res.status(500);
-                res.send("SQL error, Check log for more details");
-            } else {
-                res.status(200);
-                res.send("DISH UPDATED");
-            }
+
+    try{
+        data = req.body;
+        console.log("request received in server:", data);
+     kafka.make_request("update_order_status", data, function (err, results) {
+        if (err) {
+            console.log("Inside err");
+            res.json({
+            status: "error",
+            msg: "System Error, Try Again.",
+            });
+        } else {
+            console.log("Inside router post");
+            console.log(results);
+            res.status(200).send(results);
         }
-    );
+        });
+        } catch(error){
+            console.log("error:", error);
+            return res.status(500).json(error);
+    }
+   
+    // console.log("Update Order Request reached!", req.body);
+    // db.query("UPDATE Orders SET Status = ? WHERE OrderId = ?;",
+    // [ req.body.status, req.body.order_id],
+    //     (err, result) => {
+    //         if (err) {
+    //             console.log(err);
+    //             res.status(500);
+    //             res.send("SQL error, Check log for more details");
+    //         } else {
+    //             res.status(200);
+    //             res.send("DISH UPDATED");
+    //         }
+    //     }
+    // );
 
 });
 

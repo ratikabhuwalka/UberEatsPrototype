@@ -26,9 +26,9 @@ class Restaurant extends Component {
             document.title = this.props.location.state.RestName;
             let res = {
                 "RestName": this.props.location.state.RestName,
-                "RestId":this.props.location.state.RestId
+                "RestId":this.props.location.state._id
             }
-            rest_id = this.props.location.state.RestId
+            rest_id = this.props.location.state._id
             localStorage.setItem("active_res",JSON.stringify(res) );
         }
         else{
