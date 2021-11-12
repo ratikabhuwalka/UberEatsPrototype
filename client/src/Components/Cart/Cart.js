@@ -60,11 +60,12 @@ class Cart extends Component {
     };
 
     onQuantityChange = (e) => {
-        let item_id = parseInt(e.target.name);
+        let item_id = e.target.name;
         let newQuantity = parseInt(e.target.value);
         let cart = this.state.cart;
-        let index = cart.findIndex((cart_item => cart_item.item_id === item_id));
-        cart[index].item_quantity = newQuantity;
+        console.log("cart, item_id", cart, item_id);
+        let index = cart.findIndex((cart_item => cart_item.DishId === item_id));
+        cart[index].DishQuantity = newQuantity;
         this.setState({
             cart: cart
         });
@@ -72,9 +73,9 @@ class Cart extends Component {
     };
 
     deleteItem = (e) => {
-        let item_id = parseInt(e.target.name);
+        let item_id = e.target.name;
         let cart = this.state.cart;
-        let index = cart.findIndex((cart_item => cart_item.item_id === item_id));
+        let index = cart.findIndex((cart_item => cart_item.DishId === item_id));
         cart.splice(index, 1);
         this.setState({
             cart: cart
@@ -173,10 +174,10 @@ class Cart extends Component {
                         <td align="center">{cart[i].DishName}</td>
                         <td align="center">$ {cart[i].DishPrice}</td>
                         <td align="center">
-                            <input type="number" name={cart[i].DishId} min="1" max="10" width="10%" onChange={this.onQuantityChange} defaultValue={cart[i].DishQuantity}></input>
+                            <input type="number" name={cart[i].DishId} min="1" width="10%" onChange={this.onQuantityChange} defaultValue={cart[i].DishQuantity}></input>
                         </td>
                         <td align="center">
-                            <Button variant="link" name={cart[i].item_id}>
+                            <Button variant="link" name={cart[i].DishId}>
                                 <img src={deleteIcon} width="15" name={cart[i].DishId} onClick={this.deleteItem} alt="" />
                             </Button>
                         </td>

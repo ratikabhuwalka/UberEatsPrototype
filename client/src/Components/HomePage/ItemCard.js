@@ -80,7 +80,7 @@ function ItemCard({ res}) {
 
         console.log(cart);
         
-        let index = cart.findIndex((dish => dish._id === res._id))
+        let index = cart.findIndex((dish => dish.DishId === res._id))
         if (index === -1){
             console.log(res, item)
             item = {

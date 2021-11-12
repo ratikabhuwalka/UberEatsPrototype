@@ -79,8 +79,9 @@ class Order extends Component {
         }
         axios.get(`${backendServer}/order/getorderreceipt`, {params})
         .then(response => {
-            if(response.data[0]){
-                sessionStorage.setItem("receipt",JSON.stringify(response.data));
+            console.log("response of get receipt",response);
+            if(response.data.response.data){
+                sessionStorage.setItem("receipt",JSON.stringify(response.data.response.data));
                 this.showModal();
 
             }
@@ -98,7 +99,9 @@ class Order extends Component {
     let receipt_modal = null;
     let receipt_items = []
     if (sessionStorage.getItem("receipt")) {
-        var arr = JSON.parse(sessionStorage.getItem("receipt"));
+        var receipt_main = JSON.parse(sessionStorage.getItem("receipt"))
+        console.log(receipt_main)
+        var arr = receipt_main.OrderItem;
         console.log(arr);
         for(var receipt of arr){
             let item = (
@@ -128,20 +131,20 @@ class Order extends Component {
                     <br /><br /><br /><br />
                     <tr>
                         <td colSpan="4">Tax </td>
-                        <td align="center">$ {arr[0].Tax}</td>
+                        <td align="center">$ {receipt_main.Tax}</td>
                     </tr>
                     <tr>
                         <td colSpan="4">Delivery</td>
-                        <td align="center">$ {arr[0].Delivery}</td>
+                        <td align="center">$ {receipt_main.Delivery}</td>
                     </tr>
                     <tr>    
                         <td colSpan="4">Discount</td>
-                        <td align="center">$ {arr[0].Discount}</td>
+                        <td align="center">$ {receipt_main.Discount}</td>
                     </tr>
 
                     <tr>
                         <td colSpan="4"><b>Total</b></td>
-                        <td align="center"><b>$ {arr[0].Final}</b></td>
+                        <td align="center"><b>$ {receipt_main.Final}</b></td>
                     </tr>
                 </tbody>
             </Table>
@@ -183,7 +186,7 @@ class Order extends Component {
                             <td>Time <br/><b>{order.Timestamp}</b></td>
                             <td>Status <br/><b>{order.Status}</b></td>
                             
-                            <td> <a href="#" onClick= {() => this.getOrderReceipt(order.OrderId)}> view receipt </a></td>
+                            <td> <a href="#" onClick= {() => this.getOrderReceipt(order._id)}> view receipt </a></td>
 
                         </tr>
                      

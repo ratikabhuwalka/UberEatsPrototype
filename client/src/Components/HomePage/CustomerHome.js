@@ -23,6 +23,32 @@ export default class CustomerHome extends React.Component {
             this.onTypeSelect = this.onTypeSelect.bind(this);
         }
         
+
+
+        get_cust_fav(cust_id) {
+            var url = `${backendServer}/restaurant/getFav?cust_id=${cust_id}`
+            axios.get(url)
+                 .then(response => {
+                    if (response.data.Favourites) {
+                        console.log("customer fav response", response.data.Favourites)
+                        var res = JSON.stringify(response.data.Favourites)
+                        console.log(res)
+    
+                        if (response.data.Favourites.length === 0) {
+                           console.log("no favs")
+                        }
+                        else {
+                            localStorage.setItem('favourites', res)
+                        }
+                    }
+                })
+                .catch(error => {
+                    if (error.response && error.response.data) {
+                        console.log(error.response.data);
+                    }
+                }) 
+            }
+
        get_rest_call(cust_city, search_param = null) {
         var url = `${backendServer}/restaurant/getRestaurants`
         let params = {
@@ -42,8 +68,6 @@ export default class CustomerHome extends React.Component {
                             search_input: "",
                             restaurantList: res,
                             displayRestaurants: res
-                            
-                            
                         });
                     }
                     else {
@@ -63,33 +87,14 @@ export default class CustomerHome extends React.Component {
         }
 
 
-        get_cust_fav(cust_id) {
-            var url = `${backendServer}/restaurant/getFav?cust_id=${cust_id}`
-            axios.get(url)
-                 .then(response => {
-                    if (response.data) {
-                        var res = JSON.stringify(response.data)
-    
-                        if (response.data[0].search_result === 'NO_RECORD') {
-                           console.log("no favs")
-                        }
-                        else {
-                            localStorage.setItem('favourites', res)
-                        }
-                    }
-                })
-                .catch(error => {
-                    if (error.response && error.response.data) {
-                        console.log(error.response.data);
-                    }
-                }) 
-            }
+        
 
         componentDidMount() {
-            this.get_rest_call(localStorage.getItem('city'));
             if(localStorage.getItem('user_id')){
                 this.get_cust_fav(localStorage.getItem('user_id'));
             }
+            this.get_rest_call(localStorage.getItem('city'));
+            
            
         }
     

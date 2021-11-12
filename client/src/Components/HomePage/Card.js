@@ -48,8 +48,8 @@ function Card({ res}) {
                 localStorage.setItem("favourites", favourites);
             }
     
-            console.log(favourites);
-            let index = favourites.findIndex((rest => rest.RestId === rest_id));
+            console.log("Favourites on login",favourites);
+            let index = favourites.findIndex((rest => rest._id === rest_id));
             console.log(index)
             if (index === -1) {
                 let rest_ = {
@@ -73,8 +73,10 @@ function Card({ res}) {
     function FavButton(){
         let favourites = []
         if(localStorage.getItem("favourites")){
-             favourites.push(...JSON.parse(localStorage.getItem("favourites")));
+            console.log("local storage", localStorage.getItem("favourites"))
+            favourites.push(...JSON.parse(localStorage.getItem("favourites")));
         }
+        console.log("favourites from local storage", favourites)
         let index = favourites.findIndex((rest => rest._id === rest_id));
             console.log(index)
             if (index !== -1) {
