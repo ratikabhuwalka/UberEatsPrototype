@@ -41,7 +41,10 @@ class Order extends Component {
             filteredList = this.state.orders.filter(order => order.Status=== "DELIVERED" || order.Status=== "PICKED UP");
         }
         else if(e.target.text === "New") {
-            filteredList = this.state.orders.filter(order => order.Status!== "DELIVERED" && order.Status!== "PICKED UP")
+            filteredList = this.state.orders.filter(order => order.Status!== "DELIVERED" && order.Status!== "PICKED UP" && order.Status!== "CANCELLED")
+        }
+        else if(e.target.text === "Cancelled") {
+            filteredList = this.state.orders.filter(order => order.Status === "CANCELLED")
         }
         else{
             filteredList = this.state.orders
@@ -90,6 +93,36 @@ class Order extends Component {
             console.log(error);
         })
     };
+
+    updateOrderStatus = (order_id, status) => {
+        if(status !== "NEW"){
+
+            alert("Cant cancel order now!")
+        }
+        else{
+        const params = {
+            order_id : order_id,
+            status : "CANCELLED"
+        }
+        console.log()
+        axios.put(`${backendServer}/order/updateorderstatus`, params)
+        .then(response => {
+            console.log("response of update status",response)
+            if (response.data.status_code === 200) {
+                window.location.reload();
+            }
+
+        })
+        .catch(error => {
+            this.setState({
+                message: "ERROR"
+            });
+        });
+    }
+    }
+    
+   
+
     
     
     render() {
@@ -193,7 +226,10 @@ class Order extends Component {
                             <td>Final Price<br/><b>${order.Final}</b></td> 
                             <td>Time <br/><b>{order.Timestamp}</b></td>
                             <td>Status <br/><b>{order.Status}</b></td>
-                            
+                            <td><Button variant ='danger' size="sm" onClick= {() => this.updateOrderStatus(order._id, order.Status, order.OrderType)}> 
+                                Cancel Order </Button>
+                            {/* <Button variant = 'primary' onClick= {() => this.getOrderReceipt(order.OrderId)}> View Receipt </Button> */}
+                            </td>
                             <td> <a href="#" onClick= {() => this.getOrderReceipt(order._id)}> view receipt </a></td>
 
                         </tr>
@@ -222,6 +258,7 @@ class Order extends Component {
                                 id="input-group-dropdown-2">
                                 <Dropdown.Item onClick={this.onStatusSelect}>New</Dropdown.Item>
                                 <Dropdown.Item onClick={this.onStatusSelect}>Completed</Dropdown.Item>
+                                <Dropdown.Item onClick={this.onStatusSelect}>Cancelled</Dropdown.Item>
                                 <Dropdown.Item onClick={this.onStatusSelect}>All</Dropdown.Item>
 
                 </DropdownButton>

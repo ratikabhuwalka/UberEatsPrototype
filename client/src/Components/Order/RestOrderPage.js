@@ -62,8 +62,14 @@ class RestOrder extends Component {
     
     updateOrderStatus = (order_id, status, order_type) => {
         
-
-        if(status === 'DELIVERED' || status === 'PICKED UP')
+        if(status === 'Cancel'){
+            status = 'CANCELLED'
+        }
+        if(status === 'CANCELLED')
+        {
+            alert("Cannot perform this operation. Order is cancelled");
+        } 
+        else if(status === 'DELIVERED' || status === 'PICKED UP')
         {
             alert("Order is already completed");
         } 
@@ -123,7 +129,10 @@ class RestOrder extends Component {
             filteredList = this.state.orders.filter(order => order.Status=== "DELIVERED" || order.Status=== "PICKED UP");
         }
         else if(e.target.text === "New") {
-            filteredList = this.state.orders.filter(order => order.Status!== "DELIVERED" && order.Status!== "PICKED UP")
+            filteredList = this.state.orders.filter(order => order.Status!== "DELIVERED" && order.Status!== "PICKED UP" && order.Status!== "CANCELLED" )
+        }
+        else if(e.target.text === "Cancelled") {
+            filteredList = this.state.orders.filter(order => order.Status=== "CANCELLED")
         }
         else{
             filteredList = this.state.orders
@@ -184,6 +193,10 @@ class RestOrder extends Component {
                             Update Status </Button>
                             {/* <Button variant = 'primary' onClick= {() => this.getOrderReceipt(order.OrderId)}> View Receipt </Button> */}
                             </td>
+                            <td><Button variant ='danger' size="sm" onClick= {() => this.updateOrderStatus(order._id, "Cancel", order.OrderType)}> 
+                           Cancel Order </Button>
+                            {/* <Button variant = 'primary' onClick= {() => this.getOrderReceipt(order.OrderId)}> View Receipt </Button> */}
+                            </td>
                             <br/>
                             <td><Link to={{pathname: "/customerProfile", props:{cust_id:order.CustId}}}><Button variant = "info" size="sm"> View Customer Profile </Button></Link></td>
 
@@ -213,6 +226,7 @@ class RestOrder extends Component {
                                 id="input-group-dropdown-2">
                                 <Dropdown.Item onClick={this.onStatusSelect}>New</Dropdown.Item>
                                 <Dropdown.Item onClick={this.onStatusSelect}>Completed</Dropdown.Item>
+                                <Dropdown.Item onClick={this.onStatusSelect}>Cancelled</Dropdown.Item>
                                 <Dropdown.Item onClick={this.onStatusSelect}>All</Dropdown.Item>
 
                 </DropdownButton>

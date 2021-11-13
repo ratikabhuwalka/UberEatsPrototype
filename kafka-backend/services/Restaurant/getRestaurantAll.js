@@ -11,7 +11,8 @@ async function handle_request(msg, callback) {
   try {
       console.log(msg);
       search_string = msg.search_string
-      if (search_string.length >0){ 
+
+      if (search_string.length >0 && search_string !='_'){ 
         let searchStringRegex = new RegExp(search_string, "i");
 
         await Restaurant.find({ $or: [ {RestName: searchStringRegex}, {RestCity: searchStringRegex}, {'Dishes.DishName': searchStringRegex}, {'Dishes.Category': searchStringRegex}]})
