@@ -21,6 +21,7 @@ export default class CustomerHome extends React.Component {
             this.onChange = this.onChange.bind(this);
             this.onSearch = this.onSearch.bind(this);
             this.onTypeSelect = this.onTypeSelect.bind(this);
+            this.onMealTypeSelect = this.onMealTypeSelect.bind(this);
         }
         
 

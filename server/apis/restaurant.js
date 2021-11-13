@@ -156,7 +156,7 @@ router.get('/getRestaurants', (req, res) => {
         var data = {
             search_string : search_string
         }
-       
+       console.log("data being passed get rest all", data);
         kafka.make_request("get_restaurant_all", data, function (err, results) {
             if (err) {
               console.log("Inside err");

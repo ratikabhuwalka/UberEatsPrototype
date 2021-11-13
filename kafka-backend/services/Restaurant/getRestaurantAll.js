@@ -11,6 +11,26 @@ async function handle_request(msg, callback) {
   try {
       console.log(msg);
       search_string = msg.search_string
+      if (search_string.length >0){ 
+        let searchStringRegex = new RegExp(search_string, "i");
+
+        await Restaurant.find({ $or: [ {RestName: searchStringRegex}, {RestCity: searchStringRegex}, {'Dishes.DishName': searchStringRegex}, {'Dishes.Category': searchStringRegex}]})
+      .then((result) => {
+          if (result) {
+            console.log("result",result);
+            callback(null, result);
+          } else {
+              console.log('NO DATA');
+          }
+                  
+    })
+      .catch((err) => {
+          console.log(err);
+      })
+    }
+     else{
+
+     
       await Restaurant.find({}, (err, result) => {
       if (err) {
         console.log("error in find all restaurant");
@@ -30,9 +50,10 @@ async function handle_request(msg, callback) {
             //   res.status(400).json({ msg: "User doesn't exist" });
             }
         }
-    });
-
-  } catch (error) {
+      });
+    }
+  }
+  catch (error) {
     console.log(error);
     callback("");
   }
