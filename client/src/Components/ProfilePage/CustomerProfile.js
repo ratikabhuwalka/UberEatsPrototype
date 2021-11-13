@@ -130,7 +130,8 @@ onUserUpload = (e) => {
             "content-type": "multipart/form-data"
         }
     };
-    axios.post(`${backendServer}/upload/dish/1`, formData, uploadConfig)
+    const dummy_data = "dummy"
+    axios.post(`${backendServer}/upload/dish/1`, dummy_data)
         .then(response => {
             alert("Image uploaded successfully!");
             this.setState({

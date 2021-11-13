@@ -23,12 +23,12 @@ class Restaurant extends Component {
             rest_id = "";
         console.log("props from login",this.props.location.state);
         if (this.props.location.state) {
+            rest_id = this.props.location.state._id || this.props.location.state.RestId
             document.title = this.props.location.state.RestName;
             let res = {
                 "RestName": this.props.location.state.RestName,
-                "RestId":this.props.location.state._id
+                "RestId": rest_id
             }
-            rest_id = this.props.location.state._id
             localStorage.setItem("active_res",JSON.stringify(res) );
         }
         else{

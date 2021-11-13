@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { userLogin } from '../../actions/loginAction'
 import NavigationBar from '../NavigationBar';
 import jwt_decode from "jwt-decode";
-import { decode } from 'jsonwebtoken';
 
 
 class Login extends Component {
@@ -61,67 +60,24 @@ class Login extends Component {
                 var decoded = jwt_decode(login_res.split(' ')[1]);
                 console.log("Decoded", decoded);
                 if (decoded.IsOwner){
-                localStorage.setItem("email_id", decoded.RestEmail);
-                localStorage.setItem("is_owner", true);
-                localStorage.setItem("user_id", decoded.RestId);
-                localStorage.setItem("name", decoded.RestName);
-                localStorage.setItem("rest_type", decoded.RestType);
+                    localStorage.setItem("email_id", decoded.RestEmail);
+                    localStorage.setItem("is_owner", true);
+                    localStorage.setItem("user_id", decoded.RestId);
+                    localStorage.setItem("name", decoded.RestName);
+                    localStorage.setItem("rest_type", decoded.RestType);
+                    redirectVar = <Redirect to={{pathname: '/restaurant', state : decoded }} />
+                }
+                else{
             
-                redirectVar = <Redirect to={{pathname: '/restaurant', state : decoded }} />
-            }
-            else{
-
-            }
-
-            }
+                    localStorage.setItem("email_id", decoded.CustEmail);
+                    localStorage.setItem("is_owner", false);
+                    localStorage.setItem("user_id", decoded.CustId);
+                    localStorage.setItem("name", decoded.CustName);
+                    localStorage.setItem("city", decoded.CustCity);
+                    redirectVar = <Redirect to="/customerHome" />
+                }
             
-           
-        }
-
-        // console.log("token in state", this.state.user);
-        if (localStorage.getItem("token")){
-              localStorage.setItem("email_id", decoded.CustEmail);
-            localStorage.setItem("is_owner", false);
-            localStorage.setItem("user_id", decoded.CustId);
-            localStorage.setItem("name", decoded.CustName);
-            localStorage.setItem("city", decoded.CustCity);
-            redirectVar = <Redirect to="/customerHome" />
-
-
-
-        }
-
-
-        //     var decoded = jwt_decode(this.state.user.split(' ')[1]);
-        //     console.log("Decoded", decoded);
-        // }
-        // if (this.props.user) {
-        //     console.log("here for login url check");
-        //     var decoded = jwt_decode(this.props.user);
-        //     console.log(decoded);
-        //     // localStorage.setItem("user_id", decoded.id);
-        //     // localStorage.setItem("username", decoded.username);
-        //     // localStorage.setItem("usertype", decoded.usertype);
-            
-        //     redirectVar = <Redirect to="/home" />
-        // }
-        if(this.props.user && this.props.user.RestId){
-            localStorage.setItem("email_id", this.props.user.RestEmail);
-            localStorage.setItem("is_owner", true);
-            localStorage.setItem("user_id", this.props.user.RestId);
-            localStorage.setItem("name", this.props.user.RestName);
-            localStorage.setItem("rest_type", this.props.user.RestType);
-            res = this.props.user;
-            redirectVar = <Redirect to={{pathname: '/restaurant', state : res }} />
-        }
-        else if(this.props.user && this.props.user.CustId) { 
-            localStorage.setItem("email_id", this.props.user.CustEmail);
-            localStorage.setItem("is_owner", false);
-            localStorage.setItem("user_id", this.props.user.CustId);
-            localStorage.setItem("name", this.props.user.CustName);
-            localStorage.setItem("city", this.props.user.CustCity);
-            redirectVar = <Redirect to="/customerHome" />
-
+            }
         }
         else if(this.props.user === "NO_USER" && this.state.loginFlag){
             message = "No user with this email id";

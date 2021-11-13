@@ -28,6 +28,7 @@ class ItemPage extends Component{
 
     componentWillMount() 
     {
+        console.log("props:", this.props.location.props)
         if(this.props.location.props && this.props.location.props.type && this.props.location.props.type==='ADD'){
             if(sessionStorage.getItem('active_dish'))
             {
@@ -78,13 +79,19 @@ class ItemPage extends Component{
             }
         )
     }
+    
     onUpload = (e) => {
         console.log("on upload");
         const formData = new FormData();
         console.log(this.state.dish_image);
         formData.append("file", this.state.dish_image);
-        axios.post(`${backendServer}/upload/dish/${this.state.dish_id}`,
-            formData,
+        const params = {
+            dish_id:this.state.dish_id,
+            rest_id:this.state.rest_id
+        }
+        
+        axios.post(`${backendServer}/upload/dish`,
+            formData,{params:params},
             {
             headers: {
                 "Content-Type": "multipart/form-data"

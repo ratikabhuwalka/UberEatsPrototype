@@ -35,9 +35,7 @@ function ItemCard({ res}) {
         console.log("cart quantity:" + cart_quant);
         setQuantity(cart_quant);
 
-
-
-      }, []);
+    }, []);
 
 
     const deleteItem = () =>
@@ -48,7 +46,6 @@ function ItemCard({ res}) {
             if(response.data==='DISH DELETED'){
                 alert("Item Deleted");
                 handleClose();
-
             }
         })
         .catch(error => {
@@ -128,7 +125,7 @@ function ItemCard({ res}) {
             console.log("In else for owner");
             return (<>
                 <center>
-                <Link to={{pathname: "/itempage", props:{type:'EDIT', dish_id : dish_id  }}}>
+                <Link to={{pathname: "/itempage", props:{type:'EDIT', dish : res  }}}>
                 <Button variant="primary">Edit</Button>
                 </Link>
                 {'    '}

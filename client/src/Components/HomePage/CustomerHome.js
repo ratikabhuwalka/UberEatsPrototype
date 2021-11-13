@@ -117,6 +117,7 @@ export default class CustomerHome extends React.Component {
             var arr = JSON.parse(this.state.restaurantList);
             console.log('array after parse', arr);
             console.log(typeof(arr));
+
             var filteredList = arr.filter(restaurant => restaurant.RestType=== e.target.text);
             console.log('array after filtering',filteredList);
             this.setState({
@@ -125,7 +126,16 @@ export default class CustomerHome extends React.Component {
         }
 
         onMealTypeSelect = (e) => {
-            this.get_rest_call(localStorage.getItem('city'), e.target.text);
+            console.log("inside on meal select");
+            var arr = JSON.parse(this.state.restaurantList);
+            console.log('array after parse meal select', arr);
+            console.log(typeof(arr));
+
+            var filteredList = arr.filter(restaurant => restaurant.Dishes.filter( dish => dish.Category === e.target.text));
+            console.log('array after filtering',filteredList);
+            this.setState({
+                displayRestaurants: JSON.stringify(filteredList)
+            });
         }
     
         render() {
@@ -197,6 +207,7 @@ export default class CustomerHome extends React.Component {
                                 
                                 <Dropdown.Item onClick={this.onTypeSelect}>Delivery</Dropdown.Item>
                                 <Dropdown.Item onClick={this.onTypeSelect}>Pickup</Dropdown.Item>
+                                <Dropdown.Item onClick={this.onTypeSelect}>Both</Dropdown.Item>
                                 </DropdownButton>
 
                                 <DropdownButton

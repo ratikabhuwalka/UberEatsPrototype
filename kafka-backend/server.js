@@ -30,6 +30,8 @@ var addDish = require("./services/Restaurant/addDish")
 var updateDish = require("./services/Restaurant/updateDish")
 var getRestOrders = require("./services/Restaurant/getRestaurantOrders")
 var updateOrderStatus = require("./services/Restaurant/updateOrderStatus")
+var uploadRestImage = require("./services/Restaurant/uploadRestImage")
+var uploadDishImage = require("./services/Restaurant/uploadDishImage")
 
 //Customer apis
 
@@ -127,6 +129,8 @@ handleTopicRequest("update_customer", updateCustomer);
 handleTopicRequest("add_favourite", addFavourite);
 handleTopicRequest("get_favourite", getFavourite);
 handleTopicRequest("update_order_status", updateOrderStatus);
+handleTopicRequest("upload_rest_image", uploadRestImage);
+handleTopicRequest("upload_dish_image", uploadDishImage);
 
 
 // handleTopicRequest("get_profile", getProfile);

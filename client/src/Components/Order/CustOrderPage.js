@@ -146,6 +146,14 @@ class Order extends Component {
                         <td colSpan="4"><b>Total</b></td>
                         <td align="center"><b>$ {receipt_main.Final}</b></td>
                     </tr>
+                    <tr></tr>
+
+                    <tr>
+                        <td colSpan="4"><b>Special Instructions</b></td>
+                        <td align="center">{receipt_main.Instruction}</td>
+                    </tr>
+
+
                 </tbody>
             </Table>
         )
