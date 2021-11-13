@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import backendServer from "../../webConfig";
-import { Button, Container, Table , DropdownButton, InputGroup, Dropdown} from "react-bootstrap";
+import { Button, Container, Table , DropdownButton, InputGroup, Dropdown, Input} from "react-bootstrap";
 import Navigationbar from '../NavigationBar.js';
 import axios from 'axios';
 
@@ -72,7 +72,7 @@ class Checkout extends Component {
             orderType : this.state.mode,
             cartItems : this.state.cart_items,
             deliveryAddress: "dummy data",
-            instruction : "dummy instruction"
+            instruction : this.state.instruction
 
         }
 
@@ -105,13 +105,18 @@ class Checkout extends Component {
         )
     }
 
+
+    onChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
     render() {
         let redirectVar = null,
             order = null,
             restaurant = null,
             mode_dropdown = null;
-            console.log(this.state.restaurant);
-
 
         if (!localStorage.getItem("user_id") || localStorage.getItem("is_owner") === "true") {
             redirectVar = <Redirect to="/" />
@@ -240,7 +245,13 @@ class Checkout extends Component {
                             </tbody>
                         </Table>
                         <div>
-                               
+                            <label for="instruction">Special Instructions: </label>
+                            <textarea id="instruction" name="instruction" rows="4" cols="50" onChange = {this.onChange}>
+                            </textarea>
+                        </div>
+
+                        <div>
+                          
                         <center>
                             <br/> <br/> <br/> <br/>
                             <Button variant="success" onClick={this.placeOrder}>Confirm Order</Button>&nbsp; &nbsp;
