@@ -1,7 +1,7 @@
 const AWS = require("aws-sdk");
 
-const ACCESS_KEY = "AKIAQL5KLZPDMQFBBHEW";
-const SECRET_KEY = "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";
+const ACCESS_KEY = "AKIAQL5KLZPDNIFWE674";
+const SECRET_KEY = "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";
 const S3_BUCKET = "ubereatsimages";
 
 AWS.config.update({
