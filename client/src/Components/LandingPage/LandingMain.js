@@ -1,4 +1,3 @@
-import Header from './Header'
 import Panel from './Panel';
 import './Header.css'
 import NavigationBar from '../NavigationBar';

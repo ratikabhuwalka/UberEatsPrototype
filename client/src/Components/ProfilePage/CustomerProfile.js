@@ -104,7 +104,7 @@ updateItem = (e) =>
     }
     var token = localStorage.getItem('token')
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    axios.post(`${backendServer}/customer/updatecust`, cust_data)
+    axios.put(`${backendServer}/customer/updatecust`, cust_data)
         .then(response => {
             console.log(response);
             if (response.data === "CUSTOMER UPDATED") {
