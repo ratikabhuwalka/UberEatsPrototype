@@ -1,0 +1,932 @@
+[2021-10-27 13:46:18,273] INFO Reading configuration from: config/zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,276] WARN config/zookeeper.properties is relative. Prepend ./ to indicate that you're sure! (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,283] INFO clientPortAddress is 0.0.0.0:2181 (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,283] INFO secureClientPort is not set (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,283] INFO observerMasterPort is not set (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,283] INFO metricsProvider.className is org.apache.zookeeper.metrics.impl.DefaultMetricsProvider (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,284] INFO autopurge.snapRetainCount set to 3 (org.apache.zookeeper.server.DatadirCleanupManager)
+[2021-10-27 13:46:18,284] INFO autopurge.purgeInterval set to 0 (org.apache.zookeeper.server.DatadirCleanupManager)
+[2021-10-27 13:46:18,284] INFO Purge task is not scheduled. (org.apache.zookeeper.server.DatadirCleanupManager)
+[2021-10-27 13:46:18,284] WARN Either no config or no quorum defined in config, running in standalone mode (org.apache.zookeeper.server.quorum.QuorumPeerMain)
+[2021-10-27 13:46:18,288] INFO Log4j 1.2 jmx support found and enabled. (org.apache.zookeeper.jmx.ManagedUtil)
+[2021-10-27 13:46:18,306] INFO Reading configuration from: config/zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,306] WARN config/zookeeper.properties is relative. Prepend ./ to indicate that you're sure! (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,306] INFO clientPortAddress is 0.0.0.0:2181 (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,307] INFO secureClientPort is not set (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,307] INFO observerMasterPort is not set (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,307] INFO metricsProvider.className is org.apache.zookeeper.metrics.impl.DefaultMetricsProvider (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:46:18,307] INFO Starting server (org.apache.zookeeper.server.ZooKeeperServerMain)
+[2021-10-27 13:46:18,319] INFO ServerMetrics initialized with provider org.apache.zookeeper.metrics.impl.DefaultMetricsProvider@35083305 (org.apache.zookeeper.server.ServerMetrics)
+[2021-10-27 13:46:18,328] INFO zookeeper.snapshot.trust.empty : false (org.apache.zookeeper.server.persistence.FileTxnSnapLog)
+[2021-10-27 13:46:18,340] INFO  (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,340] INFO   ______                  _                                           (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,340] INFO  |___  /                 | |                                          (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,340] INFO     / /    ___     ___   | | __   ___    ___   _ __     ___   _ __    (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,340] INFO    / /    / _ \   / _ \  | |/ /  / _ \  / _ \ | '_ \   / _ \ | '__| (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,340] INFO   / /__  | (_) | | (_) | |   <  |  __/ |  __/ | |_) | |  __/ | |     (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,341] INFO  /_____|  \___/   \___/  |_|\_\  \___|  \___| | .__/   \___| |_| (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,341] INFO                                               | |                      (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,341] INFO                                               |_|                      (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,341] INFO  (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,343] INFO Server environment:zookeeper.version=3.6.3--6401e4ad2087061bc6b9f80dec2d69f2e3c8660a, built on 04/08/2021 16:35 GMT (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,343] INFO Server environment:host.name=localhost (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,343] INFO Server environment:java.version=17 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,343] INFO Server environment:java.vendor=Oracle Corporation (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,343] INFO Server environment:java.home=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,343] INFO Server environment:java.class.path=/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/activation-1.1.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/aopalliance-repackaged-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/argparse4j-0.7.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/audience-annotations-0.5.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/commons-cli-1.4.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/commons-lang3-3.8.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-api-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-basic-auth-extension-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-file-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-json-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-mirror-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-mirror-client-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-runtime-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-transforms-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/hk2-api-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/hk2-locator-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/hk2-utils-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-annotations-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-core-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-databind-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-dataformat-csv-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-datatype-jdk8-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-jaxrs-base-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-jaxrs-json-provider-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-module-jaxb-annotations-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-module-scala_2.13-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.activation-api-1.2.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.annotation-api-1.3.5.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.inject-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.validation-api-2.0.2.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.ws.rs-api-2.1.6.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.xml.bind-api-2.3.2.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/javassist-3.27.0-GA.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/javax.servlet-api-3.1.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/javax.ws.rs-api-2.1.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jaxb-api-2.3.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-client-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-common-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-container-servlet-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-container-servlet-core-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-hk2-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-server-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-client-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-continuation-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-http-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-io-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-security-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-server-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-servlet-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-servlets-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-util-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-util-ajax-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jline-3.12.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jopt-simple-5.0.4.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-clients-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-log4j-appender-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-metadata-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-raft-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-server-common-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-shell-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-storage-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-storage-api-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-examples-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-scala_2.13-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-test-utils-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-tools-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka_2.13-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/log4j-1.2.17.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/lz4-java-1.7.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/maven-artifact-3.8.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/metrics-core-2.2.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/metrics-core-4.1.12.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-buffer-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-codec-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-common-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-handler-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-resolver-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-transport-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-transport-native-epoll-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-transport-native-unix-common-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/osgi-resource-locator-1.0.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/paranamer-2.8.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/plexus-utils-3.2.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/reflections-0.9.12.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/rocksdbjni-6.19.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-collection-compat_2.13-2.4.4.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-java8-compat_2.13-1.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-library-2.13.6.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-logging_2.13-3.9.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-reflect-2.13.6.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/slf4j-api-1.7.30.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/slf4j-log4j12-1.7.30.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/snappy-java-1.1.8.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/trogdor-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/zookeeper-3.6.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/zookeeper-jute-3.6.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/zstd-jni-1.5.0-2.jar (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:java.library.path=/Users/ratikabhuwalka/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:. (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:java.io.tmpdir=/var/folders/fw/qkf7nk857ddd0g6vxnfg8_r40000gn/T/ (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:java.compiler=<NA> (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:os.name=Mac OS X (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:os.arch=x86_64 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:os.version=11.5.2 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:user.name=ratikabhuwalka (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:user.home=/Users/ratikabhuwalka (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:user.dir=/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:os.memory.free=495MB (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:os.memory.max=512MB (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO Server environment:os.memory.total=512MB (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO zookeeper.enableEagerACLCheck = false (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO zookeeper.digest.enabled = true (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO zookeeper.closeSessionTxn.enabled = true (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO zookeeper.flushDelay=0 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,345] INFO zookeeper.maxWriteQueuePollTime=0 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,346] INFO zookeeper.maxBatchSize=1000 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,346] INFO zookeeper.intBufferStartingSizeBytes = 1024 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,347] INFO Weighed connection throttling is disabled (org.apache.zookeeper.server.BlueThrottle)
+[2021-10-27 13:46:18,348] INFO minSessionTimeout set to 6000 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,349] INFO maxSessionTimeout set to 60000 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,350] INFO Response cache size is initialized with value 400. (org.apache.zookeeper.server.ResponseCache)
+[2021-10-27 13:46:18,350] INFO Response cache size is initialized with value 400. (org.apache.zookeeper.server.ResponseCache)
+[2021-10-27 13:46:18,352] INFO zookeeper.pathStats.slotCapacity = 60 (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:46:18,353] INFO zookeeper.pathStats.slotDuration = 15 (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:46:18,353] INFO zookeeper.pathStats.maxDepth = 6 (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:46:18,353] INFO zookeeper.pathStats.initialDelay = 5 (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:46:18,353] INFO zookeeper.pathStats.delay = 5 (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:46:18,353] INFO zookeeper.pathStats.enabled = false (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:46:18,356] INFO The max bytes for all large requests are set to 104857600 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,356] INFO The large request threshold is set to -1 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,356] INFO Created server with tickTime 3000 minSessionTimeout 6000 maxSessionTimeout 60000 clientPortListenBacklog -1 datadir /tmp/zookeeper/version-2 snapdir /tmp/zookeeper/version-2 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,369] INFO Using org.apache.zookeeper.server.NIOServerCnxnFactory as server connection factory (org.apache.zookeeper.server.ServerCnxnFactory)
+[2021-10-27 13:46:18,370] WARN maxCnxns is not configured, using default value 0. (org.apache.zookeeper.server.ServerCnxnFactory)
+[2021-10-27 13:46:18,371] INFO Configuring NIO connection handler with 10s sessionless connection timeout, 2 selector thread(s), 16 worker threads, and 64 kB direct buffers. (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2021-10-27 13:46:18,376] INFO binding to port 0.0.0.0/0.0.0.0:2181 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2021-10-27 13:46:18,388] INFO Using org.apache.zookeeper.server.watch.WatchManager as watch manager (org.apache.zookeeper.server.watch.WatchManagerFactory)
+[2021-10-27 13:46:18,388] INFO Using org.apache.zookeeper.server.watch.WatchManager as watch manager (org.apache.zookeeper.server.watch.WatchManagerFactory)
+[2021-10-27 13:46:18,389] INFO zookeeper.snapshotSizeFactor = 0.33 (org.apache.zookeeper.server.ZKDatabase)
+[2021-10-27 13:46:18,389] INFO zookeeper.commitLogCount=500 (org.apache.zookeeper.server.ZKDatabase)
+[2021-10-27 13:46:18,400] INFO zookeeper.snapshot.compression.method = CHECKED (org.apache.zookeeper.server.persistence.SnapStream)
+[2021-10-27 13:46:18,401] INFO Snapshotting: 0x0 to /tmp/zookeeper/version-2/snapshot.0 (org.apache.zookeeper.server.persistence.FileTxnSnapLog)
+[2021-10-27 13:46:18,404] INFO Snapshot loaded in 15 ms, highest zxid is 0x0, digest is 1371985504 (org.apache.zookeeper.server.ZKDatabase)
+[2021-10-27 13:46:18,404] INFO Snapshotting: 0x0 to /tmp/zookeeper/version-2/snapshot.0 (org.apache.zookeeper.server.persistence.FileTxnSnapLog)
+[2021-10-27 13:46:18,404] INFO Snapshot taken in 0 ms (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:18,415] INFO PrepRequestProcessor (sid:0) started, reconfigEnabled=false (org.apache.zookeeper.server.PrepRequestProcessor)
+[2021-10-27 13:46:18,416] INFO zookeeper.request_throttler.shutdownTimeout = 10000 (org.apache.zookeeper.server.RequestThrottler)
+[2021-10-27 13:46:18,448] INFO Using checkIntervalMs=60000 maxPerMinute=10000 maxNeverUsedIntervalMs=0 (org.apache.zookeeper.server.ContainerManager)
+[2021-10-27 13:46:18,448] INFO ZooKeeper audit is disabled. (org.apache.zookeeper.audit.ZKAuditProvider)
+[2021-10-27 13:46:20,593] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49654 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:22,118] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49655 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:24,190] INFO Refusing session request for client /127.0.0.1:49656 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:25,780] INFO Refusing session request for client /127.0.0.1:49657 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:27,909] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49658 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:29,835] INFO Refusing session request for client /127.0.0.1:49659 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:31,618] INFO Refusing session request for client /127.0.0.1:49660 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:33,811] INFO Refusing session request for client /127.0.0.1:49661 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:35,129] INFO Refusing session request for client /127.0.0.1:49662 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:37,183] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49663 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:38,627] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49664 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:40,835] INFO Refusing session request for client /127.0.0.1:49665 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:42,474] INFO Refusing session request for client /127.0.0.1:49666 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:44,319] INFO Refusing session request for client /127.0.0.1:49667 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:46,317] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49668 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:47,768] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49669 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:49,614] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49670 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:51,534] INFO Refusing session request for client /127.0.0.1:49671 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:52,915] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49672 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:54,246] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49673 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:55,748] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49674 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:57,365] INFO Refusing session request for client /127.0.0.1:49675 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:46:59,030] INFO Refusing session request for client /127.0.0.1:49676 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:01,136] INFO Refusing session request for client /127.0.0.1:49677 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:02,594] INFO Refusing session request for client /127.0.0.1:49682 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:03,918] INFO Refusing session request for client /127.0.0.1:49683 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:06,007] INFO Refusing session request for client /127.0.0.1:49684 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:07,765] INFO Refusing session request for client /127.0.0.1:49685 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:09,069] INFO Refusing session request for client /127.0.0.1:49686 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:10,727] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49687 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:12,994] INFO Refusing session request for client /127.0.0.1:49688 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:14,411] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49690 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:16,372] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49691 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:18,042] INFO Refusing session request for client /127.0.0.1:49700 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:20,126] INFO Refusing session request for client /127.0.0.1:49701 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:22,016] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49702 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:23,774] INFO Refusing session request for client /127.0.0.1:49703 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:25,354] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49704 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:26,879] INFO Refusing session request for client /127.0.0.1:49705 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:28,746] INFO Refusing session request for client /127.0.0.1:49706 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:30,772] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49707 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:32,364] INFO Refusing session request for client /127.0.0.1:49708 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:34,097] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49709 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:35,539] INFO Refusing session request for client /127.0.0.1:49710 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:37,509] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49711 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:39,624] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49712 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:40,961] INFO Refusing session request for client /127.0.0.1:49713 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:42,623] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49714 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:44,137] INFO Refusing session request for client /127.0.0.1:49715 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:45,770] INFO Refusing session request for client /127.0.0.1:49716 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:47,790] INFO Refusing session request for client /127.0.0.1:49717 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:49,621] INFO Refusing session request for client /127.0.0.1:49718 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:51,605] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49719 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:53,550] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49720 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:55,650] INFO Refusing session request for client /127.0.0.1:49721 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:57,724] INFO Refusing session request for client /127.0.0.1:49722 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:47:59,180] INFO Refusing session request for client /127.0.0.1:49724 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:01,229] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49725 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:03,054] INFO Refusing session request for client /127.0.0.1:49726 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:05,158] INFO Refusing session request for client /127.0.0.1:49727 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:06,705] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49728 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:08,906] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49729 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:10,395] INFO Refusing session request for client /127.0.0.1:49730 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:12,475] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49731 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:14,043] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49732 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:16,195] INFO Refusing session request for client /127.0.0.1:49733 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:17,804] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49738 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:19,212] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49739 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:20,851] INFO Refusing session request for client /127.0.0.1:49740 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:23,079] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49741 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:24,429] INFO Refusing session request for client /127.0.0.1:49742 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:25,770] INFO Refusing session request for client /127.0.0.1:49743 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:27,504] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49744 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:29,723] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49745 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:31,926] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49746 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:33,912] INFO Refusing session request for client /127.0.0.1:49747 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:36,174] INFO Refusing session request for client /127.0.0.1:49748 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:38,171] INFO Refusing session request for client /127.0.0.1:49749 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:40,222] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49750 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:41,567] INFO Refusing session request for client /127.0.0.1:49751 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:43,029] INFO Refusing session request for client /127.0.0.1:49752 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:44,916] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49753 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:46,619] INFO Refusing session request for client /127.0.0.1:49754 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:48,499] INFO Refusing session request for client /127.0.0.1:49755 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:50,015] INFO Refusing session request for client /127.0.0.1:49756 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:51,908] INFO Refusing session request for client /127.0.0.1:49757 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:54,100] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49758 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:55,423] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49759 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:57,058] INFO Refusing session request for client /127.0.0.1:49760 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:48:58,741] INFO Refusing session request for client /127.0.0.1:49761 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:00,034] INFO Refusing session request for client /127.0.0.1:49762 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:01,964] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49765 as it has seen zxid 0xd8 our last zxid is 0x0 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:02,041] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)
+[2021-10-27 13:49:02,255] INFO Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation (org.apache.zookeeper.common.X509Util)
+[2021-10-27 13:49:02,361] INFO Registered signal handlers for TERM, INT, HUP (org.apache.kafka.common.utils.LoggingSignalHandler)
+[2021-10-27 13:49:02,366] INFO starting (kafka.server.KafkaServer)
+[2021-10-27 13:49:02,367] INFO Connecting to zookeeper on localhost:2181 (kafka.server.KafkaServer)
+[2021-10-27 13:49:02,375] INFO [ZooKeeperClient Kafka server] Initializing a new session to localhost:2181. (kafka.zookeeper.ZooKeeperClient)
+[2021-10-27 13:49:02,379] INFO Client environment:zookeeper.version=3.6.3--6401e4ad2087061bc6b9f80dec2d69f2e3c8660a, built on 04/08/2021 16:35 GMT (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,379] INFO Client environment:host.name=localhost (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,379] INFO Client environment:java.version=17 (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,379] INFO Client environment:java.vendor=Oracle Corporation (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,379] INFO Client environment:java.home=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,379] INFO Client environment:java.class.path=/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/activation-1.1.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/aopalliance-repackaged-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/argparse4j-0.7.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/audience-annotations-0.5.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/commons-cli-1.4.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/commons-lang3-3.8.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-api-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-basic-auth-extension-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-file-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-json-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-mirror-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-mirror-client-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-runtime-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-transforms-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/hk2-api-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/hk2-locator-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/hk2-utils-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-annotations-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-core-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-databind-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-dataformat-csv-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-datatype-jdk8-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-jaxrs-base-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-jaxrs-json-provider-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-module-jaxb-annotations-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-module-scala_2.13-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.activation-api-1.2.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.annotation-api-1.3.5.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.inject-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.validation-api-2.0.2.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.ws.rs-api-2.1.6.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.xml.bind-api-2.3.2.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/javassist-3.27.0-GA.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/javax.servlet-api-3.1.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/javax.ws.rs-api-2.1.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jaxb-api-2.3.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-client-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-common-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-container-servlet-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-container-servlet-core-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-hk2-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-server-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-client-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-continuation-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-http-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-io-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-security-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-server-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-servlet-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-servlets-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-util-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-util-ajax-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jline-3.12.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jopt-simple-5.0.4.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-clients-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-log4j-appender-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-metadata-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-raft-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-server-common-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-shell-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-storage-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-storage-api-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-examples-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-scala_2.13-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-test-utils-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-tools-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka_2.13-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/log4j-1.2.17.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/lz4-java-1.7.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/maven-artifact-3.8.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/metrics-core-2.2.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/metrics-core-4.1.12.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-buffer-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-codec-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-common-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-handler-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-resolver-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-transport-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-transport-native-epoll-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-transport-native-unix-common-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/osgi-resource-locator-1.0.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/paranamer-2.8.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/plexus-utils-3.2.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/reflections-0.9.12.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/rocksdbjni-6.19.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-collection-compat_2.13-2.4.4.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-java8-compat_2.13-1.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-library-2.13.6.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-logging_2.13-3.9.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-reflect-2.13.6.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/slf4j-api-1.7.30.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/slf4j-log4j12-1.7.30.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/snappy-java-1.1.8.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/trogdor-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/zookeeper-3.6.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/zookeeper-jute-3.6.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/zstd-jni-1.5.0-2.jar (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:java.library.path=/Users/ratikabhuwalka/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:. (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:java.io.tmpdir=/var/folders/fw/qkf7nk857ddd0g6vxnfg8_r40000gn/T/ (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:java.compiler=<NA> (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:os.name=Mac OS X (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:os.arch=x86_64 (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:os.version=11.5.2 (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:user.name=ratikabhuwalka (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:user.home=/Users/ratikabhuwalka (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:user.dir=/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0 (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:os.memory.free=987MB (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:os.memory.max=1024MB (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,380] INFO Client environment:os.memory.total=1024MB (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,382] INFO Initiating client connection, connectString=localhost:2181 sessionTimeout=18000 watcher=kafka.zookeeper.ZooKeeperClient$ZooKeeperClientWatcher$@72ade7e3 (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:02,389] INFO jute.maxbuffer value is 4194304 Bytes (org.apache.zookeeper.ClientCnxnSocket)
+[2021-10-27 13:49:02,392] INFO zookeeper.request.timeout value is 0. feature enabled=false (org.apache.zookeeper.ClientCnxn)
+[2021-10-27 13:49:02,396] INFO [ZooKeeperClient Kafka server] Waiting until connected. (kafka.zookeeper.ZooKeeperClient)
+[2021-10-27 13:49:02,397] INFO Opening socket connection to server localhost/[0:0:0:0:0:0:0:1]:2181. (org.apache.zookeeper.ClientCnxn)
+[2021-10-27 13:49:02,397] INFO SASL config status: Will not attempt to authenticate using SASL (unknown error) (org.apache.zookeeper.ClientCnxn)
+[2021-10-27 13:49:02,404] INFO Socket connection established, initiating session, client: /[0:0:0:0:0:0:0:1]:49766, server: localhost/[0:0:0:0:0:0:0:1]:2181 (org.apache.zookeeper.ClientCnxn)
+[2021-10-27 13:49:02,413] INFO Creating new log file: log.1 (org.apache.zookeeper.server.persistence.FileTxnLog)
+[2021-10-27 13:49:02,451] INFO Session establishment complete on server localhost/[0:0:0:0:0:0:0:1]:2181, session id = 0x1000009412a0000, negotiated timeout = 18000 (org.apache.zookeeper.ClientCnxn)
+[2021-10-27 13:49:02,455] INFO [ZooKeeperClient Kafka server] Connected. (kafka.zookeeper.ZooKeeperClient)
+[2021-10-27 13:49:02,985] INFO [feature-zk-node-event-process-thread]: Starting (kafka.server.FinalizedFeatureChangeListener$ChangeNotificationProcessorThread)
+[2021-10-27 13:49:03,015] INFO Feature ZK node at path: /feature does not exist (kafka.server.FinalizedFeatureChangeListener)
+[2021-10-27 13:49:03,018] INFO Cleared cache (kafka.server.FinalizedFeatureCache)
+[2021-10-27 13:49:03,185] INFO Cluster ID = uyksOrp1T4-WNWX_URrBMQ (kafka.server.KafkaServer)
+[2021-10-27 13:49:03,213] WARN No meta.properties file under dir /tmp/kafka-logs/meta.properties (kafka.server.BrokerMetadataCheckpoint)
+[2021-10-27 13:49:03,263] INFO KafkaConfig values: 
+	advertised.listeners = null
+	alter.config.policy.class.name = null
+	alter.log.dirs.replication.quota.window.num = 11
+	alter.log.dirs.replication.quota.window.size.seconds = 1
+	authorizer.class.name = 
+	auto.create.topics.enable = true
+	auto.leader.rebalance.enable = true
+	background.threads = 10
+	broker.heartbeat.interval.ms = 2000
+	broker.id = 0
+	broker.id.generation.enable = true
+	broker.rack = null
+	broker.session.timeout.ms = 9000
+	client.quota.callback.class = null
+	compression.type = producer
+	connection.failed.authentication.delay.ms = 100
+	connections.max.idle.ms = 600000
+	connections.max.reauth.ms = 0
+	control.plane.listener.name = null
+	controlled.shutdown.enable = true
+	controlled.shutdown.max.retries = 3
+	controlled.shutdown.retry.backoff.ms = 5000
+	controller.listener.names = null
+	controller.quorum.append.linger.ms = 25
+	controller.quorum.election.backoff.max.ms = 1000
+	controller.quorum.election.timeout.ms = 1000
+	controller.quorum.fetch.timeout.ms = 2000
+	controller.quorum.request.timeout.ms = 2000
+	controller.quorum.retry.backoff.ms = 20
+	controller.quorum.voters = []
+	controller.quota.window.num = 11
+	controller.quota.window.size.seconds = 1
+	controller.socket.timeout.ms = 30000
+	create.topic.policy.class.name = null
+	default.replication.factor = 1
+	delegation.token.expiry.check.interval.ms = 3600000
+	delegation.token.expiry.time.ms = 86400000
+	delegation.token.master.key = null
+	delegation.token.max.lifetime.ms = 604800000
+	delegation.token.secret.key = null
+	delete.records.purgatory.purge.interval.requests = 1
+	delete.topic.enable = true
+	fetch.max.bytes = 57671680
+	fetch.purgatory.purge.interval.requests = 1000
+	group.initial.rebalance.delay.ms = 0
+	group.max.session.timeout.ms = 1800000
+	group.max.size = 2147483647
+	group.min.session.timeout.ms = 6000
+	initial.broker.registration.timeout.ms = 60000
+	inter.broker.listener.name = null
+	inter.broker.protocol.version = 3.0-IV1
+	kafka.metrics.polling.interval.secs = 10
+	kafka.metrics.reporters = []
+	leader.imbalance.check.interval.seconds = 300
+	leader.imbalance.per.broker.percentage = 10
+	listener.security.protocol.map = PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL
+	listeners = PLAINTEXT://:9092
+	log.cleaner.backoff.ms = 15000
+	log.cleaner.dedupe.buffer.size = 134217728
+	log.cleaner.delete.retention.ms = 86400000
+	log.cleaner.enable = true
+	log.cleaner.io.buffer.load.factor = 0.9
+	log.cleaner.io.buffer.size = 524288
+	log.cleaner.io.max.bytes.per.second = 1.7976931348623157E308
+	log.cleaner.max.compaction.lag.ms = 9223372036854775807
+	log.cleaner.min.cleanable.ratio = 0.5
+	log.cleaner.min.compaction.lag.ms = 0
+	log.cleaner.threads = 1
+	log.cleanup.policy = [delete]
+	log.dir = /tmp/kafka-logs
+	log.dirs = /tmp/kafka-logs
+	log.flush.interval.messages = 9223372036854775807
+	log.flush.interval.ms = null
+	log.flush.offset.checkpoint.interval.ms = 60000
+	log.flush.scheduler.interval.ms = 9223372036854775807
+	log.flush.start.offset.checkpoint.interval.ms = 60000
+	log.index.interval.bytes = 4096
+	log.index.size.max.bytes = 10485760
+	log.message.downconversion.enable = true
+	log.message.format.version = 3.0-IV1
+	log.message.timestamp.difference.max.ms = 9223372036854775807
+	log.message.timestamp.type = CreateTime
+	log.preallocate = false
+	log.retention.bytes = -1
+	log.retention.check.interval.ms = 300000
+	log.retention.hours = 168
+	log.retention.minutes = null
+	log.retention.ms = null
+	log.roll.hours = 168
+	log.roll.jitter.hours = 0
+	log.roll.jitter.ms = null
+	log.roll.ms = null
+	log.segment.bytes = 1073741824
+	log.segment.delete.delay.ms = 60000
+	max.connection.creation.rate = 2147483647
+	max.connections = 2147483647
+	max.connections.per.ip = 2147483647
+	max.connections.per.ip.overrides = 
+	max.incremental.fetch.session.cache.slots = 1000
+	message.max.bytes = 1048588
+	metadata.log.dir = null
+	metadata.log.max.record.bytes.between.snapshots = 20971520
+	metadata.log.segment.bytes = 1073741824
+	metadata.log.segment.min.bytes = 8388608
+	metadata.log.segment.ms = 604800000
+	metadata.max.retention.bytes = -1
+	metadata.max.retention.ms = 604800000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	min.insync.replicas = 1
+	node.id = -1
+	num.io.threads = 8
+	num.network.threads = 3
+	num.partitions = 1
+	num.recovery.threads.per.data.dir = 1
+	num.replica.alter.log.dirs.threads = null
+	num.replica.fetchers = 1
+	offset.metadata.max.bytes = 4096
+	offsets.commit.required.acks = -1
+	offsets.commit.timeout.ms = 5000
+	offsets.load.buffer.size = 5242880
+	offsets.retention.check.interval.ms = 600000
+	offsets.retention.minutes = 10080
+	offsets.topic.compression.codec = 0
+	offsets.topic.num.partitions = 50
+	offsets.topic.replication.factor = 1
+	offsets.topic.segment.bytes = 104857600
+	password.encoder.cipher.algorithm = AES/CBC/PKCS5Padding
+	password.encoder.iterations = 4096
+	password.encoder.key.length = 128
+	password.encoder.keyfactory.algorithm = null
+	password.encoder.old.secret = null
+	password.encoder.secret = null
+	principal.builder.class = class org.apache.kafka.common.security.authenticator.DefaultKafkaPrincipalBuilder
+	process.roles = []
+	producer.purgatory.purge.interval.requests = 1000
+	queued.max.request.bytes = -1
+	queued.max.requests = 500
+	quota.window.num = 11
+	quota.window.size.seconds = 1
+	remote.log.index.file.cache.total.size.bytes = 1073741824
+	remote.log.manager.task.interval.ms = 30000
+	remote.log.manager.task.retry.backoff.max.ms = 30000
+	remote.log.manager.task.retry.backoff.ms = 500
+	remote.log.manager.task.retry.jitter = 0.2
+	remote.log.manager.thread.pool.size = 10
+	remote.log.metadata.manager.class.name = null
+	remote.log.metadata.manager.class.path = null
+	remote.log.metadata.manager.impl.prefix = null
+	remote.log.metadata.manager.listener.name = null
+	remote.log.reader.max.pending.tasks = 100
+	remote.log.reader.threads = 10
+	remote.log.storage.manager.class.name = null
+	remote.log.storage.manager.class.path = null
+	remote.log.storage.manager.impl.prefix = null
+	remote.log.storage.system.enable = false
+	replica.fetch.backoff.ms = 1000
+	replica.fetch.max.bytes = 1048576
+	replica.fetch.min.bytes = 1
+	replica.fetch.response.max.bytes = 10485760
+	replica.fetch.wait.max.ms = 500
+	replica.high.watermark.checkpoint.interval.ms = 5000
+	replica.lag.time.max.ms = 30000
+	replica.selector.class = null
+	replica.socket.receive.buffer.bytes = 65536
+	replica.socket.timeout.ms = 30000
+	replication.quota.window.num = 11
+	replication.quota.window.size.seconds = 1
+	request.timeout.ms = 30000
+	reserved.broker.max.id = 1000
+	sasl.client.callback.handler.class = null
+	sasl.enabled.mechanisms = [GSSAPI]
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.principal.to.local.rules = [DEFAULT]
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism.controller.protocol = GSSAPI
+	sasl.mechanism.inter.broker.protocol = GSSAPI
+	sasl.server.callback.handler.class = null
+	security.inter.broker.protocol = PLAINTEXT
+	security.providers = null
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	socket.receive.buffer.bytes = 102400
+	socket.request.max.bytes = 104857600
+	socket.send.buffer.bytes = 102400
+	ssl.cipher.suites = []
+	ssl.client.auth = none
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.principal.mapping.rules = DEFAULT
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.abort.timed.out.transaction.cleanup.interval.ms = 10000
+	transaction.max.timeout.ms = 900000
+	transaction.remove.expired.transaction.cleanup.interval.ms = 3600000
+	transaction.state.log.load.buffer.size = 5242880
+	transaction.state.log.min.isr = 1
+	transaction.state.log.num.partitions = 50
+	transaction.state.log.replication.factor = 1
+	transaction.state.log.segment.bytes = 104857600
+	transactional.id.expiration.ms = 604800000
+	unclean.leader.election.enable = false
+	zookeeper.clientCnxnSocket = null
+	zookeeper.connect = localhost:2181
+	zookeeper.connection.timeout.ms = 18000
+	zookeeper.max.in.flight.requests = 10
+	zookeeper.session.timeout.ms = 18000
+	zookeeper.set.acl = false
+	zookeeper.ssl.cipher.suites = null
+	zookeeper.ssl.client.enable = false
+	zookeeper.ssl.crl.enable = false
+	zookeeper.ssl.enabled.protocols = null
+	zookeeper.ssl.endpoint.identification.algorithm = HTTPS
+	zookeeper.ssl.keystore.location = null
+	zookeeper.ssl.keystore.password = null
+	zookeeper.ssl.keystore.type = null
+	zookeeper.ssl.ocsp.enable = false
+	zookeeper.ssl.protocol = TLSv1.2
+	zookeeper.ssl.truststore.location = null
+	zookeeper.ssl.truststore.password = null
+	zookeeper.ssl.truststore.type = null
+	zookeeper.sync.time.ms = 2000
+ (kafka.server.KafkaConfig)
+[2021-10-27 13:49:03,279] INFO KafkaConfig values: 
+	advertised.listeners = null
+	alter.config.policy.class.name = null
+	alter.log.dirs.replication.quota.window.num = 11
+	alter.log.dirs.replication.quota.window.size.seconds = 1
+	authorizer.class.name = 
+	auto.create.topics.enable = true
+	auto.leader.rebalance.enable = true
+	background.threads = 10
+	broker.heartbeat.interval.ms = 2000
+	broker.id = 0
+	broker.id.generation.enable = true
+	broker.rack = null
+	broker.session.timeout.ms = 9000
+	client.quota.callback.class = null
+	compression.type = producer
+	connection.failed.authentication.delay.ms = 100
+	connections.max.idle.ms = 600000
+	connections.max.reauth.ms = 0
+	control.plane.listener.name = null
+	controlled.shutdown.enable = true
+	controlled.shutdown.max.retries = 3
+	controlled.shutdown.retry.backoff.ms = 5000
+	controller.listener.names = null
+	controller.quorum.append.linger.ms = 25
+	controller.quorum.election.backoff.max.ms = 1000
+	controller.quorum.election.timeout.ms = 1000
+	controller.quorum.fetch.timeout.ms = 2000
+	controller.quorum.request.timeout.ms = 2000
+	controller.quorum.retry.backoff.ms = 20
+	controller.quorum.voters = []
+	controller.quota.window.num = 11
+	controller.quota.window.size.seconds = 1
+	controller.socket.timeout.ms = 30000
+	create.topic.policy.class.name = null
+	default.replication.factor = 1
+	delegation.token.expiry.check.interval.ms = 3600000
+	delegation.token.expiry.time.ms = 86400000
+	delegation.token.master.key = null
+	delegation.token.max.lifetime.ms = 604800000
+	delegation.token.secret.key = null
+	delete.records.purgatory.purge.interval.requests = 1
+	delete.topic.enable = true
+	fetch.max.bytes = 57671680
+	fetch.purgatory.purge.interval.requests = 1000
+	group.initial.rebalance.delay.ms = 0
+	group.max.session.timeout.ms = 1800000
+	group.max.size = 2147483647
+	group.min.session.timeout.ms = 6000
+	initial.broker.registration.timeout.ms = 60000
+	inter.broker.listener.name = null
+	inter.broker.protocol.version = 3.0-IV1
+	kafka.metrics.polling.interval.secs = 10
+	kafka.metrics.reporters = []
+	leader.imbalance.check.interval.seconds = 300
+	leader.imbalance.per.broker.percentage = 10
+	listener.security.protocol.map = PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL
+	listeners = PLAINTEXT://:9092
+	log.cleaner.backoff.ms = 15000
+	log.cleaner.dedupe.buffer.size = 134217728
+	log.cleaner.delete.retention.ms = 86400000
+	log.cleaner.enable = true
+	log.cleaner.io.buffer.load.factor = 0.9
+	log.cleaner.io.buffer.size = 524288
+	log.cleaner.io.max.bytes.per.second = 1.7976931348623157E308
+	log.cleaner.max.compaction.lag.ms = 9223372036854775807
+	log.cleaner.min.cleanable.ratio = 0.5
+	log.cleaner.min.compaction.lag.ms = 0
+	log.cleaner.threads = 1
+	log.cleanup.policy = [delete]
+	log.dir = /tmp/kafka-logs
+	log.dirs = /tmp/kafka-logs
+	log.flush.interval.messages = 9223372036854775807
+	log.flush.interval.ms = null
+	log.flush.offset.checkpoint.interval.ms = 60000
+	log.flush.scheduler.interval.ms = 9223372036854775807
+	log.flush.start.offset.checkpoint.interval.ms = 60000
+	log.index.interval.bytes = 4096
+	log.index.size.max.bytes = 10485760
+	log.message.downconversion.enable = true
+	log.message.format.version = 3.0-IV1
+	log.message.timestamp.difference.max.ms = 9223372036854775807
+	log.message.timestamp.type = CreateTime
+	log.preallocate = false
+	log.retention.bytes = -1
+	log.retention.check.interval.ms = 300000
+	log.retention.hours = 168
+	log.retention.minutes = null
+	log.retention.ms = null
+	log.roll.hours = 168
+	log.roll.jitter.hours = 0
+	log.roll.jitter.ms = null
+	log.roll.ms = null
+	log.segment.bytes = 1073741824
+	log.segment.delete.delay.ms = 60000
+	max.connection.creation.rate = 2147483647
+	max.connections = 2147483647
+	max.connections.per.ip = 2147483647
+	max.connections.per.ip.overrides = 
+	max.incremental.fetch.session.cache.slots = 1000
+	message.max.bytes = 1048588
+	metadata.log.dir = null
+	metadata.log.max.record.bytes.between.snapshots = 20971520
+	metadata.log.segment.bytes = 1073741824
+	metadata.log.segment.min.bytes = 8388608
+	metadata.log.segment.ms = 604800000
+	metadata.max.retention.bytes = -1
+	metadata.max.retention.ms = 604800000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	min.insync.replicas = 1
+	node.id = -1
+	num.io.threads = 8
+	num.network.threads = 3
+	num.partitions = 1
+	num.recovery.threads.per.data.dir = 1
+	num.replica.alter.log.dirs.threads = null
+	num.replica.fetchers = 1
+	offset.metadata.max.bytes = 4096
+	offsets.commit.required.acks = -1
+	offsets.commit.timeout.ms = 5000
+	offsets.load.buffer.size = 5242880
+	offsets.retention.check.interval.ms = 600000
+	offsets.retention.minutes = 10080
+	offsets.topic.compression.codec = 0
+	offsets.topic.num.partitions = 50
+	offsets.topic.replication.factor = 1
+	offsets.topic.segment.bytes = 104857600
+	password.encoder.cipher.algorithm = AES/CBC/PKCS5Padding
+	password.encoder.iterations = 4096
+	password.encoder.key.length = 128
+	password.encoder.keyfactory.algorithm = null
+	password.encoder.old.secret = null
+	password.encoder.secret = null
+	principal.builder.class = class org.apache.kafka.common.security.authenticator.DefaultKafkaPrincipalBuilder
+	process.roles = []
+	producer.purgatory.purge.interval.requests = 1000
+	queued.max.request.bytes = -1
+	queued.max.requests = 500
+	quota.window.num = 11
+	quota.window.size.seconds = 1
+	remote.log.index.file.cache.total.size.bytes = 1073741824
+	remote.log.manager.task.interval.ms = 30000
+	remote.log.manager.task.retry.backoff.max.ms = 30000
+	remote.log.manager.task.retry.backoff.ms = 500
+	remote.log.manager.task.retry.jitter = 0.2
+	remote.log.manager.thread.pool.size = 10
+	remote.log.metadata.manager.class.name = null
+	remote.log.metadata.manager.class.path = null
+	remote.log.metadata.manager.impl.prefix = null
+	remote.log.metadata.manager.listener.name = null
+	remote.log.reader.max.pending.tasks = 100
+	remote.log.reader.threads = 10
+	remote.log.storage.manager.class.name = null
+	remote.log.storage.manager.class.path = null
+	remote.log.storage.manager.impl.prefix = null
+	remote.log.storage.system.enable = false
+	replica.fetch.backoff.ms = 1000
+	replica.fetch.max.bytes = 1048576
+	replica.fetch.min.bytes = 1
+	replica.fetch.response.max.bytes = 10485760
+	replica.fetch.wait.max.ms = 500
+	replica.high.watermark.checkpoint.interval.ms = 5000
+	replica.lag.time.max.ms = 30000
+	replica.selector.class = null
+	replica.socket.receive.buffer.bytes = 65536
+	replica.socket.timeout.ms = 30000
+	replication.quota.window.num = 11
+	replication.quota.window.size.seconds = 1
+	request.timeout.ms = 30000
+	reserved.broker.max.id = 1000
+	sasl.client.callback.handler.class = null
+	sasl.enabled.mechanisms = [GSSAPI]
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.principal.to.local.rules = [DEFAULT]
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism.controller.protocol = GSSAPI
+	sasl.mechanism.inter.broker.protocol = GSSAPI
+	sasl.server.callback.handler.class = null
+	security.inter.broker.protocol = PLAINTEXT
+	security.providers = null
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	socket.receive.buffer.bytes = 102400
+	socket.request.max.bytes = 104857600
+	socket.send.buffer.bytes = 102400
+	ssl.cipher.suites = []
+	ssl.client.auth = none
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.principal.mapping.rules = DEFAULT
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.abort.timed.out.transaction.cleanup.interval.ms = 10000
+	transaction.max.timeout.ms = 900000
+	transaction.remove.expired.transaction.cleanup.interval.ms = 3600000
+	transaction.state.log.load.buffer.size = 5242880
+	transaction.state.log.min.isr = 1
+	transaction.state.log.num.partitions = 50
+	transaction.state.log.replication.factor = 1
+	transaction.state.log.segment.bytes = 104857600
+	transactional.id.expiration.ms = 604800000
+	unclean.leader.election.enable = false
+	zookeeper.clientCnxnSocket = null
+	zookeeper.connect = localhost:2181
+	zookeeper.connection.timeout.ms = 18000
+	zookeeper.max.in.flight.requests = 10
+	zookeeper.session.timeout.ms = 18000
+	zookeeper.set.acl = false
+	zookeeper.ssl.cipher.suites = null
+	zookeeper.ssl.client.enable = false
+	zookeeper.ssl.crl.enable = false
+	zookeeper.ssl.enabled.protocols = null
+	zookeeper.ssl.endpoint.identification.algorithm = HTTPS
+	zookeeper.ssl.keystore.location = null
+	zookeeper.ssl.keystore.password = null
+	zookeeper.ssl.keystore.type = null
+	zookeeper.ssl.ocsp.enable = false
+	zookeeper.ssl.protocol = TLSv1.2
+	zookeeper.ssl.truststore.location = null
+	zookeeper.ssl.truststore.password = null
+	zookeeper.ssl.truststore.type = null
+	zookeeper.sync.time.ms = 2000
+ (kafka.server.KafkaConfig)
+[2021-10-27 13:49:03,326] INFO [ThrottledChannelReaper-Fetch]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:03,326] INFO [ThrottledChannelReaper-Produce]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:03,327] INFO [ThrottledChannelReaper-Request]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:03,327] INFO [ThrottledChannelReaper-ControllerMutation]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:03,337] INFO Refusing session request for client /127.0.0.1:49767 as it has seen zxid 0xd8 our last zxid is 0x18 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:03,339] INFO Log directory /tmp/kafka-logs not found, creating it. (kafka.log.LogManager)
+[2021-10-27 13:49:03,389] INFO Loading logs from log dirs ArraySeq(/tmp/kafka-logs) (kafka.log.LogManager)
+[2021-10-27 13:49:03,393] INFO Attempting recovery for all logs in /tmp/kafka-logs since no clean shutdown file was found (kafka.log.LogManager)
+[2021-10-27 13:49:03,400] INFO Loaded 0 logs in 11ms. (kafka.log.LogManager)
+[2021-10-27 13:49:03,401] INFO Starting log cleanup with a period of 300000 ms. (kafka.log.LogManager)
+[2021-10-27 13:49:03,404] INFO Starting log flusher with a default period of 9223372036854775807 ms. (kafka.log.LogManager)
+[2021-10-27 13:49:03,638] INFO [BrokerToControllerChannelManager broker=0 name=forwarding]: Starting (kafka.server.BrokerToControllerRequestThread)
+[2021-10-27 13:49:03,879] INFO Updated connection-accept-rate max connection creation rate to 2147483647 (kafka.network.ConnectionQuotas)
+[2021-10-27 13:49:03,883] ERROR [KafkaServer id=0] Fatal error during KafkaServer startup. Prepare to shutdown (kafka.server.KafkaServer)
+org.apache.kafka.common.KafkaException: Socket server failed to bind to 0.0.0.0:9092: Address already in use.
+	at kafka.network.Acceptor.openServerSocket(SocketServer.scala:667)
+	at kafka.network.Acceptor.<init>(SocketServer.scala:560)
+	at kafka.network.SocketServer.createAcceptor(SocketServer.scala:288)
+	at kafka.network.SocketServer.$anonfun$createDataPlaneAcceptorsAndProcessors$1(SocketServer.scala:261)
+	at kafka.network.SocketServer.$anonfun$createDataPlaneAcceptorsAndProcessors$1$adapted(SocketServer.scala:259)
+	at scala.collection.IterableOnceOps.foreach(IterableOnce.scala:563)
+	at scala.collection.IterableOnceOps.foreach$(IterableOnce.scala:561)
+	at scala.collection.AbstractIterable.foreach(Iterable.scala:919)
+	at kafka.network.SocketServer.createDataPlaneAcceptorsAndProcessors(SocketServer.scala:259)
+	at kafka.network.SocketServer.startup(SocketServer.scala:131)
+	at kafka.server.KafkaServer.startup(KafkaServer.scala:296)
+	at kafka.Kafka$.main(Kafka.scala:109)
+	at kafka.Kafka.main(Kafka.scala)
+Caused by: java.net.BindException: Address already in use
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:337)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:294)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:81)
+	at kafka.network.Acceptor.openServerSocket(SocketServer.scala:663)
+	... 12 more
+[2021-10-27 13:49:03,886] INFO [KafkaServer id=0] shutting down (kafka.server.KafkaServer)
+[2021-10-27 13:49:03,886] INFO [SocketServer listenerType=ZK_BROKER, nodeId=0] Stopping socket server request processors (kafka.network.SocketServer)
+[2021-10-27 13:49:03,887] INFO [SocketServer listenerType=ZK_BROKER, nodeId=0] Stopped socket server request processors (kafka.network.SocketServer)
+[2021-10-27 13:49:03,888] INFO [BrokerToControllerChannelManager broker=0 name=forwarding]: Shutting down (kafka.server.BrokerToControllerRequestThread)
+[2021-10-27 13:49:03,889] INFO [BrokerToControllerChannelManager broker=0 name=forwarding]: Shutdown completed (kafka.server.BrokerToControllerRequestThread)
+[2021-10-27 13:49:03,889] INFO [BrokerToControllerChannelManager broker=0 name=forwarding]: Stopped (kafka.server.BrokerToControllerRequestThread)
+[2021-10-27 13:49:03,896] INFO Broker to controller channel manager for forwarding shutdown (kafka.server.BrokerToControllerChannelManagerImpl)
+[2021-10-27 13:49:03,896] INFO Shutting down. (kafka.log.LogManager)
+[2021-10-27 13:49:03,957] INFO Shutdown complete. (kafka.log.LogManager)
+[2021-10-27 13:49:03,960] INFO [feature-zk-node-event-process-thread]: Shutting down (kafka.server.FinalizedFeatureChangeListener$ChangeNotificationProcessorThread)
+[2021-10-27 13:49:03,960] INFO [feature-zk-node-event-process-thread]: Stopped (kafka.server.FinalizedFeatureChangeListener$ChangeNotificationProcessorThread)
+[2021-10-27 13:49:03,960] INFO [feature-zk-node-event-process-thread]: Shutdown completed (kafka.server.FinalizedFeatureChangeListener$ChangeNotificationProcessorThread)
+[2021-10-27 13:49:03,961] INFO [ZooKeeperClient Kafka server] Closing. (kafka.zookeeper.ZooKeeperClient)
+[2021-10-27 13:49:04,093] INFO Session: 0x1000009412a0000 closed (org.apache.zookeeper.ZooKeeper)
+[2021-10-27 13:49:04,093] INFO EventThread shut down for session: 0x1000009412a0000 (org.apache.zookeeper.ClientCnxn)
+[2021-10-27 13:49:04,105] INFO [ZooKeeperClient Kafka server] Closed. (kafka.zookeeper.ZooKeeperClient)
+[2021-10-27 13:49:04,109] INFO [ThrottledChannelReaper-Fetch]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:04,332] INFO [ThrottledChannelReaper-Fetch]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:04,332] INFO [ThrottledChannelReaper-Fetch]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:04,332] INFO [ThrottledChannelReaper-Produce]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:05,135] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49768 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:05,337] INFO [ThrottledChannelReaper-Produce]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:05,337] INFO [ThrottledChannelReaper-Produce]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:05,340] INFO [ThrottledChannelReaper-Request]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:06,336] INFO [ThrottledChannelReaper-Request]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:06,337] INFO [ThrottledChannelReaper-Request]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:06,342] INFO [ThrottledChannelReaper-ControllerMutation]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:06,343] INFO [ThrottledChannelReaper-ControllerMutation]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:06,343] INFO [ThrottledChannelReaper-ControllerMutation]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2021-10-27 13:49:06,352] INFO [SocketServer listenerType=ZK_BROKER, nodeId=0] Shutting down socket server (kafka.network.SocketServer)
+[2021-10-27 13:49:06,430] INFO [SocketServer listenerType=ZK_BROKER, nodeId=0] Shutdown completed (kafka.network.SocketServer)
+[2021-10-27 13:49:06,431] INFO Metrics scheduler closed (org.apache.kafka.common.metrics.Metrics)
+[2021-10-27 13:49:06,431] INFO Closing reporter org.apache.kafka.common.metrics.JmxReporter (org.apache.kafka.common.metrics.Metrics)
+[2021-10-27 13:49:06,431] INFO Metrics reporters closed (org.apache.kafka.common.metrics.Metrics)
+[2021-10-27 13:49:06,435] INFO Broker and topic stats closed (kafka.server.BrokerTopicStats)
+[2021-10-27 13:49:06,444] INFO App info kafka.server for 0 unregistered (org.apache.kafka.common.utils.AppInfoParser)
+[2021-10-27 13:49:06,445] INFO [KafkaServer id=0] shut down completed (kafka.server.KafkaServer)
+[2021-10-27 13:49:06,445] ERROR Exiting Kafka. (kafka.Kafka$)
+[2021-10-27 13:49:06,444] INFO Refusing session request for client /127.0.0.1:49769 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:06,445] INFO [KafkaServer id=0] shutting down (kafka.server.KafkaServer)
+[2021-10-27 13:49:08,249] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49770 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:09,972] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49771 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:12,002] INFO Refusing session request for client /127.0.0.1:49772 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:14,281] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49773 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:16,467] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49774 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:18,572] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49779 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:20,640] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49780 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:22,706] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49781 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:24,577] INFO Refusing session request for client /127.0.0.1:49782 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:25,897] INFO Refusing session request for client /127.0.0.1:49783 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:27,375] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49784 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:28,999] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49785 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:30,259] INFO Refusing session request for client /127.0.0.1:49786 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:31,766] INFO Refusing session request for client /127.0.0.1:49787 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:33,069] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49788 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:34,597] INFO Refusing session request for client /127.0.0.1:49789 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:36,830] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49790 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:38,209] INFO Refusing session request for client /127.0.0.1:49791 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:40,400] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49792 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:42,561] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49793 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:44,209] INFO Refusing session request for client /127.0.0.1:49794 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:46,114] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49795 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:48,014] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49796 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:50,031] INFO Refusing session request for client /127.0.0.1:49797 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:52,226] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49798 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:54,067] INFO Refusing session request for client /127.0.0.1:49799 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:56,208] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49800 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:57,538] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49801 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:49:59,863] INFO Refusing session request for client /127.0.0.1:49802 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:01,819] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49803 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:03,237] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49804 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:04,892] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49805 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:06,398] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49806 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:08,017] INFO Refusing session request for client /127.0.0.1:49807 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:10,126] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49808 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,465] INFO Reading configuration from: config/zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,468] WARN config/zookeeper.properties is relative. Prepend ./ to indicate that you're sure! (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,474] INFO clientPortAddress is 0.0.0.0:2181 (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,474] INFO secureClientPort is not set (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,474] INFO observerMasterPort is not set (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,474] INFO metricsProvider.className is org.apache.zookeeper.metrics.impl.DefaultMetricsProvider (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,475] INFO autopurge.snapRetainCount set to 3 (org.apache.zookeeper.server.DatadirCleanupManager)
+[2021-10-27 13:50:20,475] INFO autopurge.purgeInterval set to 0 (org.apache.zookeeper.server.DatadirCleanupManager)
+[2021-10-27 13:50:20,475] INFO Purge task is not scheduled. (org.apache.zookeeper.server.DatadirCleanupManager)
+[2021-10-27 13:50:20,475] WARN Either no config or no quorum defined in config, running in standalone mode (org.apache.zookeeper.server.quorum.QuorumPeerMain)
+[2021-10-27 13:50:20,479] INFO Log4j 1.2 jmx support found and enabled. (org.apache.zookeeper.jmx.ManagedUtil)
+[2021-10-27 13:50:20,497] INFO Reading configuration from: config/zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,497] WARN config/zookeeper.properties is relative. Prepend ./ to indicate that you're sure! (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,498] INFO clientPortAddress is 0.0.0.0:2181 (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,498] INFO secureClientPort is not set (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,498] INFO observerMasterPort is not set (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,498] INFO metricsProvider.className is org.apache.zookeeper.metrics.impl.DefaultMetricsProvider (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-10-27 13:50:20,498] INFO Starting server (org.apache.zookeeper.server.ZooKeeperServerMain)
+[2021-10-27 13:50:20,510] INFO ServerMetrics initialized with provider org.apache.zookeeper.metrics.impl.DefaultMetricsProvider@35083305 (org.apache.zookeeper.server.ServerMetrics)
+[2021-10-27 13:50:20,516] INFO zookeeper.snapshot.trust.empty : false (org.apache.zookeeper.server.persistence.FileTxnSnapLog)
+[2021-10-27 13:50:20,527] INFO  (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,527] INFO   ______                  _                                           (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,527] INFO  |___  /                 | |                                          (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,528] INFO     / /    ___     ___   | | __   ___    ___   _ __     ___   _ __    (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,528] INFO    / /    / _ \   / _ \  | |/ /  / _ \  / _ \ | '_ \   / _ \ | '__| (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,528] INFO   / /__  | (_) | | (_) | |   <  |  __/ |  __/ | |_) | |  __/ | |     (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,528] INFO  /_____|  \___/   \___/  |_|\_\  \___|  \___| | .__/   \___| |_| (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,528] INFO                                               | |                      (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,528] INFO                                               |_|                      (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,528] INFO  (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,530] INFO Server environment:zookeeper.version=3.6.3--6401e4ad2087061bc6b9f80dec2d69f2e3c8660a, built on 04/08/2021 16:35 GMT (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,530] INFO Server environment:host.name=localhost (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,530] INFO Server environment:java.version=17 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,531] INFO Server environment:java.vendor=Oracle Corporation (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,531] INFO Server environment:java.home=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,531] INFO Server environment:java.class.path=/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/activation-1.1.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/aopalliance-repackaged-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/argparse4j-0.7.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/audience-annotations-0.5.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/commons-cli-1.4.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/commons-lang3-3.8.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-api-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-basic-auth-extension-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-file-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-json-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-mirror-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-mirror-client-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-runtime-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/connect-transforms-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/hk2-api-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/hk2-locator-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/hk2-utils-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-annotations-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-core-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-databind-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-dataformat-csv-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-datatype-jdk8-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-jaxrs-base-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-jaxrs-json-provider-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-module-jaxb-annotations-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jackson-module-scala_2.13-2.12.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.activation-api-1.2.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.annotation-api-1.3.5.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.inject-2.6.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.validation-api-2.0.2.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.ws.rs-api-2.1.6.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jakarta.xml.bind-api-2.3.2.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/javassist-3.27.0-GA.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/javax.servlet-api-3.1.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/javax.ws.rs-api-2.1.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jaxb-api-2.3.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-client-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-common-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-container-servlet-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-container-servlet-core-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-hk2-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jersey-server-2.34.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-client-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-continuation-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-http-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-io-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-security-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-server-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-servlet-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-servlets-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-util-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jetty-util-ajax-9.4.43.v20210629.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jline-3.12.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/jopt-simple-5.0.4.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-clients-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-log4j-appender-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-metadata-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-raft-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-server-common-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-shell-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-storage-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-storage-api-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-examples-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-scala_2.13-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-streams-test-utils-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka-tools-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/kafka_2.13-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/log4j-1.2.17.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/lz4-java-1.7.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/maven-artifact-3.8.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/metrics-core-2.2.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/metrics-core-4.1.12.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-buffer-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-codec-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-common-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-handler-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-resolver-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-transport-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-transport-native-epoll-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/netty-transport-native-unix-common-4.1.62.Final.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/osgi-resource-locator-1.0.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/paranamer-2.8.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/plexus-utils-3.2.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/reflections-0.9.12.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/rocksdbjni-6.19.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-collection-compat_2.13-2.4.4.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-java8-compat_2.13-1.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-library-2.13.6.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-logging_2.13-3.9.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/scala-reflect-2.13.6.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/slf4j-api-1.7.30.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/slf4j-log4j12-1.7.30.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/snappy-java-1.1.8.1.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/trogdor-3.0.0.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/zookeeper-3.6.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/zookeeper-jute-3.6.3.jar:/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0/bin/../libs/zstd-jni-1.5.0-2.jar (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:java.library.path=/Users/ratikabhuwalka/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:. (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:java.io.tmpdir=/var/folders/fw/qkf7nk857ddd0g6vxnfg8_r40000gn/T/ (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:java.compiler=<NA> (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:os.name=Mac OS X (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:os.arch=x86_64 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:os.version=11.5.2 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:user.name=ratikabhuwalka (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:user.home=/Users/ratikabhuwalka (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:user.dir=/Users/ratikabhuwalka/Downloads/kafka_2.13-3.0.0 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:os.memory.free=495MB (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:os.memory.max=512MB (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO Server environment:os.memory.total=512MB (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO zookeeper.enableEagerACLCheck = false (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO zookeeper.digest.enabled = true (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO zookeeper.closeSessionTxn.enabled = true (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO zookeeper.flushDelay=0 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,533] INFO zookeeper.maxWriteQueuePollTime=0 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,534] INFO zookeeper.maxBatchSize=1000 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,534] INFO zookeeper.intBufferStartingSizeBytes = 1024 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,535] INFO Weighed connection throttling is disabled (org.apache.zookeeper.server.BlueThrottle)
+[2021-10-27 13:50:20,537] INFO minSessionTimeout set to 6000 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,537] INFO maxSessionTimeout set to 60000 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,540] INFO Response cache size is initialized with value 400. (org.apache.zookeeper.server.ResponseCache)
+[2021-10-27 13:50:20,540] INFO Response cache size is initialized with value 400. (org.apache.zookeeper.server.ResponseCache)
+[2021-10-27 13:50:20,541] INFO zookeeper.pathStats.slotCapacity = 60 (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:50:20,541] INFO zookeeper.pathStats.slotDuration = 15 (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:50:20,541] INFO zookeeper.pathStats.maxDepth = 6 (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:50:20,541] INFO zookeeper.pathStats.initialDelay = 5 (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:50:20,541] INFO zookeeper.pathStats.delay = 5 (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:50:20,541] INFO zookeeper.pathStats.enabled = false (org.apache.zookeeper.server.util.RequestPathMetricsCollector)
+[2021-10-27 13:50:20,543] INFO The max bytes for all large requests are set to 104857600 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,543] INFO The large request threshold is set to -1 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,543] INFO Created server with tickTime 3000 minSessionTimeout 6000 maxSessionTimeout 60000 clientPortListenBacklog -1 datadir /tmp/zookeeper/version-2 snapdir /tmp/zookeeper/version-2 (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,554] INFO Using org.apache.zookeeper.server.NIOServerCnxnFactory as server connection factory (org.apache.zookeeper.server.ServerCnxnFactory)
+[2021-10-27 13:50:20,555] WARN maxCnxns is not configured, using default value 0. (org.apache.zookeeper.server.ServerCnxnFactory)
+[2021-10-27 13:50:20,556] INFO Configuring NIO connection handler with 10s sessionless connection timeout, 2 selector thread(s), 16 worker threads, and 64 kB direct buffers. (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2021-10-27 13:50:20,562] INFO binding to port 0.0.0.0/0.0.0.0:2181 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2021-10-27 13:50:20,579] INFO Using org.apache.zookeeper.server.watch.WatchManager as watch manager (org.apache.zookeeper.server.watch.WatchManagerFactory)
+[2021-10-27 13:50:20,579] INFO Using org.apache.zookeeper.server.watch.WatchManager as watch manager (org.apache.zookeeper.server.watch.WatchManagerFactory)
+[2021-10-27 13:50:20,580] INFO zookeeper.snapshotSizeFactor = 0.33 (org.apache.zookeeper.server.ZKDatabase)
+[2021-10-27 13:50:20,580] INFO zookeeper.commitLogCount=500 (org.apache.zookeeper.server.ZKDatabase)
+[2021-10-27 13:50:20,586] INFO zookeeper.snapshot.compression.method = CHECKED (org.apache.zookeeper.server.persistence.SnapStream)
+[2021-10-27 13:50:20,587] INFO Reading snapshot /tmp/zookeeper/version-2/snapshot.0 (org.apache.zookeeper.server.persistence.FileSnap)
+[2021-10-27 13:50:20,592] INFO The digest value is empty in snapshot (org.apache.zookeeper.server.DataTree)
+[2021-10-27 13:50:20,624] INFO 25 txns loaded in 22 ms (org.apache.zookeeper.server.persistence.FileTxnSnapLog)
+[2021-10-27 13:50:20,624] INFO Snapshot loaded in 44 ms, highest zxid is 0x19, digest is 42838626357 (org.apache.zookeeper.server.ZKDatabase)
+[2021-10-27 13:50:20,624] INFO Snapshotting: 0x19 to /tmp/zookeeper/version-2/snapshot.19 (org.apache.zookeeper.server.persistence.FileTxnSnapLog)
+[2021-10-27 13:50:20,626] INFO Snapshot taken in 2 ms (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:20,637] INFO PrepRequestProcessor (sid:0) started, reconfigEnabled=false (org.apache.zookeeper.server.PrepRequestProcessor)
+[2021-10-27 13:50:20,637] INFO zookeeper.request_throttler.shutdownTimeout = 10000 (org.apache.zookeeper.server.RequestThrottler)
+[2021-10-27 13:50:20,668] INFO Using checkIntervalMs=60000 maxPerMinute=10000 maxNeverUsedIntervalMs=0 (org.apache.zookeeper.server.ContainerManager)
+[2021-10-27 13:50:20,669] INFO ZooKeeper audit is disabled. (org.apache.zookeeper.audit.ZKAuditProvider)
+[2021-10-27 13:50:21,214] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49815 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:22,615] INFO Refusing session request for client /127.0.0.1:49816 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:24,033] INFO Refusing session request for client /127.0.0.1:49817 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:25,283] INFO Refusing session request for client /127.0.0.1:49818 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:26,929] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49819 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:29,194] INFO Refusing session request for client /127.0.0.1:49820 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:31,275] INFO Refusing session request for client /127.0.0.1:49821 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:33,284] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49822 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:34,845] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49823 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:36,410] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49824 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:38,523] INFO Refusing session request for client /127.0.0.1:49825 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:40,527] INFO Refusing session request for client /[0:0:0:0:0:0:0:1]:49826 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:42,739] INFO Refusing session request for client /127.0.0.1:49827 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:44,517] INFO Refusing session request for client /127.0.0.1:49828 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
+[2021-10-27 13:50:46,638] INFO Refusing session request for client /127.0.0.1:49829 as it has seen zxid 0xd8 our last zxid is 0x19 client must try another server (org.apache.zookeeper.server.ZooKeeperServer)
