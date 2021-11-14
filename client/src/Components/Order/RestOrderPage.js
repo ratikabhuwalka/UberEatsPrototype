@@ -4,6 +4,8 @@ import backendServer from "../../webConfig";
 import {Button, Alert, Container, Table, Dropdown, DropdownButton,InputGroup } from "react-bootstrap";
 import Navigationbar from '../NavigationBar.js';
 import axios from 'axios';
+import Paginate from './Pagination';
+
 
 class RestOrder extends Component {
     constructor(props) {
@@ -14,10 +16,13 @@ class RestOrder extends Component {
         this.showModal = this.showModal.bind(this);
         // this.getOrderReceipt = this.getOrderReceipt.bind(this);
         this.state = {
-            orders: '',
+            orders: [],
+            displayOrders:[],
             receipts : '',
             order_status: '',
-            show: false
+            show: false,
+            currPage: 1,
+            itemsPerPage: 5,
           }
 
     }
@@ -28,7 +33,6 @@ class RestOrder extends Component {
     hideModal = () => {
         this.setState({show : false});
     };
-
 
 
     componentDidMount() {
@@ -143,6 +147,14 @@ class RestOrder extends Component {
         }
     }
 
+    onItemChange = (e) => {
+        if(this.state && this.state.currPage){
+            this.setState({
+                itemsPerPage : parseInt(e.target.text)
+            })
+        }
+    }
+
     getOrderStatus = (order_id) => {
         const params = {
             order_id : order_id
@@ -169,14 +181,26 @@ class RestOrder extends Component {
     let message = null;
     let orders = [];
     let orderRows = null;
+    const indexOfLastPost = this.state.currPage * this.state.itemsPerPage;
+    const indexOfFirstPost = indexOfLastPost - this.state.itemsPerPage;
+    const totalOrders = this.state.displayOrders.length
+    const itemsPerPage = this.state.itemsPerPage
 
-    
+    const paginate = pageNumber => 
+    {
+        this.setState({
+            currPage : pageNumber
+        })
+    };
     
 
     if (this.state && this.state.displayOrders) {
         if(this.state.displayOrders.length===0){
         message = <Alert variant="warning">You do not have any orders made in the past.</Alert>}
-        orders = this.state.displayOrders;
+        orders = this.state.displayOrders.slice(indexOfFirstPost, indexOfLastPost);
+        if (this.state.displayOrders.length === 0) {
+            message = <Alert variant="warning">You do not have any orders made in the past.</Alert>
+        }
         if (orders.length > 0) {
             orderRows = orders.map(order => {
                 let status = order.Status;
@@ -220,6 +244,7 @@ class RestOrder extends Component {
             <Container className="justify-content">
                 <h3>Order History<br/></h3>
                 <DropdownButton
+                                className="d-inline mx-2"
                                 as={InputGroup.Append}
                                 variant="outline-secondary"
                                 title="Order Status"
@@ -231,6 +256,18 @@ class RestOrder extends Component {
 
                 </DropdownButton>
 
+                <DropdownButton
+                        className="d-inline mx-2"
+                        as={InputGroup.Append}
+                        variant="outline-secondary"
+                        title="Items per Page"
+                        id="input-group-dropdown-2">
+                        <Dropdown.Item onClick={this.onItemChange}>2</Dropdown.Item>
+                        <Dropdown.Item onClick={this.onItemChange}>5</Dropdown.Item>
+                        <Dropdown.Item onClick={this.onItemChange}>10</Dropdown.Item>
+
+                    </DropdownButton>
+
                 {/* {this.receipt_modal} */}
                 {message}
                 <br/>
@@ -240,6 +277,8 @@ class RestOrder extends Component {
                     {orderRows}
                     </tbody>
                 </Table>
+                <Paginate postPerPage={itemsPerPage} totalPost={totalOrders} paginate={paginate}/>
+
                 </div>
                
 
