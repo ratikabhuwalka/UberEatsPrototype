@@ -20,6 +20,8 @@ function Card({ res}) {
     console.log(src);
 
     const postFav = (cust_id, rest_id) => {
+        var token = localStorage.getItem('token')
+        Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         Axios.post(`${backendServer}/restaurant/addFav`,{
            cust_id: cust_id,
            rest_id : rest_id

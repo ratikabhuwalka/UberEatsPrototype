@@ -5,7 +5,7 @@ async function handle_request(msg, callback) {
         const {rest_id, url} = msg;   
         console.log("msg", msg);
         const result = await Restaurant.findOneAndUpdate({_id:rest_id}, {RestImage: url},
-                            function (err, docs) {
+        function (err, docs) {
             if (err){
                 console.log(err)
             }

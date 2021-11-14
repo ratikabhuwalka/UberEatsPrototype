@@ -51,7 +51,8 @@ componentWillMount()
     const params = {
         cust_id : cust_id
     }
-   
+    var token = localStorage.getItem('token')
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     axios.get(`${backendServer}/customer/customerdetail`, { params})
         .then(response => {
             console.log("response from customerdetail api", response);
@@ -101,7 +102,8 @@ updateItem = (e) =>
         "cust_city": this.state.cust_city,
         "dob": this.state.dob
     }
-
+    var token = localStorage.getItem('token')
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     axios.post(`${backendServer}/customer/updatecust`, cust_data)
         .then(response => {
             console.log(response);
@@ -131,6 +133,8 @@ onUserUpload = (e) => {
         }
     };
     const dummy_data = "dummy"
+    var token = localStorage.getItem('token')
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     axios.post(`${backendServer}/upload/dish/1`, dummy_data)
         .then(response => {
             alert("Image uploaded successfully!");

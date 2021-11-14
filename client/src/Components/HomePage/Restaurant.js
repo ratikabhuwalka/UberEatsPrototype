@@ -40,8 +40,9 @@ class Restaurant extends Component {
             rest_id : rest_id
         }
        
-        //RESTAURANT DETAILS
-
+        // //RESTAURANT DETAILS
+        // var token = localStorage.getItem('token')
+        // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.get(`${backendServer}/restaurant/getRestaurant`, { params})
             .then(response => {
                 if (response.data) {

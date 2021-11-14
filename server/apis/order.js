@@ -4,15 +4,20 @@ const passwordHash = require('password-hash');
 const db = require('../../kafka-backend/config/keys.js');
 const moment = require('moment');
 var kafka = require("../kafka/client");
+const { checkAuth } = require("../config/passport");
+const { auth } = require("../config/passport");
+const { checkAuthCust } = require("../config/passport");
+const {custauth } = require("../config/passport");
+custauth();
+auth();
+
+
 
 const { response } = require("express");
 
-router.post('/', (req, res) =>
-{
 
-});
 // create new restaurant
-router.post('/placeorder', (req, res) => {
+router.post('/placeorder',checkAuthCust, (req, res) => {
     try{
     console.log("Place Order Request reached!");
     const time = moment().format('MMMM DD YYYY, hh:mma')
@@ -83,7 +88,7 @@ router.post('/placeorder', (req, res) => {
 
 });
 
-router.get('/getcustorders', (req, res) =>
+router.get('/getcustorders', checkAuthCust, (req, res) =>
 {
     try{
         data = req.query;
@@ -108,7 +113,7 @@ router.get('/getcustorders', (req, res) =>
 
 });
 
-router.get('/getorderreceipt', (req, res) =>
+router.get('/getorderreceipt', checkAuthCust, (req, res) =>
 {
     try{
         data = req.query;
@@ -133,7 +138,7 @@ router.get('/getorderreceipt', (req, res) =>
 });
 
 
-router.get('/getrestorders', (req, res) =>
+router.get('/getrestorders', checkAuth, (req, res) =>
 {
     try{
         data = req.query;

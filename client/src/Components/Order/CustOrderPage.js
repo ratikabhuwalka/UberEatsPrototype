@@ -71,6 +71,8 @@ class Order extends Component {
         const params = {
             cust_id: localStorage.getItem('user_id')
         }
+        var token = localStorage.getItem('token')
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.get(`${backendServer}/order/getcustorders`, { params })
             .then(response => {
                 console.log(response.data)
@@ -91,6 +93,8 @@ class Order extends Component {
         const params = {
             order_id: order_id
         }
+        var token = localStorage.getItem('token')
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.get(`${backendServer}/order/getorderreceipt`, { params })
             .then(response => {
                 console.log("response of get receipt", response);
@@ -116,6 +120,8 @@ class Order extends Component {
                 status: "CANCELLED"
             }
             console.log()
+            var token = localStorage.getItem('token')
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             axios.put(`${backendServer}/order/updateorderstatus`, params)
                 .then(response => {
                     console.log("response of update status", response)

@@ -7,9 +7,9 @@ auth();
 
 async function handle_request(msg, callback) { 
     try {
-        const { dish_id, url} = msg;
-      
-        const rest = await Restaurant.findById(restId);
+        const { dish_id, rest_id, url} = msg;
+        console.log(msg)
+        const rest = await Restaurant.findById(rest_id);
         let dish = rest.Dishes.id(mongoose.Types.ObjectId(dish_id));
         dish.set({DishImage: url});
         let result = await rest.save();

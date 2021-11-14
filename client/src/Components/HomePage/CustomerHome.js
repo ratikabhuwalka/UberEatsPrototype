@@ -28,6 +28,8 @@ export default class CustomerHome extends React.Component {
 
         get_cust_fav(cust_id) {
             var url = `${backendServer}/restaurant/getFav?cust_id=${cust_id}`
+            var token = localStorage.getItem('token')
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             axios.get(url)
                  .then(response => {
                     if (response.data.Favourites) {
@@ -59,6 +61,8 @@ export default class CustomerHome extends React.Component {
         // if(search_param){
         //     url = url +'?search_string='+search_param
         // }
+        // var token = localStorage.getItem('token')
+        // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.get(url, {params})
              .then(response => {
                 if (response.data) {

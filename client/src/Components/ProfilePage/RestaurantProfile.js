@@ -40,7 +40,10 @@ componentWillMount()
    const params = {
         rest_id : rest_id
     }
-   
+
+
+    var token = localStorage.getItem('token')
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     axios.get(`${backendServer}/restaurant/getRestaurant`, { params})
         .then(response => {
             if (response.data) {
@@ -101,6 +104,8 @@ updateRestaurant = (e) =>
         "rest_type": this.state.rest_type
     }
 
+    var token = localStorage.getItem('token')
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     axios.post(`${backendServer}/restaurant/updaterest`, rest_data)
         .then(response => {
             if (response.data === "RESTAURANT UPDATED") {
@@ -124,6 +129,8 @@ onUpload = (e) => {
     const formData = new FormData();
     console.log(this.state.rest_image);
     formData.append("file", this.state.rest_image);
+    var token = localStorage.getItem('token')
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     axios.post(`${backendServer}/upload/restaurant/${this.state.rest_id}`,
         formData,
         {

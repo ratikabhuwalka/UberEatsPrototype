@@ -4,7 +4,7 @@ async function handle_request(req, callback) {
     try {
         console.log("req on get rest order", req);
         const rest_id = req.rest_id;
-        const orders = await Order.find({RestId: rest_id})
+        const orders = await Order.find({RestId: rest_id}).sort({_id: -1})
         console.log("orders:", orders);
         callback(null, {status_code: 200, response: {data: orders}});
         return;

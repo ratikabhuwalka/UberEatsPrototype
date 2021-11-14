@@ -23,6 +23,8 @@ export default class Favourite extends React.Component {
 
         get_cust_fav(cust_id) {
             var url = `${backendServer}/restaurant/getFav?cust_id=${cust_id}`
+            var token = localStorage.getItem('token')
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             axios.get(url)
                  .then(response => {
                     if (response.data) {

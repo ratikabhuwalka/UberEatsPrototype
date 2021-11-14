@@ -47,6 +47,8 @@ class RestOrder extends Component {
         const params = {
             rest_id : localStorage.getItem('user_id')
         }
+        var token = localStorage.getItem('token')
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.get(`${backendServer}/order/getrestorders`, {params})
         .then(response => {
             console.log("response of restorders",response.data.response.data);
@@ -65,10 +67,7 @@ class RestOrder extends Component {
 
     
     updateOrderStatus = (order_id, status, order_type) => {
-        
-        if(status === 'Cancel'){
-            status = 'CANCELLED'
-        }
+        console.log(status)
         if(status === 'CANCELLED')
         {
             alert("Cannot perform this operation. Order is cancelled");
@@ -78,7 +77,11 @@ class RestOrder extends Component {
             alert("Order is already completed");
         } 
         else{
-            if(order_type ==='Delivery'){
+            if(status === 'Cancel'){
+                console.log("inside cancel if")
+                status = 'CANCELLED'
+            }
+            else if(order_type ==='Delivery'){
                 if(status==='NEW'){
                     status = 'PREPARING';
                 }
@@ -89,7 +92,6 @@ class RestOrder extends Component {
                     status = 'DELIVERED';
                 }
             }
-
             else{
                 if(status==='NEW'){
                     status = 'PREPARING';
@@ -107,7 +109,7 @@ class RestOrder extends Component {
                 order_id : order_id,
                 status : status
             }
-            console.log()
+            console.log("params for update order status", params)
             axios.put(`${backendServer}/order/updateorderstatus`, params)
             .then(response => {
                 console.log("response of update status",response)
@@ -159,6 +161,8 @@ class RestOrder extends Component {
         const params = {
             order_id : order_id
         }
+        var token = localStorage.getItem('token')
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.get(`${backendServer}/order/getorderreceipt`, {params})
         .then(response => {
             if(response.data[0]){

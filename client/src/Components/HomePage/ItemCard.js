@@ -40,6 +40,8 @@ function ItemCard({ res}) {
 
     const deleteItem = () =>
     {
+        var token = localStorage.getItem('token')
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.delete(`${backendServer}/dish/deletedish`, { data: { dish_id: dish_id } })
         .then(response => {
             console.log(response);

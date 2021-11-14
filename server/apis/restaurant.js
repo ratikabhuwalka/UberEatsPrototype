@@ -3,6 +3,9 @@ const router = express.Router();
 //const passwordHash = require('password-hash');
 //const db = require('../../kafka-backend/config/keys.js');
 var kafka = require("../kafka/client");
+const { checkAuth } = require("../config/passport");
+const { auth } = require("../config/passport");
+auth();
 
 //const pool = require('../pool.js');
 
@@ -289,7 +292,7 @@ router.get('/getFav/:cust_id?', (req, res) => {
 });
 
 
-router.post('/updaterest', (req, res) => {
+router.post('/updaterest', checkAuth, (req, res) => {
     try{
         var data = {
             rest_id     : req.body.rest_id,

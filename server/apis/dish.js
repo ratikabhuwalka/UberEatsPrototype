@@ -9,7 +9,7 @@ auth();
 
 
 
-router.post('/adddish', (req, res) => {
+router.post('/adddish', checkAuth, (req, res) => {
     try{
     console.log("Add new Dish Request reached!");
     var data = {
@@ -65,7 +65,7 @@ router.post('/adddish', (req, res) => {
 
 });
 
-router.get('/getdish', (req, res) =>
+router.get('/getdish', checkAuth, (req, res) =>
 {
     let dish_id = '';
     if(req.query.dish_id){
@@ -130,7 +130,7 @@ router.post('/updatedish', checkAuth, (req, res) => {
 });
 
 //TODO:
-router.delete('/deletedish', (req, res) => {
+router.delete('/deletedish', checkAuth, (req, res) => {
 
     console.log("Delete Dish Request reached!", req.body.dish_id);
     db.query("DELETE FROM Dish WHERE DishId = ?",

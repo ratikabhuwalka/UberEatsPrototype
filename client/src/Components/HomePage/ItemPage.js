@@ -79,7 +79,7 @@ class ItemPage extends Component{
             }
         )
     }
-    
+
     onUpload = (e) => {
         console.log("on upload");
         const formData = new FormData();
@@ -89,9 +89,11 @@ class ItemPage extends Component{
             dish_id:this.state.dish_id,
             rest_id:this.state.rest_id
         }
-        
-        axios.post(`${backendServer}/upload/dish`,
-            formData,{params:params},
+        console.log(params);
+        var token = localStorage.getItem('token')
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        axios.post(`${backendServer}/upload/dish?dish_id=${this.state.dish_id}&rest_id=${this.state.rest_id}`,
+            formData,
             {
             headers: {
                 "Content-Type": "multipart/form-data"
@@ -146,6 +148,8 @@ class ItemPage extends Component{
             "category": this.state.category,
             "mealType": this.state.meal_type
         }
+        var token = localStorage.getItem('token')
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.post(`${backendServer}/dish/adddish`, item_data)
             .then(response => {
 
