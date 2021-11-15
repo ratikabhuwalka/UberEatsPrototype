@@ -48,6 +48,7 @@ async function handle_request(msg, callback) {
 
         const order = new Order({...orderPayload}); 
         const savedOrder = await order.save()
+        console.log("place order response", savedOrder)
         callback(null, {status_code: 200, response: savedOrder});
         return;
     } catch(error) {
