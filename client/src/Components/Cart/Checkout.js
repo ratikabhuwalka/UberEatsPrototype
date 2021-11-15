@@ -77,7 +77,8 @@ class Checkout extends Component {
         }
 
         console.log(order_data);
-
+        var token = localStorage.getItem('token')
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.post(`${backendServer}/order/placeorder`, order_data)
             .then(response => {
                 console.log(response);
