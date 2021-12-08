@@ -17,7 +17,7 @@ const { response } = require("express");
 
 
 // create new restaurant
-router.post('/placeorder',checkAuthCust, (req, res) => {
+router.post('/placeorder', (req, res) => {
     try{
     console.log("Place Order Request reached!");
     const time = moment().format('MMMM DD YYYY, hh:mma')
@@ -88,7 +88,7 @@ router.post('/placeorder',checkAuthCust, (req, res) => {
 
 });
 
-router.get('/getcustorders', checkAuthCust, (req, res) =>
+router.get('/getcustorders', (req, res) =>
 {
     try{
         data = req.query;
@@ -113,7 +113,7 @@ router.get('/getcustorders', checkAuthCust, (req, res) =>
 
 });
 
-router.get('/getorderreceipt', checkAuthCust, (req, res) =>
+router.get('/getorderreceipt', (req, res) =>
 {
     try{
         data = req.query;
@@ -138,7 +138,7 @@ router.get('/getorderreceipt', checkAuthCust, (req, res) =>
 });
 
 
-router.get('/getrestorders', checkAuth, (req, res) =>
+router.get('/getrestorders', (req, res) =>
 {
     try{
         data = req.query;

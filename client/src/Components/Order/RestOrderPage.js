@@ -5,6 +5,9 @@ import {Button, Alert, Container, Table, Dropdown, DropdownButton,InputGroup } f
 import Navigationbar from '../NavigationBar.js';
 import axios from 'axios';
 import Paginate from './Pagination';
+import {  graphql} from "react-apollo";
+import {updateOrderStatusMutation} from "../../mutations/mutations.js"
+
 
 
 class RestOrder extends Component {
@@ -66,7 +69,7 @@ class RestOrder extends Component {
 
 
     
-    updateOrderStatus = (order_id, status, order_type) => {
+    updateOrderStatus = async (order_id, status, order_type) => {
         console.log(status)
         if(status === 'CANCELLED')
         {
@@ -109,20 +112,30 @@ class RestOrder extends Component {
                 order_id : order_id,
                 status : status
             }
-            console.log("params for update order status", params)
-            axios.put(`${backendServer}/order/updateorderstatus`, params)
-            .then(response => {
-                console.log("response of update status",response)
-                if (response.data.status_code === 200) {
-                    window.location.reload();
-                }
-    
-            })
-            .catch(error => {
-                this.setState({
-                    message: "ERROR"
-                });
+            const { data } = await this.props.updateOrderMutation({
+                variables: {
+                    order_id: order_id,
+                    status: status
+                },
             });
+            console.log(data);
+
+
+
+            // console.log("params for update order status", params)
+            // axios.put(`${backendServer}/order/updateorderstatus`, params)
+            // .then(response => {
+            //     console.log("response of update status",response)
+            //     if (response.data.status_code === 200) {
+            //         window.location.reload();
+            //     }
+    
+            // })
+            // .catch(error => {
+            //     this.setState({
+            //         message: "ERROR"
+            //     });
+            // });
         }
         
        
@@ -291,5 +304,8 @@ class RestOrder extends Component {
     )
 }
 }
+const OrderMutation =
+    graphql(updateOrderStatusMutation, { name: 'updateOrderMutation' })(RestOrder);
 
-export default RestOrder;
+export default OrderMutation;
+

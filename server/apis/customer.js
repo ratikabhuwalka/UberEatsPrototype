@@ -3,10 +3,6 @@ const router = express.Router();
 // const passwordHash = require('password-hash');
 // const db = require('../../kafka-backend/config/keys.js');
 var kafka = require("../kafka/client");
-const { checkAuthCust } = require("../config/passport");
-const {custauth } = require("../config/passport");
-custauth();
-
 
 
 //const pool = require('../pool.js');
@@ -188,7 +184,7 @@ router.post('/', (req, res) => {
 // });
 
 
-router.put('/updatecust', checkAuthCust, (req, res) => {
+router.put('/updatecust',  (req, res) => {
 
     console.log("update Customer Request reached!");
 

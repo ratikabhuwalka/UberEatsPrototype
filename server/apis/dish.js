@@ -3,13 +3,10 @@ const router = express.Router();
 const passwordHash = require('password-hash');
 const db = require('../../kafka-backend/config/keys.js');
 var kafka = require("../kafka/client");
-const { checkAuth } = require("../config/passport");
-const { auth } = require("../config/passport");
-auth();
 
 
 
-router.post('/adddish', checkAuth, (req, res) => {
+router.post('/adddish',  (req, res) => {
     try{
     console.log("Add new Dish Request reached!");
     var data = {
@@ -65,7 +62,7 @@ router.post('/adddish', checkAuth, (req, res) => {
 
 });
 
-router.get('/getdish', checkAuth, (req, res) =>
+router.get('/getdish', (req, res) =>
 {
     let dish_id = '';
     if(req.query.dish_id){
@@ -93,7 +90,7 @@ router.get('/getdish', checkAuth, (req, res) =>
     }
 });
 
-router.post('/updatedish', checkAuth, (req, res) => {
+router.post('/updatedish', (req, res) => {
     try
     {
         const data =
@@ -130,7 +127,7 @@ router.post('/updatedish', checkAuth, (req, res) => {
 });
 
 //TODO:
-router.delete('/deletedish', checkAuth, (req, res) => {
+router.delete('/deletedish', (req, res) => {
 
     console.log("Delete Dish Request reached!", req.body.dish_id);
     db.query("DELETE FROM Dish WHERE DishId = ?",

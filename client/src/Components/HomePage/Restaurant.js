@@ -4,6 +4,9 @@ import ItemCard from "./ItemCard"
 import {  Col, Row } from 'react-bootstrap';
 import NavigationBar from '../NavigationBar'
 import backendServer from "../../webConfig";
+import { withApollo } from "react-apollo";
+import {getRestaurantQuery} from "../../mutations/queries.js"
+
 
 class Restaurant extends Component {
     constructor(props) {
@@ -40,10 +43,16 @@ class Restaurant extends Component {
             rest_id : rest_id
         }
        
-        // //RESTAURANT DETAILS
-        // var token = localStorage.getItem('token')
-        // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        axios.get(`${backendServer}/restaurant/getRestaurant`, { params})
+        const { data } =  this.props.client.query({
+            query: getRestaurantQuery,
+            variables: {
+                restId : rest_id,
+            },
+        });
+
+        console.log("graphgl data",data);
+       
+        axios.get(`${backendServer}/restaurant/getRestaurant`, { params })
             .then(response => {
                 if (response.data) {
                     rest = response.data;
@@ -134,5 +143,4 @@ class Restaurant extends Component {
         )
     }
 }
-
-export default Restaurant;
+export default withApollo(Restaurant);

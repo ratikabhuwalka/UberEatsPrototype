@@ -23,7 +23,7 @@ const customerSchema = new Schema({
     }, 
     CustPhone: {
         type: Number,
-        required: [true, "Please enter the contact number of the restaurant"]
+        required: [true, "Please enter the contact number"]
       },  
     DOB: { 
         type: String, 
@@ -42,7 +42,6 @@ const customerSchema = new Schema({
         default: "USA"
     },
     
-    //TODO:
     Favourites:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Restaurant",

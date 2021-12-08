@@ -12,7 +12,7 @@ const { auth } = require("../config/passport");
 auth();
 
 
-router.post("/restaurant/:rest_id", checkAuth, async (req, res) => {
+router.post("/restaurant/:rest_id",  async (req, res) => {
   const rest_id = req.params.rest_id;
   const form = new multiparty.Form();
   form.parse(req, async (error, fields, files) => {

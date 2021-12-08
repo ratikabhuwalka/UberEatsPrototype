@@ -1,13 +1,9 @@
 import React, { Component, useMemo  } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { customerSignup } from '../../actions/signupAction'
 import { Redirect } from 'react-router';
 import NavigationBar from '../NavigationBar';
 import Countries  from 'react-select-country';
-
-
-//export class SignUp extends React.Component {
+import {graphql} from 'react-apollo';
+import {addCustomerQuery} from '../../mutations/mutations.js'
 
 
 class CustomerSignUp extends Component{
@@ -22,10 +18,12 @@ class CustomerSignUp extends Component{
             [e.target.name]: e.target.value
         })
     }
-    onSubmit = (e) => {
+    onSubmit = async (e) => {
         //prevent page from refresh
         e.preventDefault();
-        const data = {
+        const result = await this.props.addCustomerMutation({
+            variables: {
+                
             CustName : this.state.custName,
             CustPass : this.state.custPass,
             CustEmail : this.state.custEmail,
@@ -33,25 +31,30 @@ class CustomerSignUp extends Component{
             CustCity : this.state.custCity,
             CustCountry : this.state.custCountry,
             DOB: this.state.dob
-        }
 
+            }
+        });
+        console.log(result.data.addCustomer)        
 
-        this.props.customerSignup(data);
 
         this.setState({
             signupFlag: 1
         });
     }
 
+    
+
     render(){
         let redirectVar = null;
         let message = "";
 
-        console.log(this.props.user)
+        
+
+        console.log(this.state.user)
         if (localStorage.getItem("user_id")) {
             redirectVar = <Redirect to="/customerHome" />
         }
-        else if (this.props.user === "CUSTOMER ADDED" && this.state.signupFlag) {
+        else if (this.state.signupFlag === 1) {
             alert("You have registered successfully");
             redirectVar = <Redirect to="/Login" />
         }
@@ -99,7 +102,7 @@ class CustomerSignUp extends Component{
                 <button type = "submit" class="btn btn-primary" > Submit </button>  
                 <a href= '/restaurantSignUp'> Register as an Owner! </a>   
         </form>
- 
+       
         </div>
 
     </div>
@@ -108,16 +111,7 @@ class CustomerSignUp extends Component{
         )
     }
 }
+const CustomerSignUpMutation =
+    graphql(addCustomerQuery, { name: 'addCustomerMutation' })(CustomerSignUp);
 
-// CustaurantSignUp.propTypes = {
-//     CustaurantSignup: PropTypes.func.isRequired,
-//     user: PropTypes.object.isRequired
-// };
-
-const mapStateToProps = state => ({ 
-    user: state.signup.user,
-    payload : state.signup.payload
-});
-
-
-export default connect(mapStateToProps, { customerSignup })(CustomerSignUp);
+export default CustomerSignUpMutation;

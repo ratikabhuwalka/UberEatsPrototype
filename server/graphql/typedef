@@ -1,0 +1,53 @@
+type Order {
+    _id : ID!
+    RestId : String!
+    CustId : String!
+    RestName : String!
+    CustName : String!
+    Timestamp : String!
+    Address : String!
+    Status : String!
+    Delivery : Int!
+    Tax : Int!
+    Discout : Int!
+    Total : Int!
+    Final : Int!
+    Instruction : String!
+    OrderItem : [OrderDish]
+  }
+
+   type OrderDish {
+       DishId : String!
+       DishName : String!
+       Description : String!
+       Subtotal : Int!
+       Quantity : Int!
+       Category : String!
+       Price : Int!
+   }
+
+   type Dish {
+       _id : ID!
+       Price : Float!
+       Ingredients : String!
+       MealType : String!
+       Description : String!
+       Category : String!
+       DishImage : String!
+       RestId : ID!
+
+   }
+
+   type Restaurant {
+       _id : ID!
+       RestName : String!
+       RestCity : String!
+       RestCountry : String!
+       RestType : String!
+       EndTime : String!
+       RestPhone : Int!
+       RestEmail : String!
+       RestPass : String!
+       RestImage : String!
+       Dishes : [Dish!]!
+   }

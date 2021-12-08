@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
-//import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { userLogin } from '../../actions/loginAction'
 import NavigationBar from '../NavigationBar';
 import jwt_decode from "jwt-decode";
-
+import {  graphql} from "react-apollo";
+import {loginCustomerQuery, loginRestaurantQuery} from "../../mutations/mutations.js"
 
 class Login extends Component {
-    //call the constructor method
     constructor(props) {
-        //Call the constrictor of Super class i.e The Component
         super(props);
-        //maintain the state required for this component
         this.state = {isOwner : false};
         this.handleChecked = this.handleChecked.bind(this);
     }
@@ -28,16 +22,38 @@ class Login extends Component {
         })
     }
 
-    onSubmit = (e) => {
+    onSubmit = async (e) => {
         e.preventDefault();
-        const data = {
-            email_id: this.state.email_id,
-            password: this.state.password,
-            is_owner: this.state.isOwner
+        if (this.state.isOwner ===true){
+
+            const { data } = await this.props.loginRestaurantMutation({
+                variables: {
+                    email_id: this.state.email_id,
+                    password: this.state.password
+                },
+            });
+            console.log(data);
+            this.setState({
+                user: data.loginRestaurant
+            })
+
+
         }
+        else{
+            const { data } = await this.props.loginCustomerMutation({
+                variables: {
+                    email_id: this.state.email_id,
+                    password: this.state.password
+                },
+            });
+            console.log(data);
+            this.setState({
+                user: data.loginCustomer
+            })
 
-        this.props.userLogin(data);
-
+        }
+        
+        
         this.setState({
             loginFlag: 1
         });
@@ -49,13 +65,14 @@ class Login extends Component {
         let redirectVar = null;
         let message = ""
         let res =""
-        console.log(this.props.user);
-        if (this.props.user!=null && typeof this.props.user === 'string') 
+        console.log(this.state.user);
+        //if (this.props.user!=null && typeof this.props.user === 'string')
+        if (this.state.user)
         {
             console.log("inside first if");
-            var login_res = this.props.user
+            var login_res = this.state.user
             if (login_res.split(' ')[0]=== 'JWT'){
-                console.log("props user",this.props.user);
+                console.log("props user",this.state.user);
                 localStorage.setItem("token",login_res.split(' ')[1]);
                 var decoded = jwt_decode(login_res.split(' ')[1]);
                 console.log("Decoded", decoded);
@@ -127,11 +144,12 @@ class Login extends Component {
 //     user: PropTypes.object.isRequired
 // }
 
-const mapStateToProps = state => { 
-    return ({
-    user: state.login.user
-})};
 
-export default connect(mapStateToProps, { userLogin })(Login);
+const LoginMutations =
+    graphql(loginCustomerQuery, { name: 'loginCustomerMutation' })
+    (graphql(loginRestaurantQuery, { name: 'loginRestaurantMutation' })
+  (Login));
+
+export default LoginMutations;
 
 //export default Login
